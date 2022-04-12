@@ -6,7 +6,7 @@ services:
     ports:
       - '3000:3000'
     volumes: 
-      - '.:/usr/src/app'
+      - '.:/app'
     tty: true
     stdin_open: true
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
