@@ -4,7 +4,7 @@
 set -e
 
 #already running server kill
-rm -f /myapp/tmp/pids/server.pid
+rm -f /app/tmp/pids/server.pid
 
 #RUN CMD in Dockerfile
 exec "$@"
