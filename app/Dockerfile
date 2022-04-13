@@ -8,16 +8,14 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 RUN apt-get update && apt-get install -y nodejs postgresql-client yarn
 
 # /appを作業ディレクトリとし、Gemfile Gemfile.lockをコピーする
-RUN mkdir /myapp
-WORKDIR /myapp
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
+WORKDIR /app
+COPY Gemfile Gemfile.lock ./
 
 # コピーしたGemfile Gemfile.lockに書いてあるGemをinstallする
 RUN bundle install
 
 # railsのアプリを含め、すべてのファイルをコピー
-COPY . /myapp
+COPY . ./
 
 # exec when every container started
 COPY entrypoint.sh /usr/bin/
