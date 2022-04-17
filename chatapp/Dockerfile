@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ruby:3.0.0
+FROM ruby:3.0.3
 # 必要なパッケージをインストール
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
