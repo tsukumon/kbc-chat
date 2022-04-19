@@ -1,0 +1,18 @@
+  [1m[35m (1503.1ms)[0m  [1m[35mCREATE DATABASE "tsukumon_development" ENCODING = 'unicode'[0m
+  [1m[35m (1477.0ms)[0m  [1m[35mCREATE DATABASE "tsukumon_test" ENCODING = 'unicode'[0m
+Started GET "/" for 172.19.0.1 at 2022-04-19 00:18:52 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-7.0.2.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-7.0.2.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 10.9ms | Allocations: 828)
+Completed 200 OK in 111ms (Views: 43.8ms | ActiveRecord: 0.0ms | Allocations: 7615)
+
+
+Started GET "/" for 172.20.0.1 at 2022-04-19 00:21:52 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-7.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-7.0.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 13.3ms | Allocations: 809)
+Completed 200 OK in 110ms (Views: 43.8ms | ActiveRecord: 0.0ms | Allocations: 7586)
+
+
