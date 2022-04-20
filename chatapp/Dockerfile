@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 # syntax=docker/dockerfile:1
 FROM ruby:3.0.3
 # 必要なパッケージをインストール
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-=======
-FROM ruby:3.0.3
->>>>>>> f35f91f157aa8de26a429e53a44f36b2506151d1
+
 
 ## nodejsとyarnはwebpackをインストールする際に必要
 # yarnパッケージ管理ツールをインストール
@@ -32,5 +29,5 @@ CMD ["rails", "server", "-b", "0.0.0.0"]
 
 #データベース設定
 ENV DATABASE_USERNAME tsukumon
-ENV DATABASE_PASSWORD password
+ENV DATABASE_PASSWORD Kbc&chat_2022
 ENV DATABASE_HOST db 
