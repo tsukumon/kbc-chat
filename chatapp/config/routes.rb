@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/rooms" => "home#rooms"
   get "/settings" => "home#settings"
   get "/contact" => "home#contact"
+
   # Defines the root path route ("/")
   # root "articles#index"
 end
