@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
     def home
-        @room = Room.all
+        @room = rooms.all
     end
 
     def rooms
