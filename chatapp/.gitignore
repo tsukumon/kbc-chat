@@ -29,3 +29,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+chatapp/Dockerfile
+chatapp/docker-compose.yml
