@@ -7,6 +7,8 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <% self_css_path = "/assets/"+controller.controller_path  %>
+    <%= stylesheet_link_tag self_css_path, :media => "all" %>
     <%= javascript_importmap_tags %>
   </head>
 
