@@ -7,10 +7,15 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <% self_css_path = "/assets/"+controller.controller_path  %>
+    <%= stylesheet_link_tag self_css_path, :media => "all" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <div class="sidebar">sub_column</div>
+      <div class="content"><%= yield %></div>
+    </main>
   </body>
 </html>
