@@ -6,7 +6,4 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Room.create!(
-  name: "テストルーム"
-  describe: "テスト"
-)
+Room.create(name "test-room", describe: "test")
