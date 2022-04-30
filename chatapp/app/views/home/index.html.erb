@@ -1,10 +1,14 @@
 <html>
     <head>
+    </head>
         <body>
             asdfsrerearge
 
-            <%= @rooms %>
-            
+            <% @rooms.each do |room| %>
+                <%= room.name %>
+                <br>
+                <%= room.describe %>
+            <% end %>        
         </body>
-    </head>
+    
 </html>
