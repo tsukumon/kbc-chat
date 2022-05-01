@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :room do
-    name { "MyText" }
-    describe { "MyText" }
+    name { "テストルーム2" }
+    describe { "てすと２" }
   end
 end
