@@ -24,7 +24,7 @@ Resources:
             CidrBlock: 10.0.1.0/24
             Tags:
               - Key: Name
-                Value: PublicSubnet1
+                Value: PublicSubnet1a
 
         PriSub1:
           Type: AWS::EC2::Subnet
@@ -36,7 +36,7 @@ Resources:
             VpcId: !Ref kbcchatVPC
             Tags:
               - Key: Name
-                Value: PrivateSubnet1
+                Value: PrivateSubnet1a
 
         PubSub2:
           Type: AWS::EC2::Subnet
@@ -48,7 +48,7 @@ Resources:
             VpcId: !Ref kbcchatVPC
             Tags:
               - Key: Name
-                Value: PublicSubnet2
+                Value: PublicSubnet2b
 
         
         PriSub2:
@@ -61,7 +61,7 @@ Resources:
             VpcId: !Ref kbcchatVPC
             Tags:
               - Key: Name
-                Value: PrivateSubnet2
+                Value: PrivateSubnet2b
 
 
 # Create InternetGW
