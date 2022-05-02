@@ -11,6 +11,9 @@ Resources:
               - Key: Name
                 Value: kbc-chat-vpc
         
+
+
+# Create Subnet
         PubSub1:
           Type: AWS::EC2::Subnet
           Properties:
@@ -23,8 +26,6 @@ Resources:
               - Key: Name
                 Value: PublicSubnet1
 
-
-# Create Subnet & Internet GW
         PriSub1:
           Type: AWS::EC2::Subnet
           Properties:
@@ -61,7 +62,9 @@ Resources:
             Tags:
               - Key: Name
                 Value: PrivateSubnet2
-        
+
+
+# Create InternetGW
         kbcchatIGW:
           Type: AWS::EC2::InternetGateway
           Properties:
