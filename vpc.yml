@@ -1,0 +1,150 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Resources: 
+# Create VPC
+        kbcchatVPC:
+          Type: AWS::EC2::VPC
+          Properties:
+            CidrBlock: 10.0.0.0/16
+            EnableDnsSupport: true
+            Tags:
+              - Key: Name
+                Value: kbc-chat-vpc
+        
+        PubSub1:
+          Type: AWS::EC2::Subnet
+          Properties:
+            AvailabilityZone: !Select 
+            - 0
+            - Fn::GetAZs: !Ref 'AWS::Region'
+            VpcId: !Ref kbcchatVPC
+            CidrBlock: 10.0.1.0/24
+            Tags:
+              - Key: Name
+                Value: PublicSubnet1
+
+
+# Create Subnet & Internet GW
+        PriSub1:
+          Type: AWS::EC2::Subnet
+          Properties:
+            AvailabilityZone: !Select 
+            - 0
+            - Fn::GetAZs: !Ref 'AWS::Region'
+            CidrBlock: 10.0.2.0/24
+            VpcId: !Ref kbcchatVPC
+            Tags:
+              - Key: Name
+                Value: PrivateSubnet1
+
+        PubSub2:
+          Type: AWS::EC2::Subnet
+          Properties:
+            AvailabilityZone: !Select 
+            - 1
+            - Fn::GetAZs: !Ref 'AWS::Region'
+            CidrBlock: 10.0.3.0/24
+            VpcId: !Ref kbcchatVPC
+            Tags:
+              - Key: Name
+                Value: PublicSubnet2
+
+        
+        PriSub2:
+          Type:  AWS::EC2::Subnet
+          Properties:
+            AvailabilityZone: !Select
+            - 1
+            - Fn::GetAZs: !Ref 'AWS::Region'
+            CidrBlock: 10.0.4.0/24
+            VpcId: !Ref kbcchatVPC
+            Tags:
+              - Key: Name
+                Value: PrivateSubnet2
+        
+        kbcchatIGW:
+          Type: AWS::EC2::InternetGateway
+          Properties:
+            Tags:
+              - Key: Name
+                Value: kbc-chat-IGW
+        AttachGateway:
+          Type: AWS::EC2::VPCGatewayAttachment
+          Properties:
+            VpcId: !Ref kbcchatVPC
+            InternetGatewayId: !Ref kbcchatIGW
+
+
+# Create Route Table
+        PublicRouteTable:
+          Type: AWS::EC2::RouteTable
+          Properties:
+            VpcId: !Ref kbcchatVPC 
+            Tags:
+              - Key: Name
+                Value: PublicRoute
+        PubRoute:
+          Type: AWS::EC2::Route
+          DependsOn: AttachGateway
+          Properties:
+            RouteTableId: !Ref PublicRouteTable
+            DestinationCidrBlock: 0.0.0.0/0
+            GatewayId: !Ref kbcchatIGW
+        
+        routeTableAssocPub1:
+          Type: AWS::EC2::SubnetRouteTableAssociation
+          Properties:
+            SubnetId: !Ref PubSub1
+            RouteTableId: !Ref PublicRouteTable
+
+        routeTableAssocPub2:
+          Type: AWS::EC2::SubnetRouteTableAssociation
+          Properties:
+            SubnetId: !Ref PubSub2
+            RouteTableId: !Ref PublicRouteTable
+
+        PrivateRouteTable:
+          Type: AWS::EC2::RouteTable
+          Properties:
+            VpcId: !Ref kbcchatVPC 
+            Tags:
+              - Key: Name
+                Value: PrivateRoute
+
+        routeTableAssocPri1:
+          Type: AWS::EC2::SubnetRouteTableAssociation
+          Properties:
+            SubnetId: !Ref PriSub1
+            RouteTableId: !Ref PrivateRouteTable
+
+        routeTableAssocPri2:
+          Type: AWS::EC2::SubnetRouteTableAssociation
+          Properties:
+            SubnetId: !Ref PriSub2
+            RouteTableId: !Ref PrivateRouteTable
+
+Outputs:
+  VPC:
+    Value: !Ref kbcchatVPC
+    Export: 
+      Name: VPCName
+
+  PubSub1:
+    Value: !Ref PubSub1
+    Export:
+      Name: Public1
+  
+  PubSub2:
+    Value: !Ref PubSub2
+    Export:
+      Name: Public2
+
+  PriSub1:
+    Value: !Ref PriSub1
+    Export:
+      Name: Private1
+
+  PriSub2:
+    Value: !Ref PriSub2
+    Export:
+      Name: Private2
