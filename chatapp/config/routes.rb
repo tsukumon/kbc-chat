@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
   get "/room" => "room#index"
   get "/room/new" => "room#new"
-  post "/room/create" => "room#create"
+  post "/room/create" => "room#create_room"
 end

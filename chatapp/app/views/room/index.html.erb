@@ -1,2 +1,8 @@
+<% @rooms.each do |room| %>
+    <%= room.name %>
+    <br>
+    <%= room.describe %>
+<% end %>
 
 <%= link_to "ルーム新規作成", "/room/new" %>
+<%= link_to "戻る", "/"%>
