@@ -4,7 +4,7 @@ RSpec.describe Room, type: :model do
   #pending "add some examples to (or delete) #{__FILE__}"
   before do 
     #モデルのみ作成
-    @room = build(:room)
+    @room = create(:room)
   end
 
   describe 'バリデーション' do
