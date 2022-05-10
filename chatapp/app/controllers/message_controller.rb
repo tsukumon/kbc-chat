@@ -1,6 +1,7 @@
 class MessageController < ApplicationController
     def index
         @message = Message.where(room_id params[:id])
+        #@message = Message.all
     end
     
     def new
