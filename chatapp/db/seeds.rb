@@ -19,8 +19,9 @@ count = 0
     )
 end
 
+sentence = Faker::Movies::StarWars.quote
+
 Message.create!(
-  id: 1,
   room_id: 1,
-  sentence: "うんこうんこうんこ！"
+  sentence: sentence
 )

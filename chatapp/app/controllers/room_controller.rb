@@ -15,7 +15,7 @@ class RoomController < ApplicationController
   def index
     @rooms = Room.all
   end
- 
+
   #ルームページ（個別)
   def page
     @room = Room.find_by(id: params[:id])
