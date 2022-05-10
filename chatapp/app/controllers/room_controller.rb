@@ -11,6 +11,7 @@ class RoomController < ApplicationController
  
   #ルームページ（個別)
   def page
+    @room = Room.find_by(id: params[:id])
     @messages = Message.find_by(room_id: params[:id])
   end
 

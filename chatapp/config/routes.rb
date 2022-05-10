@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   #room page
   get "/room/:id" => "room#page"
-  
+  post "/message/:id" => "message#create"
 
 
 end
