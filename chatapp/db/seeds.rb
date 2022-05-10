@@ -6,13 +6,21 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+count = 0
 3.times do |n|
   name = Faker::Name.name
   describe = "Faker-test"
-
+  count+= 1
 
   Room.create!(
+      id: count,
       name: name,
       describe: describe
     )
-  end
+end
+
+Message.create!(
+  id: 1,
+  room_id: 1,
+  sentence: "うんこうんこうんこ！"
+)

@@ -1,4 +1,4 @@
 class Message < ApplicationRecord
-    validates :name, presence: true
-    validates :describe, presence: true
+    validates :sentence, presence: true
+    validates :room_id, presence: true
 end

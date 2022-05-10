@@ -1,0 +1,11 @@
+<% if @messages != nil %>
+  <% @messages.each do |message| %>
+    <%= message.sentence %>
+  <% end %>
+<% end %>
+
+#メッセージ作成
+<%= form_tag("/message/#{@room.id}" , {multipart: true}) do %>
+  <input name="sentence">
+  <input type="submit" value="送信">
+<% end %>
