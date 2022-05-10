@@ -14,7 +14,12 @@ RSpec.describe Message, type: :model do
   end
 
   describe "message post action" do
-    it "redirect to "
+    it "redirect to " do
+      post message_create_path, :params => {:sentence => "test-message"}
+      expect(response).to redirect_to message_create_path
+    end
+  end
+
   
   #pending "add some examples to (or delete) #{__FILE__}"
 
