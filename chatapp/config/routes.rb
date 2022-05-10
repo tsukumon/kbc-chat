@@ -8,4 +8,9 @@ Rails.application.routes.draw do
   get "/room" => "room#index"
   get "/room/new" => "room#new"
   post "/room/create" => "room#create_room"
+  
+  get "/room/:id" => "message#index"
+  post "/room/:id/post" => "message#post"
+
+  get "/message" => "message#index"
 end
