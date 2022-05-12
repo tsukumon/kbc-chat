@@ -10,6 +10,7 @@ count = 100
 3.times do |n|
   name = Faker::Name.name
   describe = "Faker-test"
+  sentence = Faker::Movies::StarWars.quote
   count+= 1
 
   Room.create!(
@@ -17,12 +18,13 @@ count = 100
       name: name,
       describe: describe
     )
+  
+  Message.create!(
+      room_id: count,
+      sentence: sentence
+    )
+    
 end
 
-sentence = Faker::Movies::StarWars.quote
 
-Message.create!(
-  id: count
-  room_id: 1,
-  sentence: sentence
-)
+
