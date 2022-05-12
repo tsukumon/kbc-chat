@@ -1,11 +1,17 @@
 <% if @messages != nil %>
   <% @messages.each do |message| %>
     <%= message.sentence %>
+    <% if message.created_at > 1.days.ago %>
+     今日<%= message.created_at.strftime("%H:%M") %>
+    <% else %>
+     <%= message.created_at.strftime("%Y/%m/%d") %>
+    <% end %>
   <% end %>
 <% end %>
-
 #メッセージ作成
 <%= form_tag("/message/#{@room.id}" , {multipart: true}) do %>
   <input name="sentence">
   <input type="submit" value="送信">
 <% end %>
+
+<%= link_to("戻る", "/room") %>
