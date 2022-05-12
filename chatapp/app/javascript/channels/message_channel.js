@@ -10,10 +10,15 @@ consumer.subscriptions.create("MessageChannel", {
   },
 
   received(data) {
+    //print(data)
     // Called when there's incoming data on the websocket for this channel
-    const html = `<p>${data.content.text}</p>`;
+    //message
+    const html = `
+                  <p>${data.sentence}</p>
+                  <div class="message-time">${data.created_at}</div>
+                  `;
     const messages = document.getElementById('messages');
-    const newMessage = document.getElementById('message_text');
+    const newMessage = document.getElementById('message-sentence');
     messages.insertAdjacentHTML('afterbegin', html);
     newMessage.value='';
   }

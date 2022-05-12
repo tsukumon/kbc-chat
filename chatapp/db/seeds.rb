@@ -19,9 +19,9 @@ count = 0
     )
 end
 
-sentence = Faker::Movies::StarWars.quote
+#sentence = Faker::Movies::StarWars.quote
 
-Message.create!(
-  room_id: 1,
-  sentence: sentence
-)
+#Message.create!(
+#  room_id: 1,
+#  sentence: sentence
+#)
