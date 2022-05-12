@@ -9,13 +9,13 @@ consumer.subscriptions.create("MessageChannel", {
     // Called when the subscription has been terminated by the server
   },
 
-  received(data) {
+  received(data,time) {
     //print(data)
     // Called when there's incoming data on the websocket for this channel
     //message
     const html = `
-                  <p>${data.sentence}</p>
-                  <div class="message-time">${data.created_at}</div>
+                  <p>${data.content.sentence}</p>
+                  <div class="message-time">${data.time}</div>
                   `;
     const messages = document.getElementById('messages');
     const newMessage = document.getElementById('message-sentence');
