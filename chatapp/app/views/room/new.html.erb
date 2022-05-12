@@ -2,6 +2,7 @@
 
 <h1>新規作成</h1>
 <%= form_tag("/room/new" , {multipart: true}) do %>
+<p id="alert"><%= alert %></p>
 room名 <input name="name">
 roomの詳細 <input name="describe">
 <br>
