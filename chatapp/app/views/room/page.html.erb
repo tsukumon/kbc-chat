@@ -1,16 +1,21 @@
-<% if @messages != nil %>
-  <% @messages.each do |message| %>
-    <%= message.sentence %>
-    <% if message.created_at > 1.days.ago %>
-     今日<%= message.created_at.strftime("%H:%M") %>
-    <% else %>
-     <%= message.created_at.strftime("%Y/%m/%d") %>
+<div id="messages">
+  <% if @messages != nil %>
+    <% @messages.reverse_each do |message| %>
+      <p><%= message.sentence %></p>
+      <div id="message-time">
+        <% if message.created_at > 1.days.ago %>
+          今日<%= message.created_at.strftime("%H:%M") %>
+       <% else %>
+         <%= message.created_at.strftime("%Y/%m/%d") %>
+       <% end %>
+     </div>
     <% end %>
   <% end %>
-<% end %>
+</div>
+
 #メッセージ作成
 <%= form_tag("/message/#{@room.id}" , {multipart: true}) do %>
-  <input name="sentence">
+  <input name="sentence" id="message-sentence">
   <input type="submit" value="送信">
 <% end %>
 
