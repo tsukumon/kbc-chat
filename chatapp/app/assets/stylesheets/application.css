@@ -13,10 +13,11 @@
  *= require_tree .
  *= require_self
  */
- 
+
  *{
   margin:0;
   padding:0;
+  color:#fff;
 }
 
 .container{
@@ -43,5 +44,22 @@
 a{
   color: #fff;
 }
-    
-    
+
+/* ユーザー情報 */
+.users{
+    padding:10px;
+    display:flex;
+    align-items: center;
+    font-size: 25px;
+}
+
+.user_icon {
+    border:2px rgb(143, 214, 115) solid;
+    border-radius: 50%;
+    width: 57px;
+    height: 57px;
+}
+
+.user_name{
+    padding-left: 10px;
+}
