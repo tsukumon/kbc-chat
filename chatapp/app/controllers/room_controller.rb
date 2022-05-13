@@ -29,5 +29,11 @@ class RoomController < ApplicationController
     @messages = Message.where(room_id: params[:id])
   end
 
+  def destroy
+    @room = Room.find_by(id: params[:id])
+    if @room.destroy
+      redirect_to room_path, status: :see_other
+    end
+  end
 
 end
