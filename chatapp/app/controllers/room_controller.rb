@@ -6,7 +6,7 @@ class RoomController < ApplicationController
 
   #room新規作成処理（POST）
   def create
-    @room = Room.new(name: params[:name], describe: params[:describe])
+    @room = Room.new(name: params[:name], describe: params[:describe], image: params[:image])
     if @room.save
       redirect_to "/room/#{@room.id}"
     
@@ -18,6 +18,11 @@ class RoomController < ApplicationController
 
     end
   end
+
+  def room_params
+    params.require(:room).permit(:name, :describe, :image)
+  end
+
 
   def index
     @rooms = Room.all
