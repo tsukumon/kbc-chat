@@ -10,4 +10,4 @@
   <input type="submit" value="送信">
 <% end %>
 
-<%= link_to "削除","/room/destroy/#{@room.id}",data: { turbo_method: :delete } %>
+<%= link_to "削除","/room/delete/#{@room.id}",data: { turbo_method: :delete} %>
