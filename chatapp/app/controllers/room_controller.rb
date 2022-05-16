@@ -6,7 +6,16 @@ class RoomController < ApplicationController
 
   #room新規作成処理（POST）
   def create
-    @room = Room.new(name: params[:name], describe: params[:describe], image: params[:image])
+    @room = Room.new(name: params[:name], describe: params[:describe])
+    @room.save
+    
+    if params[:image]
+      @room.image = "#{@room.id}.jpg"
+      image = prams[:image]
+      File.binwrite("public/room_image/#{@room.image}", image.read )
+    end
+
+
     if @room.save
       redirect_to "/room/#{@room.id}"
     

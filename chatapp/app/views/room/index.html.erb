@@ -1,5 +1,6 @@
 <% @rooms.each do |room| %>
 <%= link_to "/room/#{room.id}" do %>
+<img src = "/room_image/<%= room.image %> ">
 <%= room.name %>
 <% end %>
 <% end %>
