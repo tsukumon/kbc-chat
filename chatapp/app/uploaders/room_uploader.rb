@@ -19,7 +19,7 @@ class RoomUploader < CarrierWave::Uploader::Base
 
   protected
   def default_url
-    "/default.jpg"
+    "/default.png"
   end
 
   def size_range
@@ -39,9 +39,10 @@ class RoomUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
-  # def scale(width, height)
+  def scale(width, height)
   #   # do something
-  # end
+    process resize_to_fit: [200, 200]
+  end
 
   # Create different versions of your uploaded files:
   # version :thumb do

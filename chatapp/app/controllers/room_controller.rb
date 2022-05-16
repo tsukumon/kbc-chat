@@ -11,7 +11,7 @@ class RoomController < ApplicationController
     
     if params[:image]
       @room.image = "#{@room.id}.jpg"
-      image = prams[:image]
+      image = params[:image]
       File.binwrite("public/room_image/#{@room.image}", image.read )
     end
 
