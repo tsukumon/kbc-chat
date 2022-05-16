@@ -13,6 +13,8 @@ class RoomController < ApplicationController
       @room.image = "#{@room.id}.jpg"
       image = params[:image]
       File.binwrite("public/room_image/#{@room.image}", image.read )
+    else
+      
     end
 
 
