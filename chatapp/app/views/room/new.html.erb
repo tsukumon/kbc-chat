@@ -5,7 +5,7 @@
 <%= form_tag("/room/create" , {multipart: true}) do %>
 room名 <input name="name">
 roomの詳細 <input name="describe">
-アイコン選択(jpg,jepg,png)<input type="file" name="image">
+アイコン選択(jpg,jpeg,png)<input type="file" name="image">
 <br>
 <input type="submit" value="新規作成">
 <%= flash[:alert] %>
