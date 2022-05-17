@@ -13,10 +13,8 @@ class RoomController < ApplicationController
       redirect_to "/room/#{@room.id}"
     
     else
-      flash[:alert] = "ルーム名もしくは詳細情報が空です"
-      @name = params[:name]
-      @describe = params[:describe]
-      render("/room/new")
+      flash[:alert] = "エラーが発生しました"
+      redirect_to "/room/new"
 
     end
   end
