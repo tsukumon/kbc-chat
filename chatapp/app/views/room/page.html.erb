@@ -8,6 +8,7 @@
        <% else %>
          <%= message.created_at.strftime("%Y/%m/%d") %>
        <% end %>
+       <button id="<%=message.id%>" class="delete-btn">削除</button>
      </div>
     <% end %>
   <% end %>
