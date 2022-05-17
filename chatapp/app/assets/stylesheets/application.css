@@ -23,15 +23,14 @@
 .container{
   display: flex;
 }
-    
-    
+
 .sidebar {
   background: #2e2e2e;
   position: fixed;
   height: 100vh;
   width: 300px;
 }
-    
+
 .content {
   background: #3c3d3d;
   height: 100vh;
@@ -47,19 +46,19 @@ a{
 
 /* ユーザー情報 */
 .users{
-    padding:15px;
-    display:flex;
-    align-items: center;
-    font-size: 25px;
+  padding:15px;
+  display:flex;
+  align-items: center;
+  font-size: 25px;
 }
 
 .user_icon {
-    border:2px rgb(143, 214, 115) solid;
-    border-radius: 50%;
-    width: 57px;
-    height: 57px;
+  border:2px rgb(143, 214, 115) solid;
+  border-radius: 50%;
+  width: 57px;
+  height: 57px;
 }
 
 .user_name{
-    padding-left: 10px;
+  padding-left: 10px;
 }
