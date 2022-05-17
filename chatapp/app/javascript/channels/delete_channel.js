@@ -13,9 +13,31 @@ consumer.subscriptions.create("DeleteChannel", {
   received(data) {
     // Called when there's incoming data on the websocket for this channel
 
-  },
-
-  delete: function(id) {
-    return this.perform('delete', { id: id});
   }
-});
+})
+(function() {
+  ({
+    "delete": function(id) {
+      return this.perform('delete', {
+        id: id
+      });
+    }
+  });
+
+  $(document).on('click', '.delete-btn', function(event) {
+    return App["delete"]["delete"](event.target.id);
+  });
+
+}).call(this);
+
+(function() {
+  ({
+    received: function(data) {
+      var id;
+      id = "#" + data['id'];
+      console.log(id);
+      return $(id).remove();
+    }
+  });
+}).call(this);
+
