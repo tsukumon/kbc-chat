@@ -2,6 +2,7 @@
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
       <p><%= message.sentence %></p>
+      <button id="<%=message.id%>" class="delete-btn">削除</button>
       <div id="message-time">
         <% if message.created_at > 1.days.ago %>
           今日<%= message.created_at.strftime("%H:%M") %>
