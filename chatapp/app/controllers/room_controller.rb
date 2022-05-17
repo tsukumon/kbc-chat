@@ -13,7 +13,7 @@ class RoomController < ApplicationController
       redirect_to "/room/#{@room.id}"
     
     else
-      flash[:alert] = "ルーム名か詳細情報が空白です"
+      flash[:alert] = "情報が空白か画像ファイルではありません"
       redirect_to "/room/new"
 
     end
