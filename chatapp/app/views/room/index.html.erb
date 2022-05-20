@@ -1,3 +1,4 @@
+<%= flash[:alert] %>
 <% @rooms.each do |room| %>
 <%= link_to "/room/#{room.id}" do %>
 <% if room.image.length >= 1%>

@@ -38,6 +38,7 @@ class RoomController < ApplicationController
   def destroy
     @room = Room.find_by(id: params[:id])
     if @room.destroy
+      flash[:alert] = "ルームを削除しました"
       redirect_to room_path, status: :see_other
     end
   end
