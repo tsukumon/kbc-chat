@@ -2,13 +2,15 @@
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
       <p><%= message.sentence %></p>
+      <%#= 1.days.ago %>
+      <%#= message.created_at %>
       <div id="message-time">
         <% if message.created_at > 1.days.ago %>
           今日<%= message.created_at.strftime("%H:%M") %>
-       <% else %>
-         <%= message.created_at.strftime("%Y/%m/%d") %>
-       <% end %>
-     </div>
+        <% else %>
+          <%= message.created_at.strftime("%Y/%m/%d") %>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
 </div>
