@@ -17,7 +17,7 @@
 
 #メッセージ作成
 <%= form_tag("/message/#{@room.id}" , {multipart: true}) do %>
-  <input name="sentence" id="message-sentence">
+  <input name="sentence" id="message-sentence" placeholder="<%= @room.name %>へメッセージを送信">
   <input type="submit" value="送信">
 <% end %>
 
