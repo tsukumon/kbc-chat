@@ -19,7 +19,7 @@ consumer.subscriptions.create("MessageChannel", {
                   `;
     const messages = document.getElementById('messages');
     const newMessage = document.getElementById('message-sentence');
-    messages.insertAdjacentHTML('afterbegin', html);
+    messages.insertAdjacentHTML('beforeend', html);
     newMessage.value='';
   }
 });
