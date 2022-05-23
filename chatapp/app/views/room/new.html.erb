@@ -1,7 +1,12 @@
 <h1>ROOM</h1>
-#room create page
 
-<h1>新規作成</h1>
+<div class="room_button">
+  <div class="back_button">
+    <%= link_to "戻る", "/room" %>
+  </div>
+</div>
+
+<h2>ルームの新規作成</h2>
 <%= form_tag("/room/new" , {multipart: true}) do %>
   room名 <input name="name">
   roomの詳細 <input name="describe">

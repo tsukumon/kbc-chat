@@ -31,6 +31,9 @@
   height: 100vh;
   width: 300px;
 }
+li{
+  font-size: 25px;
+}
 
 .content {
   background: #3c3d3d;
