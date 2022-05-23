@@ -16,7 +16,7 @@ consumer.subscriptions.create("MessageChannel", {
     const html = `
                   <p>${data.content.sentence}</p>
                   <div class="message-time">${data.time}</div>
-                  <a id="delete-btn", data-method="delete" href="/room/${data.content.room_id}/message/delete/${data.content.id}"><button id="${data.id}">削除</button></a>
+                  <a id="delete-btn", data-method="delete" href="/message/delete/${data.content.id}"><button id="${data.id}">削除</button></a>
                   `;
     const messages = document.getElementById('messages');
     const newMessage = document.getElementById('message-sentence');

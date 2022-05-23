@@ -4,9 +4,6 @@
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
       <p><%= message.sentence %></p>
-      <%= link_to message_delete_path(message.room_id, message.id), data: {turbo_method: :delete } do %>
-        <button id="<%= message.id %>" id="delete-btn">削除</button>
-      <% end %>
       <%#= 1.days.ago %>
       <%#= message.created_at %>
       <div id="message-time">
@@ -16,6 +13,12 @@
           <%= message.created_at.strftime("%Y/%m/%d") %>
         <% end %>
       </div>
+      <%#= link_to delete_message_path(message.room_id, message.id), data: {turbo_method: :delete, remote: true } do %>
+      <%= link_to "/message/delete/#{message.id}", data: {turbo_method: :delete, remote: true } do %>
+
+        <button id="<%= message.id %>" id="delete-btn">削除</button>
+      <% end %>
+
     <% end %>
   <% end %>
 </div>
