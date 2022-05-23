@@ -16,18 +16,27 @@ RSpec.describe "Messages", type: :request do
 
   describe "redirect to room" do
     it "post and redirect room" do
-      post "/room/1", :params => {:sentence => "test-message"}
+      post "/message/1", :params => {:sentence => "test-message"}
       expect(response).to redirect_to "/room/1"
     end
   end
 
   describe "error empty sentense" do
     it "empty sentense" do
-      post "/room/1", :params => {:sentence => ""}
+      post "/message/1", :params => {:sentence => ""}
       expect(response).to have_http_status "204"
     end
 
   end
+
+  describe "delete messages" do
+    it "delete sentense" do
+      post "/message/1", :params => {:sentence => "test-message"}
+      delete "/message/delete/1", :params => {:id => 1}
+      expect(response).to redirect_to "/room/1"
+    end
+  end
+
 
 
 end
