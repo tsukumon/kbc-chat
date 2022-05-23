@@ -18,7 +18,7 @@ class MessageController < ApplicationController
     if @message
       @message.destroy
       ActionCable.server.broadcast "delete_channel", {id: @message.id}
-      #redirect_to "/room/#{@room.id}", status: :see_other
+      redirect_to "/message/#{@message.room_id}", status: :see_other
     end
   end
 end
