@@ -1,3 +1,11 @@
+h1{
+  display: inline-block;
+  background: linear-gradient(90deg, #4963e6, #C850C0 30%, #FFCC70);
+  background: -webkit-linear-gradient(0deg, #4963e6, #C850C0 30%, #FFCC70);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .room_button{
   display:flex;
   align-items: center;
@@ -7,15 +15,41 @@
   font-size: 20px;
 }
 .create_room{
-  background-color: rgb(195, 43, 209);
-  border-radius: 100vh;
+  background-color: black;
+  border-radius: 0.3rem;
+  padding:0.2rem 0.2rem;
   margin-right: 10px;
   
 }
 .back_button{
-  background-color: rgb(195, 43, 209);
-  border-radius: 100vh;
+  background-color: black;
+  padding:0.2rem 0.2rem;
+  border-radius: 0.3rem;
 }
 .rooms{
-  font-size:25px;
+  display:flex;
+  align-items: center;
+}
+.rooms_name{
+  margin:15px;
+  background-color: black;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #d8d6d6;
+  border-radius: 0.6rem;
 }

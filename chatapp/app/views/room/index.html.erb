@@ -11,7 +11,9 @@
 <div class="rooms">
   <% @rooms.each do |room| %>
     <%= link_to "/room/#{room.id}" do %>
-      <%= room.name %>
+      <div class="rooms_name">
+        <%= room.name %>
+      </div>
     <% end %>
   <% end %>
 </div>
