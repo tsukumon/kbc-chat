@@ -11,4 +11,12 @@ class MessageController < ApplicationController
       ActionCable.server.broadcast "message_channel",{ content: @message, time: @time}
     end
   end
+
+  def destroy
+    @room = Room.find(params [:room_id])
+    @message = Message.find(params [:id])
+    if @message.destroy
+      ActionCable.server.broadcast "delete_channel", {id: @message.id}
+    end
+  end
 end
