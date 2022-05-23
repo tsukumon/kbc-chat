@@ -1,4 +1,11 @@
 <h1>ROOM</h1>
+
+<div class="room_button">
+  <div class="back_button">
+    <%= link_to("戻る", "/room") %>
+  </div>
+</div>
+
 <div id="messages">
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
@@ -14,10 +21,8 @@
   <% end %>
 </div>
 
-#メッセージ作成
+<h2>メッセージ作成</h2>
 <%= form_tag("/message/#{@room.id}" , {multipart: true}) do %>
   <input name="sentence" id="message-sentence">
   <input type="submit" value="送信">
 <% end %>
-
-<%= link_to("戻る", "/room") %>
