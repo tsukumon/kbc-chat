@@ -1,0 +1,21 @@
+.room_button{
+  display:flex;
+  align-items: center;
+  margin-right: 0;
+  margin-left: auto;
+  width: 15%;
+  font-size: 20px;
+}
+.create_room{
+  background-color: rgb(195, 43, 209);
+  border-radius: 100vh;
+  margin-right: 10px;
+  
+}
+.back_button{
+  background-color: rgb(195, 43, 209);
+  border-radius: 100vh;
+}
+.rooms{
+  font-size:25px;
+}
