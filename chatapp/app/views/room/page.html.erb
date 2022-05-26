@@ -26,3 +26,7 @@
   <input name="sentence" id="message-sentence">
   <input type="submit" value="送信">
 <% end %>
+
+<%= link_to "ルーム削除","/room/delete/#{@room.id}",data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
+
+<%= link_to("戻る", "/room") %>

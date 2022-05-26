@@ -1,5 +1,4 @@
 <h1>ROOM</h1>
-
 <div class="room_button">
   <div class="back_button">
     <%= link_to "戻る", "/room" %>
@@ -13,3 +12,14 @@
   <br>
   <input type="submit" value="新規作成">
 <% end %>
+<h1>新規作成</h1>
+<%= form_tag("/room/create" , {multipart: true}) do %>
+<p id="alert"><%= alert %></p>
+room名 <input name="name">
+roomの詳細 <input name="describe">
+アイコン選択<input type="file" name="image">
+<br>
+<input type="submit" value="新規作成">
+<% end %>
+
+<%= link_to "戻る", "/room" %>
