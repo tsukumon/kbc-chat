@@ -9,14 +9,19 @@
 <div id="messages">
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
-      <p><%= message.sentence %></p>
-      <div id="message-time">
-        <% if message.created_at > 1.days.ago %>
-          今日<%= message.created_at.strftime("%H:%M") %>
-        <% else %>
-          <%= message.created_at.strftime("%Y/%m/%d") %>
-        <% end %>
-      </div>
+      <div id="message-<%= message.id%>">
+        <p><%= message.sentence %></p>
+        <div id="message-time">
+          <% if message.created_at > 1.days.ago %>
+            今日<%= message.created_at.strftime("%H:%M") %>
+         <% else %>
+           <%= message.created_at.strftime("%Y/%m/%d") %>
+         <% end %>
+        </div>
+        <div id="message-delete">
+         <%= link_to "削除する", "/message/#{message.id}", data: {turbo_method: :delete} %>
+        </div>
+     </div>
     <% end %>
   <% end %>
 </div>

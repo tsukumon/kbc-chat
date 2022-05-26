@@ -8,7 +8,14 @@ class MessageController < ApplicationController
       else
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
       end
-      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time}
+      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create"}
+    end
+  end
+
+  def destroy
+    @message = Message.find_by(id: params[:id])
+    if @message.destroy
+      ActionCable.server.broadcast "message_channel",{ content: @message, mode: "delete"}
     end
   end
 end
