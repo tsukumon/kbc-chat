@@ -1,14 +1,24 @@
-<% @rooms.each do |room| %>
-<%= link_to "/room/#{room.id}" do %>
-<% if room.image.length >= 1%>
-<img src = "<%= room.image %> " width=50px height=50px>  <%# サイズ指定は仮 %>
-<% else %>
-<img src = "/room_image/default.png" width=50px height=50px>
-<% end %>
-<%= room.name %>
-<% end %>
-<% end %>
+<h1>ROOM</h1>
+<div class="room_button">
+  <div class="create_room">
+    <%= link_to "新規作成", "/room/new" %>
+  </div>
+  <div class="back_button">
+    <%= link_to "戻る", "/" %>
+  </div>
+</div>
 
-
-<%= link_to "ルーム新規作成", "/room/new" %>
-<%= link_to "戻る", "/" %>
+<div class="rooms">
+  <% @rooms.each do |room| %>
+    <div class="rooms_name">
+      <%= link_to "/room/#{room.id}" do %>
+        <% if room.image.length >= 1%>
+          <img src = "<%= room.image %> " width=50px height=50px>  <%# サイズ指定は仮 %>
+        <% else %>
+          <img src = "/room_image/default.png" width=50px height=50px>
+        <% end %>
+        <%= room.name %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

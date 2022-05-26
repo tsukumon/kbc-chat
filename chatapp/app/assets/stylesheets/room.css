@@ -1,0 +1,63 @@
+h1{
+  font-size: 2.8rem;
+  display: inline-block;
+  background: linear-gradient(90deg, #4963e6, #C850C0 30%, #FFCC70);
+  background: -webkit-linear-gradient(0deg, #4963e6, #C850C0 30%, #FFCC70);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.room_button{
+  display:flex;
+  align-items: center;
+  margin-right: 0;
+  margin-left: auto;
+  width: 15%;
+  font-size: 20px;
+}
+.create_room{
+  background-color: black;
+  border-radius: 0.3rem;
+  padding:0.2rem 0.2rem;
+  margin-right: 10px;
+  
+}
+.back_button{
+  background-color: black;
+  padding:0.2rem 0.2rem;
+  border-radius: 0.3rem;
+}
+.rooms{
+  display:flex;
+  align-items: center;
+}
+.rooms_name{
+  margin:15px;
+  background-color: black;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #d8d6d6;
+  border-radius: 0.6rem;
+}
+
+/*未訪問のリンクの色*/
+a:link {color:#fff;}
+/*カーソルが乗っているリンクの色*/
+a:hover {color:#00b7ff;}
+/*クリック中のリンクの色*/
+a:active {color:#0084ff;}
