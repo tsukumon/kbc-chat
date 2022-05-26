@@ -5,14 +5,7 @@
   </div>
 </div>
 
-<h2>ルームの新規作成</h2>
-<%= form_tag("/room/new" , {multipart: true}) do %>
-  room名 <input name="name">
-  roomの詳細 <input name="describe">
-  <br>
-  <input type="submit" value="新規作成">
-<% end %>
-<h1>新規作成</h1>
+<h2>新規作成</h2>
 <%= form_tag("/room/create" , {multipart: true}) do %>
 <p id="alert"><%= alert %></p>
 room名 <input name="name">
@@ -21,5 +14,3 @@ roomの詳細 <input name="describe">
 <br>
 <input type="submit" value="新規作成">
 <% end %>
-
-<%= link_to "戻る", "/room" %>
