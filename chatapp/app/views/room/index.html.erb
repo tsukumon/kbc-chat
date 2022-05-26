@@ -12,10 +12,10 @@
 
 <div class="rooms">
   <% @rooms.each do |room| %>
-    <%= link_to "/room/#{room.id}" do %>
-      <div class="rooms_name">
+    <div class="rooms_name">
+      <%= link_to "/room/#{room.id}" do %>
         <%= room.name %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   <% end %>
 </div>
