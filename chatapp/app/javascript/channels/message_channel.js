@@ -10,16 +10,25 @@ consumer.subscriptions.create("MessageChannel", {
   },
 
   received(data) {
-    //print(data)
-    // Called when there's incoming data on the websocket for this channel
-    //message
-    const html = `
-                  <p>${data.content.sentence}</p>
-                  <div class="message-time">${data.time}</div>
+    if (data.mode == "create") {
+      const html = `
+                  <div id="message-${data.content.id}">
+                    <p>${data.content.sentence}</p>
+                    <div class="message-time">${data.time}</div>
+                    <div id="message-delete">
+                      <a data-turbo-method="delete" href="/message/${data.content.id}">削除する</a>
+                    </div>
+                  </div>
                   `;
-    const messages = document.getElementById('messages');
-    const newMessage = document.getElementById('message-sentence');
-    messages.insertAdjacentHTML('afterbegin', html);
-    newMessage.value='';
+
+      const messages = document.getElementById('messages');
+      const newMessage = document.getElementById('message-sentence');
+      messages.insertAdjacentHTML('beforeend', html);
+      newMessage.value = '';
+    }
+    else if (data.mode == "delete") {
+      const message = document.getElementById("message-" + data.content.id);
+      message.remove();
+    }
   }
 });
