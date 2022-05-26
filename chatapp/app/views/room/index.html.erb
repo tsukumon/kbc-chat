@@ -1,3 +1,4 @@
+<h1>ROOM</h1>
 <% @rooms.each do |room| %>
 <%= link_to "/room/#{room.id}" do %>
 <% if room.image.length >= 1%>
@@ -9,6 +10,22 @@
 <% end %>
 <% end %>
 
+<div class="room_button">
+  <div class="create_room">
+    <%= link_to "新規作成", "/room/new" %>
+  </div>
 
-<%= link_to "ルーム新規作成", "/room/new" %>
-<%= link_to "戻る", "/" %>
+  <div class="back_button">
+    <%= link_to "戻る", "/" %>
+  </div>
+</div>
+
+<div class="rooms">
+  <% @rooms.each do |room| %>
+    <div class="rooms_name">
+      <%= link_to "/room/#{room.id}" do %>
+        <%= room.name %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

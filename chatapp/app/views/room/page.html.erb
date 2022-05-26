@@ -1,3 +1,11 @@
+<h1>ROOM</h1>
+
+<div class="room_button">
+  <div class="back_button">
+    <%= link_to("戻る", "/room") %>
+  </div>
+</div>
+
 <div id="messages">
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
@@ -5,15 +13,15 @@
       <div id="message-time">
         <% if message.created_at > 1.days.ago %>
           今日<%= message.created_at.strftime("%H:%M") %>
-       <% else %>
-         <%= message.created_at.strftime("%Y/%m/%d") %>
-       <% end %>
-     </div>
+        <% else %>
+          <%= message.created_at.strftime("%Y/%m/%d") %>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
 </div>
 
-#メッセージ作成
+<h2>メッセージ作成</h2>
 <%= form_tag("/message/#{@room.id}" , {multipart: true}) do %>
   <input name="sentence" id="message-sentence">
   <input type="submit" value="送信">
