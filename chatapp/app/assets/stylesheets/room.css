@@ -55,6 +55,9 @@ h1{
   border-radius: 0.6rem;
 }
 
-a:link {color:#fff;} /*未訪問のリンクの色*/
-a:hover {color:#00b7ff;} /*カーソルが乗っているリンクの色*/
-a:active {color:#0084ff;} /*クリック中のリンクの色*/
+/*未訪問のリンクの色*/
+a:link {color:#fff;}
+/*カーソルが乗っているリンクの色*/
+a:hover {color:#00b7ff;}
+/*クリック中のリンクの色*/
+a:active {color:#0084ff;}
