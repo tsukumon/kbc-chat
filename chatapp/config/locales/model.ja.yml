@@ -3,6 +3,7 @@ ja:
     create:
       notice: "作成に成功しました"
       alert: "作成に失敗しました"
+      max_length: "文字数をオーバーしています"
     destroy:
       notice: "削除に成功しました"
       alert: "削除に失敗しました"
@@ -20,11 +21,6 @@ ja:
         id: ID
         sentence: メッセージ
         room_id: ルームID
-    errors:
-      models:
-        room:
-          create:
-            alert: oops
   attirbutes:
     created_at: 作成日
     updated_at: 更新日

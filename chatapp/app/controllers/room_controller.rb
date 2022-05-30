@@ -14,7 +14,6 @@ class RoomController < ApplicationController
     
     else
       redirect_to room_new_path, alert: t("messages.create.alert")
-
     end
   end
 
