@@ -26,12 +26,26 @@
   <% end %>
 </div>
 
-<h2>メッセージ作成</h2>
-<%= form_tag("/message/#{@room.id}" , {multipart: true}) do %>
-  <input name="sentence" id="message-sentence">
-  <input type="submit" value="送信">
-<% end %>
-
 <%= link_to "ルーム削除","/room/delete/#{@room.id}",data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
 
 <%= link_to("戻る", "/room") %>
+
+<h2>メッセージ作成</h2>
+<%= form_tag("/message/#{@room.id}" , {multipart: true}) do %>
+<div class="message-form" >
+  <textarea name="sentence" id="message-sentence" placeholder="メッセージを入力してください"></textarea>
+  <input type="submit" value="送信">
+</div>
+<% end %>
+
+<script type="text/javascript">
+$(function() {
+  var $textarea = $('#textarea');
+  var lineHeight = parseInt($textarea.css('lineHeight'));
+  $textarea.on('input', function(evt) {
+    var lines = ($(this).val() + '\n').match(/\n/g).length;
+    $(this).height(lineHeight * lines);
+  });
+  console.log($textarea)
+});
+</scirpt>

@@ -61,3 +61,28 @@ a:link {color:#fff;}
 a:hover {color:#00b7ff;}
 /*クリック中のリンクの色*/
 a:active {color:#0084ff;}
+
+.message-form{
+  display: flex;
+  align-items: flex-end;
+}
+
+.message-form textarea{
+  font-size: 15px;
+  color: #000;
+  line-height: 20px;
+  height: 20px;
+  max-height: 200px;
+  width: 300px;
+  max-width: 300px;
+  padding: 8px;
+}
+
+
+.message-form input[type="submit"]{
+   font-size: 15px;
+   color: #000;
+   height: 35px;
+   width: 50px;
+   margin-left: 5px;
+}
