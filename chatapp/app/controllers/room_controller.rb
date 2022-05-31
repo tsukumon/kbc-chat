@@ -12,7 +12,7 @@ class RoomController < ApplicationController
       redirect_to "/room/#{@room.id}", notice: t("messages.create.notice")
     
     else
-      redirect_to room_new_path, alert: t("messages.create.alert")
+      render room_new_path, status: :unprocessable_entity, alert: t("messages.create.alert")
     end
   end
 
