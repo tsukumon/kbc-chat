@@ -10,14 +10,10 @@ class RoomController < ApplicationController
     #@room.save  #=> if文の条件式で実行されるので不必要
 
     if @room.save
-      redirect_to "/room/#{@room.id}"
+      redirect_to "/room/#{@room.id}", notice: t("messages.create.notice")
     
     else
-      flash[:alert] = "ルーム名もしくは詳細情報が空です"
-      @name = params[:name]
-      @describe = params[:describe]
-      render("/room/new")
-
+      redirect_to room_new_path, alert: t("messages.create.alert")
     end
   end
 
