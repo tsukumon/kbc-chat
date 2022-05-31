@@ -11,7 +11,7 @@ ja:
     models:
       room: ルーム
       message: チャット
-    attirbutes:
+    attributes:
       room:
         id: ID
         name: ルーム名
