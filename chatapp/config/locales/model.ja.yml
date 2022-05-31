@@ -9,18 +9,18 @@ ja:
       alert: "削除に失敗しました"
   activerecord:
     models:
-      room: ルーム
-      message: チャット
-    attirbutes:
+      room: "ルーム"
+      message: "チャット"
+    attributes:
       room:
-        id: ID
-        name: ルーム名
-        describe: ルーム詳細情報
-        image: ルームアイコン
+        id: "ID"
+        name: "ルーム名"
+        describe: "ルーム詳細情報"
+        image: "ルームアイコン"
       message:
-        id: ID
-        sentence: メッセージ
-        room_id: ルームID
+        id: "ID"
+        sentence: "メッセージ"
+        room_id: "ルームID"
   attirbutes:
-    created_at: 作成日
-    updated_at: 更新日
+    created_at: "作成日"
+    updated_at: "更新日"
