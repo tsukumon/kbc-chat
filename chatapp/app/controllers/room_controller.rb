@@ -24,6 +24,7 @@ class RoomController < ApplicationController
   def page
     @room = Room.find_by(id: params[:id])
     @messages = Message.where(room_id: params[:id])
+    @message = Message.new
   end
 
   def destroy

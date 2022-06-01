@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   delete "/room/delete/:id" => "room#destroy"
 
   #room page
-  get "/room/:id" => "room#page"
-  post "/message/:id" => "message#create"
+  get "/room/:id" => "room#page", as: :room_message
+  post "/message/:id" => "message#create", as: :message_create
   delete "/message/:id" => "message#destroy"
 
 end

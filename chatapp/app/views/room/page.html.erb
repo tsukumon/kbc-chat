@@ -27,9 +27,11 @@
 </div>
 
 <h2>メッセージ作成</h2>
-<%= form_tag("/message/#{@room.id}" , {multipart: true}) do %>
-  <input name="sentence" id="message-sentence">
-  <input type="submit" value="送信">
+<%= form_with url: message_create_path, model: @message, local: true do |f| %>
+  <%= render "error_messages", model: @message %>
+  <%= f.label :sentence %>
+  <%= f.text_field :sentence %>
+  <%= f.submit "登録する" %>
 <% end %>
 
 <%= link_to "ルーム削除","/room/delete/#{@room.id}",data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>

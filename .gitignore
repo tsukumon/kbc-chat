@@ -1,2 +1,5 @@
 chatapp/Dockerfile
 chatapp/docker-compose.yml
+./.DS_Store
+chatapp/.DS_Store
+chatapp/*/.DS_Store

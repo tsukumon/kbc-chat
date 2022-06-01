@@ -1,7 +1,7 @@
 class MessageController < ApplicationController
 
   def create
-    @message = Message.new(room_id: params[:id], sentence: params[:sentence])
+    @message = Message.new(message_params)
     if @message.save
       if @message.created_at > 1.days.ago
         @time = "今日 #{@message.created_at.strftime("%H:%M")}"
@@ -9,6 +9,8 @@ class MessageController < ApplicationController
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
       end
       ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create"}
+    else
+      #render room_message_path, status: :unprocessable_entity
     end
   end
 
@@ -17,5 +19,11 @@ class MessageController < ApplicationController
     if @message.destroy
       ActionCable.server.broadcast "message_channel",{ content: @message, mode: "delete"}
     end
+  end
+
+  private
+
+  def message_params
+    params.require(:message).permit(:room_id, :sentence)
   end
 end
