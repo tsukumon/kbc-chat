@@ -22,7 +22,7 @@ consumer.subscriptions.create("MessageChannel", {
                   `;
 
       const messages = document.getElementById('messages');
-      const newMessage = document.getElementById('message-sentence');
+      const newMessage = document.getElementById('message_sentence');
       messages.insertAdjacentHTML('beforeend', html);
       newMessage.value = '';
     }
