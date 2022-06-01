@@ -27,7 +27,7 @@
 </div>
 
 <h2>メッセージ作成</h2>
-<%= form_with url: message_create_path, model: @message, local: true do |f| %>
+<%= form_with url: message_create_path(@room.id), model: @message, local: true do |f| %>
   <%= render "error_messages", model: @message %>
   <%= f.label :sentence %>
   <%= f.text_field :sentence %>

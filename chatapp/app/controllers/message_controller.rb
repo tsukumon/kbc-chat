@@ -10,7 +10,7 @@ class MessageController < ApplicationController
       end
       ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create"}
     else
-      #render room_message_path, status: :unprocessable_entity
+      render room_message_path(params[:id]), status: :unprocessable_entity
     end
   end
 
@@ -24,6 +24,8 @@ class MessageController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:room_id, :sentence)
+    sentence = params.require(:message).permit(:sentence)
+    room_id = { "room_id"  => params[:id] }
+    return sentence.merge(room_id)
   end
 end
