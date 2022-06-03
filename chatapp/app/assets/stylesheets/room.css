@@ -20,7 +20,6 @@ h1{
   border-radius: 0.3rem;
   padding:0.2rem 0.2rem;
   margin-right: 10px;
-  
 }
 .back_button{
   background-color: black;
@@ -29,6 +28,7 @@ h1{
 }
 .rooms{
   display:flex;
+  flex-wrap:wrap;
   align-items: center;
 }
 .rooms_name{
@@ -61,3 +61,7 @@ a:link {color:#fff;}
 a:hover {color:#00b7ff;}
 /*クリック中のリンクの色*/
 a:active {color:#0084ff;}
+img{
+  widows: 50px;
+  height: 50px;
+}
