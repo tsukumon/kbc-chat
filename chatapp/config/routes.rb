@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #rooms
   get "/room" => "room#index"
   get "/room/new" => "room#new"
-  post "/room/create" => "room#create"
+  post "/room/create" => "room#create", as: :room_create
   delete "/room/delete/:id" => "room#destroy"
 
   #room page
