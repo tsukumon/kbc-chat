@@ -15,7 +15,7 @@
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
       <div id="message-<%= message.id%>">
-        <p><%= message.sentence %></p>
+        <p><%= safe_join(message.sentence.split("\n"),tag(:br)) %></p>
         <div id="message-time">
           <% if message.created_at > 1.days.ago %>
             今日<%= message.created_at.strftime("%H:%M") %>
