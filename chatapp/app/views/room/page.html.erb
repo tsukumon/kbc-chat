@@ -27,11 +27,12 @@
 </div>
 
 <h2>メッセージ作成</h2>
-<%= form_tag("/message/#{@room.id}" , {multipart: true}) do %>
-  <input name="sentence" id="message-sentence">
-  <input type="submit" value="送信">
+<%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
+  <%= f.label :sentence %>
+  <%= f.text_field :sentence, id: "message-sentence" %>
+  <%= f.submit "送信" , class: "message-submit" %>
 <% end %>
 
-<%= link_to "ルーム削除", destroy_room_path(@room.id), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
+<%= link_to "ルーム削除", destroy_room_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
 
 <%= link_to("戻る", "/room") %>

@@ -1,4 +1,5 @@
 class RoomController < ApplicationController
+  protect_from_forgery :except => [:create_message]
 
   def index
     @rooms = Room.all
@@ -7,6 +8,7 @@ class RoomController < ApplicationController
   def page
     @room = Room.find_by(id: params[:id])
     @messages = Message.where(room_id: params[:id])
+    @message = Message.new
   end
 
   def new_room
@@ -19,7 +21,7 @@ class RoomController < ApplicationController
     if @room.save
       redirect_to "/room/#{@room.id}", notice: t("messages.create.notice")
     else
-      render room_new_path, status: :unprocessable_entity, alert: t("messages.create.alert")
+      render "room/new_room", status: :unprocessable_entity, alert: t("messages.create.alert")
     end
   end
 
@@ -31,21 +33,26 @@ class RoomController < ApplicationController
   end
 
   def create_message
-    @message = Message.new(room_id: params[:id], sentence: params[:sentence])
+    @message = Message.new(message_params)
     if @message.save
       if @message.created_at > 1.days.ago
         @time = "今日 #{@message.created_at.strftime("%H:%M")}"
       else
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
       end
-      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create"}
+      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create" }
+    else
+      #render partial: "room/error_messages", locals: { model: @message }
+      puts "ちんこ"
+      puts @message.errors.any?
+      puts @message.errors.count
     end
   end
 
   def destroy_message
     @message = Message.find_by(id: params[:id])
     if @message.destroy
-      ActionCable.server.broadcast "message_channel",{ content: @message, mode: "delete"}
+      ActionCable.server.broadcast "message_channel",{ content: @message, mode: "delete" }
     end
   end
 
@@ -53,6 +60,12 @@ class RoomController < ApplicationController
 
   def room_params
     params.require(:room).permit(:name, :describe, :image)
+  end
+
+  def message_params
+    sentence = params.require(:message).permit(:sentence)
+    room_id = { "room_id" => params[:id] }
+    return sentence.merge(room_id)
   end
 
 end
