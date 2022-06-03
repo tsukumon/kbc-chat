@@ -40,6 +40,7 @@ class RoomController < ApplicationController
       else
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
       end
+      @message.sentence = @message.sentence.gsub(/\r\n|\r|\n/, "<br />")
       ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create" }
     end
   end
