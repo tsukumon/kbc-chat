@@ -20,7 +20,6 @@ h1{
   border-radius: 0.3rem;
   padding:0.2rem 0.2rem;
   margin-right: 10px;
-  
 }
 .back_button{
   background-color: black;
@@ -29,27 +28,18 @@ h1{
 }
 .rooms{
   display:flex;
+  flex-wrap:wrap;
   align-items: center;
 }
 .rooms_name{
   margin:15px;
   background-color: black;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: 700;
   line-height: 1.5;
-  position: relative;
-  display: inline-block;
-  padding: 1rem 4rem;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  padding: 1rem 2rem;
   text-align: center;
   vertical-align: middle;
-  text-decoration: none;
   letter-spacing: 0.1em;
   color: #d8d6d6;
   border-radius: 0.6rem;
@@ -61,3 +51,33 @@ a:link {color:#fff;}
 a:hover {color:#00b7ff;}
 /*クリック中のリンクの色*/
 a:active {color:#0084ff;}
+
+img{
+  widows: 52px;
+  height: 52px;
+}
+
+.message-form{
+  display: flex;
+  align-items: flex-end;
+}
+
+.message-form textarea{
+  font-size: 15px;
+  color: #000;
+  line-height: 20px;
+  height: 20px;
+  max-height: 200px;
+  width: 300px;
+  max-width: 300px;
+  padding: 8px;
+}
+
+
+.message-form input[type="submit"]{
+   font-size: 15px;
+   color: #000;
+   height: 35px;
+   width: 50px;
+   margin-left: 5px;
+}

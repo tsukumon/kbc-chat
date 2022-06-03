@@ -2,12 +2,12 @@ class RoomController < ApplicationController
   protect_from_forgery :except => [:create_message]
 
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(name: :asc)
   end
 
   def page
     @room = Room.find_by(id: params[:id])
-    @messages = Message.where(room_id: params[:id])
+    @messages = Message.where(room_id: params[:id]).order(created_at: :DESC)
     @message = Message.new
   end
 
@@ -41,11 +41,6 @@ class RoomController < ApplicationController
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
       end
       ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create" }
-    else
-      #render partial: "room/error_messages", locals: { model: @message }
-      puts "ちんこ"
-      puts @message.errors.any?
-      puts @message.errors.count
     end
   end
 

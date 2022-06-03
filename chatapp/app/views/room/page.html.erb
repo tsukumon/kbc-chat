@@ -26,13 +26,31 @@
   <% end %>
 </div>
 
+<%= link_to "ルーム削除","/room/delete/#{@room.id}",data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
+
+<%= link_to("戻る", "/room") %>
+
 <h2>メッセージ作成</h2>
+
 <%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
+<div class="message-form" >
   <%= f.label :sentence %>
-  <%= f.text_field :sentence, id: "message-sentence" %>
+  <%= f.text_area :sentence, id: "message-sentence", :placeholder => "メッセージを入力してください" %>
   <%= f.submit "送信" , class: "message-submit" %>
+  </div>
 <% end %>
 
 <%= link_to "ルーム削除", destroy_room_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
 
 <%= link_to("戻る", "/room") %>
+
+<script type="text/javascript">
+$(function() {
+  var $textarea = $('#textarea');
+  var lineHeight = parseInt($textarea.css('lineHeight'));
+  $textarea.on('input', function(evt) {
+    var lines = ($(this).val() + '\n').match(/\n/g).length;
+    $(this).height(lineHeight * lines);
+  });
+});
+</scirpt>
