@@ -1,4 +1,9 @@
 <h1>ROOM</h1>
+
+<%= link_to "ルーム削除", destroy_room_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
+
+<%= link_to("戻る", "/room") %>
+
 <p id="notice"><%= notice %></p>
 <div class="room_button">
   <div class="back_button">
@@ -34,15 +39,10 @@
 
 <%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
 <div class="message-form" >
-  <%= f.label :sentence %>
   <%= f.text_area :sentence, id: "message-sentence", :placeholder => "メッセージを入力してください" %>
   <%= f.submit "送信" , class: "message-submit" %>
   </div>
 <% end %>
-
-<%= link_to "ルーム削除", destroy_room_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
-
-<%= link_to("戻る", "/room") %>
 
 <script type="text/javascript">
 $(function() {
