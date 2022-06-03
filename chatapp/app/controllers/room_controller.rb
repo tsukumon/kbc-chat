@@ -23,7 +23,7 @@ class RoomController < ApplicationController
   #ルームページ（個別)
   def page
     @room = Room.find_by(id: params[:id])
-    @messages = Message.where(room_id: params[:id])
+    @messages = Message.where(room_id: params[:id]).order(created_at: :DESC)
   end
 
   def destroy
