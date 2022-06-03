@@ -17,7 +17,7 @@ class RoomController < ApplicationController
   end
 
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(name: :asc)
   end
 
   #ルームページ（個別)
