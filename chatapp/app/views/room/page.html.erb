@@ -19,7 +19,7 @@
           <% end %>
         </div>
         <div id="message-delete">
-          <%= link_to "削除する", "/message/#{message.id}", data: {turbo_method: :delete} %>
+          <%= link_to "削除する", destroy_message_path(message.id), data: {turbo_method: :delete} %>
         </div>
       </div>
     <% end %>
@@ -32,6 +32,6 @@
   <input type="submit" value="送信">
 <% end %>
 
-<%= link_to "ルーム削除","/room/delete/#{@room.id}",data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
+<%= link_to "ルーム削除", destroy_room_path(@room.id), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
 
 <%= link_to("戻る", "/room") %>

@@ -6,7 +6,7 @@
 </div>
 
 <h1>新規作成</h1>
-<%= form_with url: room_create_path, model: @room, local: true do |f| %>
+<%= form_with url: create_room_path, model: @room, local: true do |f| %>
   <%= render "error_messages", model: @room %>
   <%= f.label :name %>
   <%= f.text_field :name %>
