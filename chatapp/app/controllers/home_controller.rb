@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
     def index
-        @rooms = Room.all
+        @rooms = Room.all.order(name: :asc)
     end
 end

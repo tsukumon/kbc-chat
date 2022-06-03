@@ -17,13 +17,13 @@ class RoomController < ApplicationController
   end
 
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(name: :asc)
   end
 
   #ルームページ（個別)
   def page
     @room = Room.find_by(id: params[:id])
-    @messages = Message.where(room_id: params[:id])
+    @messages = Message.where(room_id: params[:id]).order(created_at: :DESC)
   end
 
   def destroy
