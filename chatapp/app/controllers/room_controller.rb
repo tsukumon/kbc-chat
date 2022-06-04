@@ -36,7 +36,7 @@ class RoomController < ApplicationController
     @message = Message.new(message_params)
     if @message.save
       if @message.created_at > 1.days.ago
-        @time = "今日 #{@message.created_at.strftime("%H:%M")}"
+        @time = "今日#{@message.created_at.strftime("%H:%M")}"
       else
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
       end
