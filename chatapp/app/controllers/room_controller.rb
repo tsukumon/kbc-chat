@@ -40,6 +40,7 @@ class RoomController < ApplicationController
       else
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
       end
+      @message.sentence = CGI.escapeHTML(@message.sentence).gsub(/\n|\r|\r\n/, "<br>")
       ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create" }
     end
   end
