@@ -17,8 +17,10 @@
       <div id="message-<%= message.id%>">
         <p><%= message.sentence %></p>
         <div id="message-time">
-          <% if message.created_at > 1.days.ago %>
+          <% if message.created_at >= Date.today.beginning_of_day %>
             今日<%= message.created_at.strftime("%H:%M") %>
+          <% elsif message.created_at <= Date.today.beginning_of_day && message.created_at >= Date.yesterday.beginning_of_day%>
+            昨日<%= message.created_at.strftime("%H:%M") %>
           <% else %>
             <%= message.created_at.strftime("%Y/%m/%d") %>
           <% end %>
