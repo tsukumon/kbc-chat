@@ -25,6 +25,9 @@ consumer.subscriptions.create("MessageChannel", {
       const newMessage = document.getElementById('message-sentence');
       messages.insertAdjacentHTML('beforeend', html);
       newMessage.value = '';
+      var element = document.documentElement;
+      var bottom = element.scrollHeight - element.clientHeight;
+      window.scroll(0, bottom);
     }
     else if (data.mode == "delete") {
       const message = document.getElementById("message-" + data.content.id);
