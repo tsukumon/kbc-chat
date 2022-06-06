@@ -1,15 +1,19 @@
-<h1>ROOM</h1>
-
-<%= link_to "ルーム削除", destroy_room_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
-
-<%= link_to("戻る", "/room") %>
-
-<p id="notice"><%= notice %></p>
-<div class="room_button">
-  <div class="back_button">
-    <%= link_to("戻る", "/room") %>
+<div class="room-header">
+  <div class="room_header_left">
+    <%= link_to("/room") do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
+    <div class="room_title"><%= @room.name %></div>
+  </div>
+  <div class="room_header_right">
+    <%= link_to destroy_room_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} do %>
+      <i class="fa-solid fa-caret-down"></i>
+    <% end %>
   </div>
 </div>
+
+
+<p id="notice"><%= notice %></p>
+
+<div class="room_content">
 
 <div id="messages">
   <% if @messages != nil %>
@@ -31,11 +35,6 @@
   <% end %>
 </div>
 
-<%= link_to "ルーム削除","/room/delete/#{@room.id}",data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
-
-<%= link_to("戻る", "/room") %>
-
-<h2>メッセージ作成</h2>
 
 <%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
 <div class="message-form" >
@@ -54,3 +53,5 @@ $(function() {
   });
 });
 </scirpt>
+
+</div>
