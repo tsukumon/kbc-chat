@@ -37,7 +37,7 @@ class RoomController < ApplicationController
     if @message.save
       if @message.created_at >= Date.today.beginning_of_day
         @time = "今日#{@message.created_at.strftime("%H:%M")}"
-      elsif @message.created_at < Date.today.beginning_of_day && @message.created_at >= Date.yersterday.beginning_of_day
+      elsif @message.created_at < Date.today.beginning_of_day && @message.created_at >= Date.yesterday.beginning_of_day
         @time = "昨日#{@message.created_at.strftime("%H:%M")}"
       else
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
