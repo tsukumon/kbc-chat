@@ -52,10 +52,10 @@ a:hover {color:#00b7ff;}
 /*クリック中のリンクの色*/
 a:active {color:#0084ff;}
 
-img{
+/* img{
   widows: 52px;
   height: 52px;
-}
+} */
 
 .message-form{
   display: flex;
