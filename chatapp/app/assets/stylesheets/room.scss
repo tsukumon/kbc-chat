@@ -45,7 +45,6 @@
 
 .content-title{
   font-size: 25px;
-  font-weight: bold;
   color: #2e2e2e;
   margin: 10px 0px 10px 10px;
 }
@@ -146,7 +145,13 @@
 
 .message-form{
   display: flex;
+  position: fixed;
+  left:0;
+  bottom: 0;
+  margin-left: 202px;
   align-items: flex-end;
+  padding: 10px;
+  background-color: #fff;
 }
 
 .message-form textarea{

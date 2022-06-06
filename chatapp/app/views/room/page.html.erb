@@ -39,9 +39,9 @@
 
 
 <%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
-<div class="message-form" >
-  <%= f.text_area :sentence, id: "message-sentence", :placeholder => "メッセージを入力してください" %>
-  <%= f.submit "送信" , class: "message-submit" %>
+  <div class="message-form" >
+    <%= f.text_area :sentence, id: "message-sentence", :placeholder => "メッセージを入力してください" %>
+    <%= f.submit "送信" , class: "message-submit" %>
   </div>
 <% end %>
 
