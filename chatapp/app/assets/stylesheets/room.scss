@@ -120,7 +120,7 @@
 }
 
 .room-content{
-  width: 100%;
+  width: calc(100% - 40px);
   padding: 20px 0px 100px 20px;
   margin-top: 55px;
 }
@@ -166,10 +166,10 @@
   height: 20px;
   max-height: 200px;
   width: 300px;
+  min-width: 300px;
   max-width: 300px;
   padding: 8px;
 }
-
 
 .message-form input[type="submit"]{
    font-size: 15px;
