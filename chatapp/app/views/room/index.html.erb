@@ -1,24 +1,24 @@
-<h1>ROOM</h1>
-<div class="room_button">
-  <div class="create_room">
-    <%= link_to "新規作成", new_room_path %>
-  </div>
-  <div class="back_button">
-    <%= link_to "戻る", "/" %>
-  </div>
+<div class="search-area">
+  <input type="search" placeholder="キーワードを入力してルームを検索">
 </div>
+
+<div class="content-title">最新ルーム</div>
 
 <div class="rooms">
   <% @rooms.each do |room| %>
-    <div class="rooms_name">
-      <%= link_to "/room/#{room.id}" do %>
-        <% if room.image.length >= 1%>
-          <img src = "<%= room.image %> ">
-        <% else %>
-          <img src = "/room_image/default.png">
-        <% end %>
-        <%= room.name %>
-      <% end %>
-    </div>
+    <%= link_to "/room/#{room.id}" do %>
+      <div class="room"> 
+          <div class="room-image">
+            <% if room.image.length > 0 %>
+              <img src = "<%= room.image %>" class="room-image">
+            <% else %>
+              <img src = "/room_image/default.png" class="room-image">
+            <% end %>
+          </div>
+          <%= room.name %>
+      </div>
+    <% end %>
   <% end %>
 </div>
+
+

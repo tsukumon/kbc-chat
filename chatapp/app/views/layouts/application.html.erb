@@ -3,6 +3,7 @@
   <head>
     <title>Myapp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://kit.fontawesome.com/47ddc8fcd4.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,15 +15,15 @@
 
   <body>
     <div class="container">
-      <div class="sidebar">
-        <div class="users">
-          <img class="user_icon" src="/test_icon.png">
-          <div class="user_name">ちよ ノブ</div>
+      <div class="sub-container">
+        <div class="user-info">
+          <img class="user-icon" src="/test_icon.png">
+          <div class="user-name">西川きよし</div>
         </div>
-        <li><%= link_to "Home", "/" %></li>
-        <li><%= link_to "Room", "/room" %></li>
+        <li><%= link_to "/" do %><i class="fa-solid fa-house"></i> ホーム<% end %></li>
+        <li><%= link_to "Room一覧", "/room" %></li>
       </div>
-      <div class="content"><%= yield %></div>
+      <div class="main-container"><%= yield %></div>
     </div>
   </body>
 </html>
