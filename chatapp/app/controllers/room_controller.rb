@@ -2,7 +2,7 @@ class RoomController < ApplicationController
   protect_from_forgery :except => [:create_message]
 
   def index
-    @rooms = Room.all.order(name: :asc)
+    @rooms = Room.all.order(created_at: :DESC)
   end
 
   def page

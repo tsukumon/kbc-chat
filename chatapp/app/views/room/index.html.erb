@@ -2,7 +2,9 @@
   <input type="search" placeholder="キーワードを入力してルームを検索">
 </div>
 
-<div class="content-title">最新ルーム</div>
+<div class="content-column">
+  <div class="title">最新ルーム</div>
+</div>
 
 <div class="rooms">
   <% @rooms.each do |room| %>
@@ -16,6 +18,13 @@
             <% end %>
           </div>
           <%= room.name %>
+          <% if room.created_at >= Date.today.beginning_of_day %>
+            今日<%= room.created_at.strftime("%H:%M") %>
+          <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
+            昨日<%= room.created_at.strftime("%H:%M") %>
+          <% else %>
+            <%= room.created_at.strftime("%Y/%m/%d") %>
+          <% end %>
       </div>
     <% end %>
   <% end %>
