@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Myapp</title>
+    <title>kbc-chat</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://kit.fontawesome.com/47ddc8fcd4.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,15 +15,25 @@
 
   <body>
     <div class="container">
-      <div class="sidebar">
-        <div class="users">
-          <img class="user_icon" src="/test_icon.png">
-          <div class="user_name">ちよ ノブ</div>
+      <div class="sub-container">
+        <div class="user-info">
+          <img class="user-icon" src="/test_icon.png">
+          <div class="user-info-right">
+            <div class="user-name">山口一郎</div>
+            <div class="user-status">●オンライン</div>
+          </div>
         </div>
-        <li><%= link_to "Home", "/" %></li>
-        <li><%= link_to "Room", "/room" %></li>
+        <div class="menu">
+          <div class="menu-one"><%= link_to "/" do %><i class="fa-solid fa-house"></i> トップ<% end %></div>
+          <div class="menu-one"><%= link_to "/room" do %><i class="fa-solid fa-comment"></i> 参加中のルーム<% end %></div>
+          <div class="menu-one"><%= link_to "/room" do %><i class="fa-solid fa-magnifying-glass"></i> ルームを探す<% end %></div>
+          <div class="menu-one"><%= link_to new_room_path do %><i class="fa-solid fa-plus"></i> ルームを作成<% end %></div>
+          <div class="menu-one"><%= link_to "/room" do %><i class="fa-solid fa-gear"></i> 設定<% end %></div>
+        </div>
       </div>
-      <div class="content"><%= yield %></div>
+      <div class="main-container">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

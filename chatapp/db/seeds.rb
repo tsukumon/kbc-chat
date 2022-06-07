@@ -6,25 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-count = 100
-3.times do |n|
-  name = Faker::Name.name
-  describe = "Faker-test"
-  sentence = Faker::Movies::StarWars.quote
-  count+= 1
-
-  Room.create!(
-      id: count,
-      name: name,
-      describe: describe
-    )
-  
-  Message.create!(
-      room_id: count,
-      sentence: sentence
-    )
-    
-end
-
+#count = 100
+#index = 0
+#room = ["railsの環境構築ができません", "今週のjavaの課題について", "セキュリティつよつよマン募集"]
 
 

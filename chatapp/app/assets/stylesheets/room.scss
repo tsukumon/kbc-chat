@@ -1,0 +1,180 @@
+.search-area{
+  margin: 30px 10px 10px 10px;
+  text-align: center;
+  input{
+    box-sizing: border-box;
+    width: 80%;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    padding: 3px 3px 3px 8px;
+    background-color: #F4F4F4;
+    font-size: 16px;
+  }
+  input:focus{
+    outline: 0;
+    border: none;
+  }
+}
+
+.room-button-area{
+  margin-left: 10px;
+  a{
+    color :#fff;
+  }
+  .create-room{
+    display:inline-block;
+    background-color: #10bc8a;
+    border-radius: 50%;
+    padding: 3px 10px;
+    font-size: 25px;
+    color: #10bc8a;
+  }
+  .joined-room{
+    display:inline-block;
+    background-color: #10bc8a;
+    border-radius: 5px;
+    padding: 3px 10px;
+    font-size: 25px;
+    color: #10bc8a;
+  }
+  i{
+    color: #fff;
+  }
+}
+
+.content-column{
+  display: flex;
+  margin-bottom: 20px;
+  .title{
+    font-size: 25px;
+    color: #2e2e2e;
+    margin: 10px 0px 10px 10px;
+  }
+}
+
+
+.rooms{
+  margin-left: 10px;
+  .room{
+    display: flex;
+    margin-bottom: 15px;
+    .room-image{
+      widows: 50px;
+      height: 50px;
+      object-fit: cover;
+      overflow: hidden;
+    }
+  }
+}
+
+.room-header{
+  display: flex;
+  align-items: flex-start;
+  position: fixed;
+  top:0;
+  left: 200px;
+  width: 100%;
+  padding: 0.2%;
+  z-index: 0;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  background-color: #fff;
+}
+
+.room_header_left{
+  display: flex;
+  align-items: flex-start;
+}
+
+.room_header_right{
+  font-size: 20px;
+  color: #2a2a2a;
+  border-radius: 50%;
+  margin-left: 30px;
+  padding-top: 8px;
+}
+
+.room_header_right:hover{
+  background-color: #f0f0f0;
+  transition: 0.5s;
+}
+.room_title{
+  font-size: 25px;
+  color: #2a2a2a;
+  padding-top: 5px;
+}
+
+.room_back{
+  font-size: 25px;
+  padding: 5px 18px;
+  border-radius: 50%;
+  margin-right: 2px;
+}
+.room_back i{
+  color: #c7c7c7;
+}
+
+.room_back:hover{
+  background-color: #f0f0f0;
+  transition: 0.5s;
+}
+
+.room-content{
+  width: calc(100% - 40px);
+  padding: 20px 0px 30px 20px;
+  margin-top: 55px;
+}
+
+.room_button{
+  display:flex;
+  align-items: center;
+  margin-right: 0;
+  margin-left: auto;
+  width: 15%;
+  font-size: 20px;
+}
+.create_room{
+  background-color: black;
+  border-radius: 0.3rem;
+  padding:0.2rem 0.2rem;
+  margin-right: 10px;
+}
+.back_button{
+  background-color: black;
+  padding:0.2rem 0.2rem;
+  border-radius: 0.3rem;
+}
+
+
+
+
+.message-form{
+  display: flex;
+  position: fixed;
+  left:0;
+  bottom: 0;
+  margin-left: 202px;
+  align-items: flex-end;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.message-form textarea{
+  font-size: 15px;
+  color: #000;
+  line-height: 20px;
+  height: 20px;
+  max-height: 200px;
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  padding: 8px;
+}
+
+.message-form input[type="submit"]{
+   font-size: 15px;
+   color: #000;
+   height: 35px;
+   width: 50px;
+   margin-left: 5px;
+}

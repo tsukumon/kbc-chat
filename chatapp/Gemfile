@@ -37,6 +37,11 @@ gem 'mini_magick'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
+#Install SCSS
+gem "sassc-rails", "= 2.1.2"
+gem "sassc", "= 2.4.0"
+gem "tilt", "= 2.0.10"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

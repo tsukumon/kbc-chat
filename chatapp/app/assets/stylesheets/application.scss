@@ -1,0 +1,121 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+
+ /* 共通処理 */
+*{
+  margin:0;
+  padding:0;
+  color:#232323; /* default color */
+  text-decoration: none;
+}
+
+li{
+  list-style: none;
+}
+
+
+body{
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  /* font-size: 62.5%; */
+}
+
+.container{
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.main-container{
+  background: #fff;
+  min-height: 100vh;
+  width: calc(100% - 200px);
+  margin-left: 202px;
+}
+
+.sub-container{
+  background: #fff;
+  position: fixed;
+  width: 200px;
+  height: 100vh;
+  padding: 0px;
+  border-right: 2px solid #f6f6f6;
+  z-index: 9999;
+  /* メニュー */
+  .menu{
+    margin-left: 5px;
+    .menu-one{
+      font-size: 19px;
+      margin-bottom: 10px;
+      display: inline-block;
+      padding: 5px 10px;
+    }
+    .menu-one:hover{
+      background-color: #F4F4F4;
+      border-radius:5px;
+      transform: 0.5s;
+    }
+    a{
+      color: #4e4e4e;
+    }
+    i{
+      font-size: 25px;
+      color: #2e2e2e;
+    }
+  }
+  /* ユーザー情報 */
+  .user-info{
+    display:flex;
+    align-items: top;
+    margin: 10px 0px 20px 5px;
+    padding:5px;
+    .user-icon{
+      animation: user-border-change 20s ease infinite;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+    }
+    @keyframes user-border-change{
+      0%   {border:3px solid #10bc8a;}
+      25%  {border:3px solid #43d8ae;}
+      50%  {border:3px solid #8af57c;}
+      75%  {border:3px solid #66e36a;}
+      90%  {border:3px solid #43d8ae;}
+      100% {border:3px solid #10bc8a;}
+    }
+    .user-info-right{
+      margin-left: 10px;
+      .user-name{
+        font-size: 17px;
+      }
+      .user-status{
+        font-size: 13px;
+        animation: user-status-change 20s ease infinite;
+      }
+      @keyframes user-status-change{
+        0%   {color: #10bc8a;}
+        25%  {color: #43d8ae;}
+        50%  {color: #8af57c;}
+        75%  {color: #66e36a;}
+        90%  {color: #43d8ae;}
+        100% {color: #10bc8a;}
+      }
+   }
+  } 
+}

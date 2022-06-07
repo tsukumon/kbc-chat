@@ -1,24 +1,30 @@
-<h1>ROOM</h1>
-
-<%= link_to "ルーム削除", destroy_room_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
-
-<%= link_to("戻る", "/room") %>
-
-<p id="notice"><%= notice %></p>
-<div class="room_button">
-  <div class="back_button">
-    <%= link_to("戻る", "/room") %>
+<div class="room-header">
+  <div class="room_header_left">
+    <%= link_to("/room") do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
+    <div class="room_title"><%= @room.name %></div>
+  </div>
+  <div class="room_header_right">
+    <%= link_to destroy_room_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} do %>
+      <i class="fa-solid fa-caret-down"></i>
+    <% end %>
   </div>
 </div>
+
+
+<p id="notice"><%= notice %></p>
+
+<div class="room-content">
 
 <div id="messages">
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
       <div id="message-<%= message.id%>">
-        <p><%= message.sentence %></p>
+        <p><%= safe_join(message.sentence.split("\n"),tag(:br)) %></p>
         <div id="message-time">
-          <% if message.created_at > 1.days.ago %>
+          <% if message.created_at >= Date.today.beginning_of_day %>
             今日<%= message.created_at.strftime("%H:%M") %>
+          <% elsif message.created_at < Date.today.beginning_of_day && message.created_at >= Date.yesterday.beginning_of_day%>
+            昨日<%= message.created_at.strftime("%H:%M") %>
           <% else %>
             <%= message.created_at.strftime("%Y/%m/%d") %>
           <% end %>
@@ -31,17 +37,12 @@
   <% end %>
 </div>
 
-<%= link_to "ルーム削除","/room/delete/#{@room.id}",data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
-
-<%= link_to("戻る", "/room") %>
-
-<h2>メッセージ作成</h2>
 
 <%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
-<div class="message-form" >
-  <%= f.text_area :sentence, id: "message-sentence", :placeholder => "メッセージを入力してください" %>
-  <%= f.submit "送信" , id: "message-submit" %>
-  <p id="helper-text" style="color: red;"></p>
+  <div class="message-form" >
+    <%= f.text_area :sentence, id: "message-sentence", :placeholder => "メッセージを入力してください" %>
+    <%= f.submit "送信" , id: "message-submit", class: "message-submit" %>
+    <p id="helper-text" style="color: red;"></p>
   </div>
 <% end %>
 
@@ -69,3 +70,5 @@ $(function() {
   });
 });
 </scirpt>
+
+</div>
