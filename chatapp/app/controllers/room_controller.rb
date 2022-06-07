@@ -25,6 +25,19 @@ class RoomController < ApplicationController
     end
   end
 
+  def edit_room
+    @room = Room.find_by(id: params[:id])
+  end
+
+  def update_room
+    @room = Room.find_by(id: params[:id])
+    @room.update(room_params)
+
+    if @room.save
+      redirect_to "/room/#{@room.id}"
+    end
+  end
+
   def destroy_room
     @room = Room.find_by(id: params[:id])
     if @room.destroy
