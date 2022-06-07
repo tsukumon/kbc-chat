@@ -24,11 +24,11 @@
           </div>
         </div>
         <div class="menu">
-          <div class="menu-one"><%= link_to "/" do %><i class="fa-solid fa-house"></i> トップ<% end %></div>
-          <div class="menu-one"><%= link_to "/room" do %><i class="fa-solid fa-comment"></i> 参加中のルーム<% end %></div>
-          <div class="menu-one"><%= link_to "/room" do %><i class="fa-solid fa-magnifying-glass"></i> ルームを探す<% end %></div>
-          <div class="menu-one"><%= link_to new_room_path do %><i class="fa-solid fa-plus"></i> ルームを作成<% end %></div>
-          <div class="menu-one"><%= link_to "/room" do %><i class="fa-solid fa-gear"></i> 設定<% end %></div>
+          <%= link_to "/", class: "menu-one" do %><i class="fa-solid fa-house"></i> トップ<% end %>
+          <%= link_to "/room", class: "menu-one" do %><i class="fa-solid fa-comment"></i> 参加中のルーム<% end %>
+          <%= link_to "/room", class: "menu-one" do %><i class="fa-solid fa-magnifying-glass"></i> ルームを探す<% end %>
+          <%= link_to new_room_path, class: "menu-one" do %><i class="fa-solid fa-plus"></i> ルームを作成<% end %>
+          <%= link_to "/room", class: "menu-one" do %><i class="fa-solid fa-gear"></i> 設定<% end %>
         </div>
       </div>
       <div class="main-container">

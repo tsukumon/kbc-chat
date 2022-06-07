@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<%= form_with url: create_room_path, model: room, local: true do |f| %>
+  <%= render "error_messages", model: room %>
+  <%= f.label :category %>
+  <%= f.text_field :category %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :describe %>
+  <%= f.text_area :describe %>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+  <%= f.submit "登録する" %>
+<% end %>
+
+<script type="text/javascript">
+$(function() {
+    const dataList = function(request, response) {
+      $.ajax({
+        url: '/room_auto/' + request.term,
+        dataType: 'json',
+        type: 'GET',
+        cache: true,
+        success: function(data) {
+          response(data);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          response(['']);
+        }
+      });
+    }
+    $("#room_category").autocomplete({
+      source: dataList,
+      autoFocus: true
+    });
+});
+</script>

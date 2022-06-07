@@ -13,7 +13,9 @@
  *= require_tree .
  *= require_self
  */
-
+ @import "jquery-ui/autocomplete";
+ @import "jquery-ui/theme";
+ @import "jquery-ui/menu";
 
 
  /* 共通処理 */
@@ -62,9 +64,9 @@ body{
     margin-left: 5px;
     .menu-one{
       font-size: 19px;
-      margin-bottom: 10px;
-      display: inline-block;
+      display: block;
       padding: 5px 10px;
+      margin:6px 5px;
     }
     .menu-one:hover{
       background-color: #F4F4F4;
@@ -116,6 +118,6 @@ body{
         90%  {color: #43d8ae;}
         100% {color: #10bc8a;}
       }
-   }
+    }
   } 
 }
