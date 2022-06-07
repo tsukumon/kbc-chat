@@ -121,7 +121,7 @@
 
 .room-content{
   width: calc(100% - 40px);
-  padding: 20px 0px 30px 20px;
+  padding: 20px 0px 80px 20px;
   margin-top: 55px;
 }
 
@@ -155,26 +155,40 @@
   bottom: 0;
   margin-left: 202px;
   align-items: flex-end;
-  padding: 10px;
-  background-color: #fff;
+  padding: 12px;
+  background-color: rgb(242, 242, 242);
+  width: 100%;
 }
 
 .message-form textarea{
   font-size: 15px;
   color: #000;
   line-height: 20px;
-  height: 20px;
+  height: 25px;
+  min-height: 25px;
   max-height: 200px;
-  width: 300px;
+  width: 1600px;
   min-width: 300px;
-  max-width: 300px;
+  max-width: 1600px;
   padding: 8px;
 }
 
 .message-form input[type="submit"]{
-   font-size: 15px;
-   color: #000;
-   height: 35px;
-   width: 50px;
-   margin-left: 5px;
+  font-size: 15px;
+  color: #000;
+  height: 43px;
+  width: 50px;
+  margin-left: 5px;
+}
+
+.message-single{
+  font-size: 26px;
+}
+
+#message-time{
+  font-size: 14px;
+}
+
+#message-delete{
+  font-size: 11px;
 }
