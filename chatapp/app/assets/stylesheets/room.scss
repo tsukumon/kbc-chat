@@ -183,19 +183,21 @@
 
 .message-single{
   font-size: 24px;
-
-  .chat-username{
-    font-size: 20px;
-    font-weight: bolder;
-    color: rgb(179, 2, 164);
+  font-weight: 550;
+  .username-time{
+    display:flex;
+    align-items: center;
+    .chat-username{
+      font-size: 20px;
+      color: rgb(179, 2, 164);
+    }
+    #message-time{
+      color: rgb(148, 148, 148);
+      padding-left: 6px;
+      font-size: 12px;
+    }
   }
-
-  #message-time{
-    font-size: 14px;
-  }
-
   #message-delete{
     font-size: 11px;
   }
-
 }

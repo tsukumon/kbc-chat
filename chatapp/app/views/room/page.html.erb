@@ -20,8 +20,8 @@
     <% @messages.reverse_each do |message| %>
       <div class="message-single">
         <div id="message-<%= message.id%>">
-          <div class="chat-username">山口 一郎</div>
-            <p><%= safe_join(message.sentence.split("\n"),tag(:br)) %></p>
+          <div class="username-time">
+            <div class="chat-username">山口 一郎</div>
             <div id="message-time">
               <% if message.created_at >= Date.today.beginning_of_day %>
                 今日<%= message.created_at.strftime("%H:%M") %>
@@ -31,11 +31,13 @@
                 <%= message.created_at.strftime("%Y/%m/%d") %>
               <% end %>
             </div>
-            <div id="message-delete">
-              <%= link_to "削除する", destroy_message_path(message.id), data: {turbo_method: :delete} %>
-            </div>
+          </div>
+          <p><%= safe_join(message.sentence.split("\n"),tag(:br)) %></p>
+          <div id="message-delete">
+            <%= link_to "削除する", destroy_message_path(message.id), data: {turbo_method: :delete} %>
           </div>
         </div>
+      </div>
     <% end %>
   <% end %>
 </div>
