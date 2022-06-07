@@ -1,7 +1,7 @@
 <%= form_with url: update_room_path(@room.id), model: @room, local: true do |f| %>
   <%= render "error_messages", model: @room %>
   <%= f.label :category %>
-  <%= f.select :category, [["Q&A", "Q&A"], ["募集", "募集"], ["雑談", "雑談"], ["プログラミング", "プログラミング"], ["OS", "OS"], ["クラウド", "クラウド"]], include_blank: "選択して下さい"%>
+  <%= f.text_field :category %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :describe %>
