@@ -2,7 +2,7 @@
 <% @rooms.each do |room| %>
   <%= room.name %>
   <br>
-  <%= room.describe %>
+  <%= safe_join(room.describe.split("\n"),tag(:br)) %>
 <% end %> 
 
 <%= link_to "ルーム一覧", "/room" %>
