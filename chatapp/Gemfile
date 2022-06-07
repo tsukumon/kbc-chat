@@ -42,6 +42,9 @@ gem "sassc-rails", "= 2.1.2"
 gem "sassc", "= 2.4.0"
 gem "tilt", "= 2.0.10"
 
+#Install Suggest
+gem "jquery-ui-rails", "= 6.0.1"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
