@@ -57,7 +57,7 @@ class RoomController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:name, :describe, :image)
+    params.require(:room).permit(:name, :describe, :image, :category)
   end
 
   def message_params
