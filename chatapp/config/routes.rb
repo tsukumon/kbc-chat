@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   post "/message/:id" => "room#create_message", as: :create_message
   delete "/message/:id" => "room#destroy_message", as: :destroy_message
 
+  get "/room_auto/:category" => "room#autocomplete_category"
 end

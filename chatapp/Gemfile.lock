@@ -122,6 +122,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jquery-ui-rails (6.0.1)
+      railties (>= 3.2.16)
     loofah (2.16.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -276,6 +278,7 @@ DEPENDENCIES
   faker
   importmap-rails
   jbuilder
+  jquery-ui-rails (= 6.0.1)
   mini_magick
   pg (~> 1.1)
   puma (~> 5.0)
