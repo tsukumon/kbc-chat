@@ -17,6 +17,7 @@ ja:
         name: "ルーム名"
         describe: "ルーム詳細情報"
         image: "ルームアイコン"
+        category: "カテゴリ"
       message:
         id: "ID"
         sentence: "メッセージ"
