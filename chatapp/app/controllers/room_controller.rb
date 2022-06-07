@@ -1,5 +1,6 @@
 class RoomController < ApplicationController
   protect_from_forgery :except => [:create_message]
+  before_action :search
 
   def index
     @rooms = Room.all.order(created_at: :DESC)
@@ -54,9 +55,16 @@ class RoomController < ApplicationController
     end
   end
 
+
   def autocomplete_category
     categories = Room.by_category_like(autocomplete_params[:category]).pluck(:category).reject(&:blank?)
     render json: categories
+  end
+  
+  def search
+    @q = Room.ransack(params[:q])
+    @results = @q.result
+    #@search_articles = @q.result.page(params[:page])
   end
 
   private
