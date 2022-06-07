@@ -41,9 +41,24 @@
 <%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
   <div class="message-form" >
     <%= f.text_area :sentence, id: "message-sentence", :placeholder => "メッセージを入力してください" %>
-    <%= f.submit "送信" , class: "message-submit" %>
+    <%= f.submit "送信" , id: "message-submit", class: "message-submit" %>
+    <p id="helper-text" style="color: red;"></p>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  const input = document.querySelector("#message-sentence");
+  const button = document.querySelector("#message-submit");
+  const p = document.querySelector("#helper-text");
+  const chatRegex = /[^\s\R]/;
+  input.addEventListener("keyup", () => {
+    if (chatRegex.test(input.value)) {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
+    }
+  });
+</script>
 
 <script type="text/javascript">
 $(function() {
