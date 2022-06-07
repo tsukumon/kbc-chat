@@ -64,7 +64,6 @@ class RoomController < ApplicationController
   def search
     @q = Room.ransack(params[:q])
     @results = @q.result
-    #@search_articles = @q.result.page(params[:page])
   end
 
   private
