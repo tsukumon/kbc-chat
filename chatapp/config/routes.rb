@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "/" => "home#index"
 
   get "/room" => "room#index"
+  get "/search" => "room#search", as: :room_search
   get "/room/new" => "room#new_room", as: :new_room
   get "/room/:id" => "room#page", as: :room_page
 
