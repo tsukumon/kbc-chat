@@ -1,0 +1,4 @@
+「<%= @q.name_cont %>」の検索結果は<%= @results.count %>件です<br>
+<% @results.each do |room| %>
+    <%= room.name %>
+<% end %>
