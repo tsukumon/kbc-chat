@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2022_06_07_005724) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "image"
-    t.string "category"
+    t.string "category", default: "未分類"
   end
-
 end
