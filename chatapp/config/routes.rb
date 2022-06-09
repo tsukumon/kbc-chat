@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "/" => "home#index"
 
   get "/room" => "room#index"
+  get "/search" => "room#search", as: :room_search
   get "/room/new" => "room#new_room", as: :new_room
   get "/room/:id" => "room#page", as: :room_page
 
@@ -10,4 +11,5 @@ Rails.application.routes.draw do
   post "/message/:id" => "room#create_message", as: :create_message
   delete "/message/:id" => "room#destroy_message", as: :destroy_message
 
+  get "/room_auto/:category" => "room#autocomplete_category"
 end
