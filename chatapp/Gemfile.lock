@@ -122,6 +122,9 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     loofah (2.16.0)
@@ -248,6 +251,9 @@ GEM
     turbo-rails (1.0.1)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    turbolinks (5.2.1)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     web-console (4.2.0)
@@ -278,6 +284,7 @@ DEPENDENCIES
   faker
   importmap-rails
   jbuilder
+  jquery-turbolinks
   jquery-ui-rails (= 6.0.1)
   mini_magick
   pg (~> 1.1)

@@ -51,15 +51,15 @@
   const button = document.querySelector("#message-submit");
   const p = document.querySelector("#helper-text");
   const chatRegex = /[^\s\R]/;
+  button.disabled = true;
   input.addEventListener("keyup", () => {
     if (chatRegex.test(input.value)) {
       button.disabled = false;
     } else {
       button.disabled = true;
-    }
+    };
   });
 </script>
-
 <script type="text/javascript">
 $(function() {
   var $textarea = $('#textarea');
@@ -70,5 +70,4 @@ $(function() {
   });
 });
 </scirpt>
-
 </div>
