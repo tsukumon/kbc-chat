@@ -10,4 +10,8 @@ class Room < ApplicationRecord
   scope :by_category_like, lambda { |category|
   where('category LIKE :value', { value: "#{sanitize_sql_like(category)}%"})
   }
+
+  scope :by_name_like, lambda { |name|
+  where('name LIKE :value', { value: "#{sanitize_sql_like(name)}%"})
+  }
 end

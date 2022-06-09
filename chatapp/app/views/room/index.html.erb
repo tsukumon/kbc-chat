@@ -1,9 +1,37 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 <div class="search-area">
   <%= search_form_for @q, url: room_search_path do |f| %>
     <%= f.search_field :name_cont, placeholder: "キーワードを入力してルームを検索"  %>
     <% f.submit '検索' %>
   <% end %>
 </div>
+
+<script type="text/javascript">
+$(function() {
+    const dataList = function(request, response) {
+      $.ajax({
+        url: '/name_auto/' + request.term,
+        dataType: 'json',
+        type: 'GET',
+        cache: true,
+        success: function(data) {
+          response(data);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          response(['']);
+        }
+      });
+    }
+    $("#q_name_cont").autocomplete({
+      source: dataList,
+      autoFocus: true
+    });
+});
+</script>
 
 <div class="content-column">
   <div class="title">最新ルーム</div>
