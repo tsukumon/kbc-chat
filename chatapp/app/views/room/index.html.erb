@@ -34,3 +34,27 @@
 </div>
 
 
+<script type="text/javascript">
+$(function() {
+    const dataList = function(request, response) {
+      $.ajax({
+        url: '/name_auto/' + request.term,
+        dataType: 'json',
+        type: 'GET',
+        cache: true,
+        success: function(data) {
+          response(data);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          response(['']);
+        }
+      });
+    }
+    $("#q_name_cont").autocomplete({
+      source: dataList,
+    });
+});
+</script>
+
+
+

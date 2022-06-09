@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   delete "/message/:id" => "room#destroy_message", as: :destroy_message
 
   get "/room_auto/:category" => "room#autocomplete_category"
+  get "/name_auto/:name" => "room#autocomplete_name"
 end
