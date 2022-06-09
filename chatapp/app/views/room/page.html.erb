@@ -8,6 +8,11 @@
       <i class="fa-solid fa-caret-down"></i>
     <% end %>
   </div>
+  <div class="room_header_right">
+    <%= link_to edit_room_path(params[:id]) do %>
+      <i class="fa-solid fa-caret-down">編集</i>
+    <% end %>
+  </div>
 </div>
 
 
@@ -51,15 +56,15 @@
   const button = document.querySelector("#message-submit");
   const p = document.querySelector("#helper-text");
   const chatRegex = /[^\s\R]/;
+  button.disabled = true;
   input.addEventListener("keyup", () => {
     if (chatRegex.test(input.value)) {
       button.disabled = false;
     } else {
       button.disabled = true;
-    }
+    };
   });
 </script>
-
 <script type="text/javascript">
 $(function() {
   var $textarea = $('#textarea');
@@ -70,5 +75,4 @@ $(function() {
   });
 });
 </scirpt>
-
 </div>

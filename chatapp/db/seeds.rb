@@ -6,6 +6,3 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-#count = 100
-#index = 0
-#room = ["railsの環境構築ができません", "今週のjavaの課題について", "セキュリティつよつよマン募集"]
