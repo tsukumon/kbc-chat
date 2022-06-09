@@ -12,11 +12,17 @@ consumer.subscriptions.create("MessageChannel", {
   received(data) {
     if (data.mode == "create") {
       const html = `
-                  <div id="message-${data.content.id}">
-                    <p>${data.content.sentence}</p>
-                    <div class="message-time">${data.time}</div>
-                    <div id="message-delete">
-                      <a data-turbo-method="delete" href="/message/${data.content.id}">削除する</a>
+                  <div id="message-${data.content.id}" class="message-one">
+                    <div class="message-left"><img src="/test_icon.png"></div>
+                      <div class="message-right">
+                        <div class="message-user-info">
+                          <div class="message-username">山口 一郎</div>
+                          <div id="message-time">${data.time}</div>
+                          <div id="message-delete">
+                            <a data-turbo-method="delete" href="/message/${data.content.id}">削除</a>
+                          </div>
+                        </div>
+                      <p>${data.content.sentence}</p>
                     </div>
                   </div>
                   `;

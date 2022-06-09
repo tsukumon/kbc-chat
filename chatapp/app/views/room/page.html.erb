@@ -23,10 +23,11 @@
 <div id="messages">
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
-      <div class="message-single">
-        <div id="message-<%= message.id%>">
-          <div class="username-time">
-            <div class="chat-username">山口 一郎</div>
+      <div id="message-<%= message.id%>" class="message-one">
+        <div class="message-left"><img src="/test_icon.png"></div>
+        <div class="message-right">
+          <div class="message-user-info">
+            <div class="message-username">山口 一郎</div>
             <div id="message-time">
               <% if message.created_at >= Date.today.beginning_of_day %>
                 今日<%= message.created_at.strftime("%H:%M") %>
@@ -36,21 +37,23 @@
                 <%= message.created_at.strftime("%Y/%m/%d") %>
               <% end %>
             </div>
+            <div id="message-delete">
+              <%= link_to "削除", destroy_message_path(message.id), data: {turbo_method: :delete} %>
+            </div>
           </div>
           <p><%= safe_join(message.sentence.split("\n"),tag(:br)) %></p>
-          <div id="message-delete">
-            <%= link_to "削除する", destroy_message_path(message.id), data: {turbo_method: :delete} %>
-          </div>
         </div>
       </div>
     <% end %>
   <% end %>
 </div>
 
-
 <%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
   <div class="message-form" >
-    <%= f.text_area :sentence, id: "message-sentence", :placeholder => "メッセージを入力してください" %>
+    <div class="message-textarea">
+      <div class="dummy-textarea" aria-hidden="true"></div>
+      <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する" %>
+    </div>
     <%= f.submit "送信" , id: "message-submit", class: "message-submit" %>
     <p id="helper-text" style="color: red;"></p>
   </div>
@@ -70,14 +73,4 @@
     };
   });
 </script>
-<script type="text/javascript">
-$(function() {
-  var $textarea = $('#textarea');
-  var lineHeight = parseInt($textarea.css('lineHeight'));
-  $textarea.on('input', function(evt) {
-    var lines = ($(this).val() + '\n').match(/\n/g).length;
-    $(this).height(lineHeight * lines);
-  });
-});
-</scirpt>
 </div>
