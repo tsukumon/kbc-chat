@@ -121,38 +121,53 @@
 
 .room-content{
   width: calc(100% - 40px);
-  padding: 20px 0px 80px 20px;
+  padding: 10px 0px 80px 10px;
   margin-top: 55px;
-  .message-single{
-    font-size: 15px;
+  .message-one{
     display: flex;
-    padding: 6px;
-    .messege-user-icon{
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      padding-right: 6px;
-    }
-    .username-time{
-      display:flex;
-      align-items: center;
-      .chat-username{
-        font-size: 16px;
-        color: rgb(179, 2, 164);
-      }
-      #message-time{
-        color: rgb(148, 148, 148);
-        padding-left: 6px;
-        font-size: 12px;
+    font-size: 15px;
+    padding: 15px 10px 15px 10px;
+    margin-bottom: 10px;
+    .message-left{
+      img{
+        width: 35px;
+        height: 35px;
+        object-fit: cover;
+        overflow: hidden;
+        border-radius: 50%;
+        margin-right: 6px;
       }
     }
-    #message-delete{
-      font-size: 11px;
+    .message-right{
+      .message-user-info{
+        display: flex;
+        align-items: flex-end;
+        .message-username{
+          font-size: 15px;
+          font-weight: bold;
+          color: #2e2e2e;
+        }
+        #message-time{
+          color: rgb(148, 148, 148);
+          margin-left: 6px;
+          padding-bottom: 2px;
+          font-size: 12px;
+        }
+        #message-delete{
+          font-size: 12px;
+          padding-bottom: 2px;
+          margin-left: 10px;
+        }
+      }
     }
     p{
       color:rgb(68, 68, 68);
     }
-  }  
+  }
+  .message-one:hover{
+    background-color: #f4f4f4;
+    transition: 0.5s;
+  }
 }
 
 .room_button{
@@ -190,24 +205,54 @@
   width: 100%;
 }
 
-.message-form textarea{
-  font-size: 15px;
-  color: #000;
-  line-height: 20px;
-  height: 25px;
-  min-height: 25px;
-  max-height: 200px;
-  width: calc(100% - 297px);
-  min-width: calc(100% - 297px);
-  max-width: calc(100% - 297px);
-  padding: 8px;
-}
-
 .message-form input[type="submit"]{
   font-size: 15px;
-  color: #000;
   height: 43px;
   width: 50px;
   margin-left: 5px;
+}
+
+
+.message-textarea{
+  background-color: #fff;
+  width: calc(100% - 297px);
+  position: relative;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.dummy-textarea{
+  overflow: hidden;
+  visibility: hidden;
+  box-sizing: border-box;
+  padding: 5px 15px;
+  min-height: 50px;
+  max-height: 250px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  border: 1px solid;
+}
+
+.message-sentense-class{
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 5px 15px;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: 1px solid #b6c3c6;
+  border-radius: 4px;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  resize: none;
+}
+
+.message-sentense-class:focus{
+  box-shadow: 0 0 0 4px rgba(35, 167, 195, 0.3);
+  outline: 0;
 }
 
