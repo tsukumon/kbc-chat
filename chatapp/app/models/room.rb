@@ -8,6 +8,6 @@ class Room < ApplicationRecord
   validates :category, {presence: true, length: {maximum: 15}}
 
   scope :by_category_like, lambda { |category|
-  where('category LIKE :value', { value: "#{sanitize_sql_like(category)}%"})
+  where('category LIKE :value', { value: "#{sanitize_sql_like(category)}%"}).distinct
   }
 end

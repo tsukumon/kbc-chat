@@ -9,6 +9,21 @@
 <%= render "form", room: @room %>
 <br>
 人気カテゴリー  
-<% @categories.each do |category| %>
-  <%= category[0] %>(<%= category[1] %>)
-<% end %>
+<div class="category">
+  <% @categories.each_with_index do |category, i| %>
+    <div id="category-name-<%= i %>"><%= category[0] %></div><div class="category-count">(<%= category[1] %>)</div>
+  <% end %>
+</div>
+
+<p id="p5"></p>
+
+<script>
+function ChangeValue(e) {
+  room_category.value = "未分類";
+  room_category.value =
+  e.target.textContent;
+}
+ <% @categories.each_with_index do |category, i| %>
+  document.getElementById("category-name-" + <%= i %>).addEventListener('click', ChangeValue, false)
+ <% end %>
+</script>
