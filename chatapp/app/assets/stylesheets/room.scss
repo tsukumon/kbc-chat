@@ -167,9 +167,9 @@
   height: 25px;
   min-height: 25px;
   max-height: 200px;
-  width: 1600px;
-  min-width: 300px;
-  max-width: 1600px;
+  width: calc(100% - 297px);
+  min-width: calc(100% - 297px);
+  max-width: calc(100% - 297px);
   padding: 8px;
 }
 

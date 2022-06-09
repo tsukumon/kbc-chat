@@ -14,6 +14,8 @@ class RoomController < ApplicationController
 
   def new_room
     @room = Room.new
+    #@categories = Room.group(:category).order('count(category) desc').limit(10).pluck(:category)
+    @categories = Room.group(:category).select("category, count(category) as category_count").order("category_count desc").limit(10).map { |m| [m.category, m.category_count] }.to_h
   end
 
   def create_room

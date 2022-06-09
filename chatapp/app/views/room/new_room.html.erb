@@ -7,3 +7,8 @@
 
 <h1>新規作成</h1>
 <%= render "form", room: @room %>
+<br>
+人気カテゴリー  
+<% @categories.each do |category| %>
+  <%= category[0] %>(<%= category[1] %>)
+<% end %>
