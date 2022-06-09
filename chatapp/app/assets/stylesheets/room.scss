@@ -123,6 +123,36 @@
   width: calc(100% - 40px);
   padding: 20px 0px 80px 20px;
   margin-top: 55px;
+  .message-single{
+    font-size: 15px;
+    display: flex;
+    padding: 6px;
+    .messege-user-icon{
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      padding-right: 6px;
+    }
+    .username-time{
+      display:flex;
+      align-items: center;
+      .chat-username{
+        font-size: 16px;
+        color: rgb(179, 2, 164);
+      }
+      #message-time{
+        color: rgb(148, 148, 148);
+        padding-left: 6px;
+        font-size: 12px;
+      }
+    }
+    #message-delete{
+      font-size: 11px;
+    }
+    p{
+      color:rgb(68, 68, 68);
+    }
+  }  
 }
 
 .room_button{
@@ -181,26 +211,3 @@
   margin-left: 5px;
 }
 
-.message-single{
-  font-size: 24px;
-  font-weight: 550;
-  .username-time{
-    display:flex;
-    align-items: center;
-    .chat-username{
-      font-size: 20px;
-      color: rgb(179, 2, 164);
-    }
-    #message-time{
-      color: rgb(148, 148, 148);
-      padding-left: 6px;
-      font-size: 12px;
-    }
-  }
-  #message-delete{
-    font-size: 11px;
-  }
-  p{
-    color:rgb(68, 68, 68);
-  }
-}

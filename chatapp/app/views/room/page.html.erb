@@ -19,11 +19,11 @@
 <p id="notice"><%= notice %></p>
 
 <div class="room-content">
-
 <div id="messages">
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
       <div class="message-single">
+        <img class="messege-user-icon" src="/test_icon.png">
         <div id="message-<%= message.id%>">
           <div class="username-time">
             <div class="chat-username">山口 一郎</div>
