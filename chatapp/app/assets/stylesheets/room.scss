@@ -212,6 +212,9 @@
   margin-left: 5px;
 }
 
+#dummy-margin{
+  margin-bottom: 40px;
+}
 
 .message-textarea{
   background-color: #fff;
@@ -227,7 +230,7 @@
   box-sizing: border-box;
   padding: 5px 15px;
   min-height: 50px;
-  max-height: 250px;
+  max-height: 150px;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;

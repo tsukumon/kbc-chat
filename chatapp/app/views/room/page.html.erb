@@ -48,27 +48,31 @@
   <% end %>
 </div>
 
+<div id="dummy-margin"></div>
 
 <%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
   <div class="message-form" >
     <div class="message-textarea">
       <div class="dummy-textarea" aria-hidden="true"></div>
-      <%= f.text_area :sentence, id: "message-sentene", class: "message-sentense-class", :placeholder => "メッセージを送信する" %>
+      <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する" %>
     </div>
     <%= f.submit "送信" , id: "message-submit", class: "message-submit" %>
     <p id="helper-text" style="color: red;"></p>
   </div>
 <% end %>
 
-
 <script type="text/javascript">
-$(function() {
-  var $textarea = $('#textarea');
-  var lineHeight = parseInt($textarea.css('lineHeight'));
-  $textarea.on('input', function(evt) {
-    var lines = ($(this).val() + '\n').match(/\n/g).length;
-    $(this).height(lineHeight * lines);
+  const input = document.querySelector("#message-sentence");
+  const button = document.querySelector("#message-submit");
+  const p = document.querySelector("#helper-text");
+  const chatRegex = /[^\s\R]/;
+  button.disabled = true;
+  input.addEventListener("keyup", () => {
+    if (chatRegex.test(input.value)) {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
+    };
   });
-});
-</scirpt>
+</script>
 </div>
