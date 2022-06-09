@@ -30,4 +30,5 @@ ActiveRecord::Schema.define(version: 2022_06_07_005724) do
     t.text "image"
     t.string "category", default: "未分類"
   end
+
 end
