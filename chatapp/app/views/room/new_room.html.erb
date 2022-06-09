@@ -17,11 +17,10 @@
 
 <p id="p5"></p>
 
-<script>
+<script type="text/javascript">
 function ChangeValue(e) {
   room_category.value = "未分類";
-  room_category.value =
-  e.target.textContent;
+  room_category.value = e.target.textContent;
 }
  <% @categories.each_with_index do |category, i| %>
   document.getElementById("category-name-" + <%= i %>).addEventListener('click', ChangeValue, false)
