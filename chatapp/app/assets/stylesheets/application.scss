@@ -24,6 +24,7 @@
   padding:0;
   color:#232323; /* default color */
   text-decoration: none;
+  font-weight: bolder;
 }
 
 li{
@@ -64,9 +65,9 @@ body{
     margin-left: 5px;
     .menu-one{
       font-size: 19px;
-      display: block;
-      padding: 5px 10px;
-      margin:6px 5px;
+      margin-bottom: 10px;
+      display: inline-block;
+      padding: 7px 10px;
     }
     .menu-one:hover{
       background-color: #F4F4F4;
