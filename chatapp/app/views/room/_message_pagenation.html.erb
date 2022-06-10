@@ -1,0 +1,18 @@
+<div class="scroll-list jscroll">
+<% @mess.each do |mess| %>
+    <div>
+    <p><%= safe_join(mess.sentence.split("\n"),tag(:br)) %></p>
+    <%# <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %>
+    </div>
+<% end %>
+<%= paginate @mess %>
+
+</div>
+<h1>Ajax#index</h1>
+<p id="hoge">赤色になるよ</p>
+
+<script>
+  $("#hoge").css("color","red")
+</script>
+
+<!--ページ表示部分-->
