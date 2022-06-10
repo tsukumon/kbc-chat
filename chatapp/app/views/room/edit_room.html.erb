@@ -10,3 +10,6 @@
   <%= f.file_field :image %>
   <%= f.submit "編集する" %>
 <% end %>
+
+<%= link_to "削除", destroy_room_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
+<%= link_to "戻る", room_page_path(params[:id]) %>
