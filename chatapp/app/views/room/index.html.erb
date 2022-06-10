@@ -5,19 +5,14 @@
   <% end %>
 </div>
 
-<% @results.each do |room| %>
-    <%#= room.name %>
-<% end %>
-
 <div class="content-column">
   <div class="title">最新ルーム</div>
 </div>
 
 <div class="rooms">
-  <th><%= sort_link(@q, :name, "名前") %></th>
   <th><%= sort_link(@q, :created_at, "作成日") %></th>
   <% @results.each do |room| %>
-    <%= link_to "/room/#{room.id}" do %>
+    <%= link_to room_page_path(room.id) do %>
       <div class="room"> 
           <div class="room-image">
             <% if room.image.length > 0 %>

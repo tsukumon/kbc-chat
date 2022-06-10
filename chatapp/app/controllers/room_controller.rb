@@ -3,7 +3,6 @@ class RoomController < ApplicationController
   before_action :search
 
   def index
-    @rooms = Room.all.order(created_at: :DESC)
     @q = Room.ransack(params[:q])
     @results = @q.result
   end
