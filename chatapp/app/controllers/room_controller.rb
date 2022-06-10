@@ -10,7 +10,7 @@ class RoomController < ApplicationController
   def page
     @room = Room.find_by(id: params[:id])
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC)
-    @mess = Message.page(params[:page]).per(5)
+    @mess = @messages.page(params[:page]).per(6)
     @message = Message.new
   end
 
