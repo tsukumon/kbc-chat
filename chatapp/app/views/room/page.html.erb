@@ -4,14 +4,10 @@
     <div class="room_title"><%= @room.name %></div>
   </div>
   <div class="room_header_right">
-    <%= link_to destroy_room_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"} do %>
-      <i class="fa-solid fa-caret-down"></i>
-    <% end %>
-  </div>
-  <div class="room_header_right">
     <%= link_to edit_room_path(params[:id]) do %>
       <i class="fa-solid fa-caret-down">編集</i>
     <% end %>
+
   </div>
 </div>
 
