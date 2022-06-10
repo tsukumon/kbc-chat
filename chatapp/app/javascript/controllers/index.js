@@ -13,6 +13,7 @@ function flexTextarea(el) {
     const dummy = el.querySelector('.dummy-textarea')
     el.querySelector('.message-sentense-class').addEventListener('input', e => {
       dummy.textContent = e.target.value + '\u200b'
+      console.log(dummy.textContent)
     })
   }
 document.querySelectorAll('.message-textarea').forEach(flexTextarea)
