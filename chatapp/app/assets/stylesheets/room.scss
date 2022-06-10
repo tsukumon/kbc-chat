@@ -212,10 +212,21 @@ nav.pagination {
 }
 
 .message-form input[type="submit"]{
-  font-size: 15px;
-  height: 43px;
-  width: 50px;
-  margin-left: 5px;
+  width: 32px;
+  height: 32px;
+  margin-left: 17px;
+  margin-bottom: 2px;
+  outline: none;
+  border: none;
+  background: url(submit.png) no-repeat;
+  opacity: 0.2;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.message-form input[type="submit"]:hover{
+  transition: 0.7s;
+  opacity: 2.0;
 }
 
 .message-textarea{

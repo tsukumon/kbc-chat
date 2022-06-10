@@ -27,7 +27,7 @@
       <div id="dummy-textarea" class="dummy-textarea" aria-hidden="true"></div>
       <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する" %>
     </div>
-    <%= f.submit "送信" , id: "message-submit", class: "message-submit" %>
+    <input type="submit" name="commit" value="" id="message-submit" class="message-submit">
     <p id="helper-text" style="color: red;"></p>
   </div>
 <% end %>
@@ -37,13 +37,24 @@
   const button = document.querySelector("#message-submit");
   const p = document.querySelector("#helper-text");
   const chatRegex = /[^\s\R]/;
+  var textCount = 2000;
+
   button.disabled = true;
   input.addEventListener("keyup", () => {
+    var count1 = input.value.length
     if (chatRegex.test(input.value)) {
       button.disabled = false;
     } else {
       button.disabled = true;
     };
+
+    if (count1 >= textCount){
+      button.disabled = true;
+      $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(234, 57, 33, 0.3');
+    } else {
+      $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(35, 167, 195, 0.3');
+    };
+
   });
 </script>
 </div>
