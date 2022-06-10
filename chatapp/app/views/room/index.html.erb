@@ -10,8 +10,9 @@
 </div>
 
 <div class="rooms">
-  <% @rooms.each do |room| %>
-    <%= link_to "/room/#{room.id}" do %>
+  <th><%= sort_link(@q, :created_at, "作成日") %></th>
+  <% @results.each do |room| %>
+    <%= link_to room_page_path(room.id) do %>
       <div class="room"> 
           <div class="room-image">
             <% if room.image.length > 0 %>
