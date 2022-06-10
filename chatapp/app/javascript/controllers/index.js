@@ -10,10 +10,13 @@ eagerLoadControllersFrom("controllers", application)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 function flexTextarea(el) {
-    const dummy = el.querySelector('.dummy-textarea')
-    el.querySelector('.message-sentense-class').addEventListener('input', e => {
-      dummy.textContent = e.target.value + '\u200b'
-      console.log(dummy.textContent)
-    })
-  }
-document.querySelectorAll('.message-textarea').forEach(flexTextarea)
+  const dummy = el.querySelector('.dummy-textarea')
+  const dummy2 = $('.dummy-margin')
+  el.querySelector('.message-sentense-class').addEventListener('input', e => {
+    dummy.textContent = e.target.value + '\u200b'
+    var dummy_height = $('.dummy-textarea').height() - 40
+    dummy2.css("height", dummy_height + "px")
+    window.scrollTo(0, document.body.scrollHeight);
+  })
+}
+document.querySelectorAll('.room-content').forEach(flexTextarea)

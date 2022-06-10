@@ -230,7 +230,16 @@
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  border: 1px solid;
+}
+
+.dummy-margin{
+  box-sizing: border-box;
+  padding: 5px 15px;
+  min-height: 0px;
+  max-height: 150px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .message-sentense-class{

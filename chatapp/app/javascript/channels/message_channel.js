@@ -29,8 +29,12 @@ consumer.subscriptions.create("MessageChannel", {
 
       const messages = document.getElementById('messages');
       const newMessage = document.getElementById('message-sentence');
+      const Margin = document.getElementById('dummy-margin');
+      const newMessageDummy  = document.getElementById('dummy-textarea');
       messages.insertAdjacentHTML('beforeend', html);
       newMessage.value = '';
+      Margin.textContent = '';
+      newMessageDummy.textContent = '';
       var element = document.documentElement;
       var bottom = element.scrollHeight - element.clientHeight;
       window.scroll(0, bottom);
