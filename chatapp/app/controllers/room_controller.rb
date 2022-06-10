@@ -4,8 +4,7 @@ class RoomController < ApplicationController
 
   def index
     @q = Room.ransack(params[:q])
-    @results = @q.result
-    @results = @results.order(created_at: :DESC)
+    @results = @q.result.order(created_at: :DESC)
   end
 
   def page
