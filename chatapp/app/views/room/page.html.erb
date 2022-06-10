@@ -61,11 +61,17 @@
   const button = document.querySelector("#message-submit");
   const p = document.querySelector("#helper-text");
   const chatRegex = /[^\s\R]/;
+  var textCount = 2000;
+
   button.disabled = true;
   input.addEventListener("keyup", () => {
+    var count1 = input.value.length
     if (chatRegex.test(input.value)) {
       button.disabled = false;
     } else {
+      button.disabled = true;
+    };
+    if (count1 >= textCount){
       button.disabled = true;
     };
   });
