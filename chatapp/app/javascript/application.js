@@ -8,6 +8,7 @@ import "channels"
 
 $(function() {
   $('.jscroll').jscroll({
-    nextSelector: 'span.next a'
+    contentSelector: '.skill-list',
+    nextSelector: 'span.next:last a'
   });
 });

@@ -1,14 +1,10 @@
-<ul class="skill-list jscroll">
+<div class="skill-list jscroll">
   <% @mess.each do |mess| %>
-    <li><%= safe_join(mess.sentence.split("\n"),tag(:br)) %></li>
+    <div><%= safe_join(mess.sentence.split("\n"),tag(:br)) %></div>
   <% end %>
     <%= paginate @mess %>
-</ul>
-<h1>Ajax#index</h1>
-<p id="hoge">赤色になるよ</p>
+</div>
 
-<script>
-  $("#hoge").css("color","red")
-</script>
+
 
 <!--ページ表示部分-->
