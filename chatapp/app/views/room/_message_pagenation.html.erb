@@ -1,13 +1,9 @@
-<div class="scroll-list jscroll">
-<% @mess.each do |mess| %>
-    <div>
-    <p><%= safe_join(mess.sentence.split("\n"),tag(:br)) %></p>
-    <%# <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %>
-    </div>
-<% end %>
-<%= paginate @mess %>
-
-</div>
+<ul class="skill-list jscroll">
+  <% @mess.each do |mess| %>
+    <li><%= safe_join(mess.sentence.split("\n"),tag(:br)) %></li>
+  <% end %>
+    <%= paginate @mess %>
+</ul>
 <h1>Ajax#index</h1>
 <p id="hoge">赤色になるよ</p>
 
