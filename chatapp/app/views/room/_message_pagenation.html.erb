@@ -1,8 +1,31 @@
 <div class="skill-list jscroll">
-  <% @mess.each do |mess| %>
-    <div><%= safe_join(mess.sentence.split("\n"),tag(:br)) %></div>
-  <% end %>
     <%= paginate @mess %>
+    <% if @mess != nil %>
+    <% @mess.reverse_each do |message| %>
+      <div id="message-<%= message.id%>" class="message-one">
+        <div class="message-left"><img src="/test_icon.png"></div>
+        <div class="message-right">
+          <div class="message-user-info">
+            <div class="message-username">山口 一郎</div>
+            <div id="message-time">
+              <% if message.created_at >= Date.today.beginning_of_day %>
+                今日<%= message.created_at.strftime("%H:%M") %>
+              <% elsif message.created_at < Date.today.beginning_of_day && message.created_at >= Date.yesterday.beginning_of_day%>
+                昨日<%= message.created_at.strftime("%H:%M") %>
+              <% else %>
+                <%= message.created_at.strftime("%Y/%m/%d") %>
+              <% end %>
+            </div>
+            <div id="message-delete">
+              <%= link_to "削除", destroy_message_path(message.id), data: {turbo_method: :delete} %>
+            </div>
+          </div>
+          <p><%= safe_join(message.sentence.split("\n"),tag(:br)) %></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+      <%= paginate @mess %>
 </div>
 
 
