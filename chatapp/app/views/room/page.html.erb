@@ -68,8 +68,10 @@
     var count1 = input.value.length
     if (chatRegex.test(input.value)) {
       button.disabled = false;
+      $('.message-submit').css('opacity', '1.0');
     } else {
       button.disabled = true;
+      $('.message-submit').css('opacity', '0.2');
     };
 
     if (count1 >= textCount){
@@ -77,7 +79,7 @@
       $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(234, 57, 33, 0.3');
     } else {
       $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(35, 167, 195, 0.3');
-    };
+    };  
 
   });
 </script>
