@@ -1,4 +1,4 @@
-「<%= @q.name_cont %>」の検索結果は<%= @results.count %>件です<br>
+「カテゴリー: <%= @q.category_eq %> , ルーム名: <%= @q.name_cont %>」の検索結果は<%= @results.count %>件です<br>
 <div class="rooms">
 <% @results.each do |room| %>
     <%= link_to room_page_path(room.id) do %>

@@ -108,7 +108,7 @@ class RoomController < ApplicationController
   end
 
   def category_select
-    @category_sel = Room.select("category").distinct
+    @category_sel = Room.group(:category).order(count_all: :DESC).count
   end
 
 end
