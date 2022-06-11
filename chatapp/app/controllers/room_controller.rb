@@ -84,6 +84,7 @@ class RoomController < ApplicationController
   def search
     @q = Room.ransack(params[:q])
     @results = @q.result
+    category_select
   end
 
   private
@@ -104,6 +105,10 @@ class RoomController < ApplicationController
     sentence = params.require(:message).permit(:sentence)
     room_id = { "room_id" => params[:id] }
     return sentence.merge(room_id)
+  end
+
+  def category_select
+    @category_sel = Room.select("category").distinct
   end
 
 end
