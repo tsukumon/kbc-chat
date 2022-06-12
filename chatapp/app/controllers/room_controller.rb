@@ -1,7 +1,7 @@
 class RoomController < ApplicationController
   protect_from_forgery :except => [:create_message]
-  before_action :search
-
+  before_action :authenticate_user
+  
   def index
     @q = Room.ransack(params[:q])
     @results = @q.result.order(created_at: :DESC)
@@ -59,7 +59,7 @@ class RoomController < ApplicationController
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
       end
       @message.sentence = CGI.escapeHTML(@message.sentence).gsub(/\n|\r|\r\n/, "<br>")
-      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create" }
+      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id }
     end
   end
 
@@ -102,8 +102,8 @@ class RoomController < ApplicationController
 
   def message_params
     sentence = params.require(:message).permit(:sentence)
-    room_id = { "room_id" => params[:id] }
-    return sentence.merge(room_id)
+    ids = { "room_id" => params[:id], "user_id" => @current_user.id }
+    return sentence.merge(ids)
   end
 
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "/" => "home#index"
+  root "home#index"
 
   get "/room" => "room#index"
   get "/search" => "room#search", as: :room_search
@@ -15,4 +15,11 @@ Rails.application.routes.draw do
 
   get "/room_auto/:category" => "room#autocomplete_category"
   get "/name_auto/:name" => "room#autocomplete_name"
+
+  get "/auth/:provider/callback" => "sessions#create"
+  get "/auth/failure"=> redirect('/')
+  get "/signin" => "sessions#new", as: :new_session
+  post "/signout" => "sessions#destroy", as: :destroy_session
+
+  get "/setting" => "settings#index", as: :setting
 end

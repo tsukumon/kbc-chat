@@ -4,7 +4,7 @@ class RoomUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   #resize
-  process resize_to_fill: [50, 50, "Center"]
+  process resize_to_fill: [100, 100, "Center"]
 
   # Choose what kind of storage to use for this uploader:
   storage :file

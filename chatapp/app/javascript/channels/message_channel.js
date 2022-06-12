@@ -10,6 +10,14 @@ consumer.subscriptions.create("MessageChannel", {
   },
 
   received(data) {
+      const allHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      );
+      const mostBottom = allHeight - window.innerHeight;
+      const scrollTop = window.pageYOffset + 0.5;
+
     if (data.mode == "create") {
       const html = `
                   <div id="message-${data.content.id}" class="message-one">
@@ -29,15 +37,22 @@ consumer.subscriptions.create("MessageChannel", {
 
       const messages = document.getElementById('messages');
       const newMessage = document.getElementById('message-sentence');
-      const dummyMargin = $('.dummy-margin')
+      const dummyMargin = $('.dummy-margin');
       const newMessageDummy  = document.getElementById('dummy-textarea');
       messages.insertAdjacentHTML('beforeend', html);
       newMessage.value = '';
       dummyMargin.css("height", "0px");
       newMessageDummy.textContent = '';
-      var element = document.documentElement;
-      var bottom = element.scrollHeight - element.clientHeight;
-      window.scroll(0, bottom);
+      console.log("scrolltop" + scrollTop);
+      console.log("most" + mostBottom);
+      console.log("scroll" + document.body.scrollHeight);
+      if (scrollTop >= mostBottom) {
+        window.scroll(0, document.body.scrollHeight);
+      }else{
+        document.getElementById('message-notice').textContent = "未読のメッセージがあります";
+      }
+      $("#message-submit").disabled = true;
+      $('.message-submit').css('opacity', '0.2');
     }
     else if (data.mode == "delete") {
       const message = document.getElementById("message-" + data.content.id);

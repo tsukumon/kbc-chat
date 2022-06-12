@@ -12,7 +12,7 @@
 <div class="rooms">
   <th><%= sort_link(@q, :created_at, "作成日", hide_indicator: true) %></th>
   <% @results.each do |room| %>
-    <%= link_to room_page_path(room.id) do %>
+    <%= link_to room_page_path(room.id), "data-turbolinks": false do %>
       <div class="room"> 
           <div class="room-image">
             <% if room.image.length > 0 %>
