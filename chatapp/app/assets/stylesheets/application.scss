@@ -121,3 +121,64 @@ body{
     }
   } 
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 99999;
+  animation-name: show;
+  animation-duration: 0.5s
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  margin: 10% auto;
+  border: 10px solid rgb(79, 212, 79);
+  border-radius: 30px;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  font-size: 30px;
+}
+.modal-header {
+  padding: 12px;
+  background-color: rgb(79, 212, 79);
+  color: white;
+}
+.close {
+  color: rgb(195, 4, 4);
+  float: right;
+  font-size: 16px;
+}
+.modal-body {
+  padding: 12px;
+}
+.modal-footer {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 12px;
+}
+
+@keyframes show {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  cursor: pointer;
+}
