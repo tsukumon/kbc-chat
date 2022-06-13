@@ -21,10 +21,10 @@ consumer.subscriptions.create("MessageChannel", {
     if (data.mode == "create") {
       const html = `
                   <div id="message-${data.content.id}" class="message-one">
-                    <div class="message-left"><img src="/test_icon.png"></div>
+                    <div class="message-left"><img src="${data.user.image}"></div>
                       <div class="message-right">
                         <div class="message-user-info">
-                          <div class="message-username">山口 一郎</div>
+                          <div class="message-username">${data.user.name}</div>
                           <div id="message-time">${data.time}</div>
                           <div id="message-delete">
                             <a data-turbo-method="delete" href="/message/${data.content.id}">削除</a>
@@ -35,11 +35,28 @@ consumer.subscriptions.create("MessageChannel", {
                   </div>
                   `;
 
+      const html2 = `
+                  <div id="message-${data.content.id}" class="message-one">
+                    <div class="message-left"><img src="${data.user.image}"></div>
+                      <div class="message-right">
+                        <div class="message-user-info">
+                          <div class="message-username">${data.user.name}</div>
+                          <div id="message-time">${data.time}</div>
+                        </div>
+                      <p>${data.content.sentence}</p>
+                    </div>
+                  </div>
+                  `;
+
       const messages = document.getElementById('messages');
       const newMessage = document.getElementById('message-sentence');
       const dummyMargin = $('.dummy-margin');
       const newMessageDummy  = document.getElementById('dummy-textarea');
-      messages.insertAdjacentHTML('beforeend', html);
+      if(data.user.id == data.current_user){ 
+        messages.insertAdjacentHTML('beforeend', html);
+      }else{
+        messages.insertAdjacentHTML('beforeend', html2);
+      }
       newMessage.value = '';
       dummyMargin.css("height", "0px");
       newMessageDummy.textContent = '';

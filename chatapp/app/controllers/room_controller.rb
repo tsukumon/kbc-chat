@@ -59,7 +59,8 @@ class RoomController < ApplicationController
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
       end
       @message.sentence = CGI.escapeHTML(@message.sentence).gsub(/\n|\r|\r\n/, "<br>")
-      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id }
+      @user = User.find_by(id: @message.user_id)
+      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id, user: @user }
     end
   end
 
