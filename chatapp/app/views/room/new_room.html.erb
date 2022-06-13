@@ -1,4 +1,3 @@
-<h1>ROOM</h1>
 <div class="room_button">
   <div class="back_button">
     <%= link_to "戻る", "/room" %>
@@ -6,7 +5,18 @@
 </div>
 
 <h1>新規作成</h1>
-<%= render "form", room: @room %>
+<%= form_with url: create_room_path, model: @room, local: true do |f| %>
+  <%= render "error_messages", model: @room %>
+  <%= f.label :category %>
+  <%= f.text_field :category %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :describe %>
+  <%= f.text_area :describe %>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+  <%= f.submit "登録する" %>
+<% end %>
 <br>
 人気カテゴリー  
 <div class="category">
@@ -15,14 +25,34 @@
   <% end %>
 </div>
 
-<p id="p5"></p>
-
-<script type="text/javascript">
-function ChangeValue(e) {
-  room_category.value = "未分類";
-  room_category.value = e.target.textContent;
-}
- <% @categories.each_with_index do |category, i| %>
-  document.getElementById("category-name-" + <%= i %>).addEventListener('click', ChangeValue, false)
+  <script type="text/javascript">
+  function ChangeValue(e) {
+    room_category.value = "未分類";
+    room_category.value = e.target.textContent;
+  }
+  <% @categories.each_with_index do |category, i| %>
+    document.getElementById("category-name-" + <%= i %>).addEventListener('click', ChangeValue, false)
  <% end %>
+</script>
+<script type="text/javascript">
+$(function() {
+    const dataList = function(request, response) {
+      $.ajax({
+        url: '/room_auto/' + request.term,
+        dataType: 'json',
+        type: 'GET',
+        cache: true,
+        success: function(data) {
+          response(data);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          response(['']);
+        }
+      });
+    }
+    $("#room_category").autocomplete({
+      source: dataList,
+      autoFocus: true
+    });
+});
 </script>
