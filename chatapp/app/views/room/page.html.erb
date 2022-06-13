@@ -102,10 +102,9 @@ $(window).on('scroll', function (){
 </script>
 
 <script type="text/javascript">
-function (){
-  var elm = getElementById('message-notice');
-  var elm = elm.scrollHeight - elm.clientHeight;
-  window.scrollTo(0, document.body.scrollHeight);
-}
+  var butotn = document.getElementById('message-notice');
+  butotn.onclick = function() {
+    window.scrollTo(0, document.body.scrollHeight);
+  }
 </script>
 </div>
