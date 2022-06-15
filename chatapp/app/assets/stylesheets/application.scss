@@ -142,7 +142,7 @@ body{
   margin: 10% auto;
   border: 10px solid rgb(79, 212, 79);
   border-radius: 30px;
-  width: 50%;
+  width: 40%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   font-size: 30px;
 }
@@ -158,7 +158,19 @@ body{
 }
 .modal-body {
   padding: 12px;
+  display:inline-block;
+
+  .create-from{
+    display:flex;
+
+    input[type="text"]{
+      margin-top:6px;
+      width: 400px;
+      height: 30px;
+    }
+  }
 }
+
 .modal-footer {
   position: relative;
   background-color: #fefefe;
