@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
 
   def set_current_user
     @current_user = User.find_by(id: session[:user_id])
+    if @current_user
+      cookies.encrypted["user_id"] = @current_user.id
+    end
   end
 
   def authenticate_user
