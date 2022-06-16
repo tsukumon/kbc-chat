@@ -159,14 +159,22 @@ body{
 .modal-body {
   padding: 12px;
   display:inline-block;
+  margin-bottom: 5px;
+
 
   .create-from{
     display:flex;
-
+    border-bottom:2px solid #7a7a7a;
     input[type="text"]{
       margin-top:6px;
       width: 400px;
       height: 30px;
+    }
+    input[type="file"] {
+      margin:11px;
+    }
+    .modal-textarea{
+      width: 100%;
     }
   }
 }
