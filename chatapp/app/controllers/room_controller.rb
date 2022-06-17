@@ -60,7 +60,7 @@ class RoomController < ApplicationController
       end
       @message.sentence = CGI.escapeHTML(@message.sentence).gsub(/\n|\r|\r\n/, "<br>")
       @user = User.find_by(id: @message.user_id)
-      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id, user: @user }
+      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create", user: @user }
     end
   end
 

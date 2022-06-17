@@ -52,7 +52,7 @@ consumer.subscriptions.create("MessageChannel", {
       const newMessage = document.getElementById('message-sentence');
       const dummyMargin = $('.dummy-margin');
       const newMessageDummy  = document.getElementById('dummy-textarea');
-      if(data.current_user == data.user.id){ 
+      if(data.content.user_id == data.user.id){ 
         messages.insertAdjacentHTML('beforeend', html);
       }else{
         messages.insertAdjacentHTML('beforeend', html2);
