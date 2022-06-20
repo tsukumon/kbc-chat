@@ -4,10 +4,25 @@
       <%= link_to("/room") do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
       <div class="room_title"><%= @room.name %></div>
     </div>
-    <div class="room_header_right">
-      <%= link_to edit_room_path(params[:id]) do %>
+    <div class="room_header_right" id="menu-detail-modal" name="menu-detail-btn">
         <i class="fa-solid fa-caret-down"></i>
-      <% end %>
+    </div>
+
+    <div id="demo-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class='close'><i class="fa-solid fa-circle-xmark"></i></span>
+          <h2>新規作成</h2>
+        </div>
+        <div class="modal-body">
+            カテゴリ<div class="create-from"><input type="text"></div>
+            ルーム名<div class="create-from"><input type="text"></div>
+            ルームアイコン<div class="create-from"><input type="file"></div>
+            ルーム詳細情報<div class="create-from">
+            <textarea class="modal-textarea"></textarea></div>
+            <input type="submit">
+        </div>
+      </div>
     </div>
   </div>
 <div id="message-notice"></div>
