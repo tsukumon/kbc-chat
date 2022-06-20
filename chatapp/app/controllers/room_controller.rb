@@ -7,6 +7,18 @@ class RoomController < ApplicationController
     @results = @q.result.order(created_at: :DESC)
   end
 
+  def join
+    @room = Room.find_by(id: params[:id])
+    user = User.find_by(id: @current_user.id)
+    @room.user << user
+    redirect_to room_page_path(id: params[:id])
+  end
+
+  def joined
+    @q = Room.ransack(params[:q])
+    @results = @q.result.order(created_at: :DESC)
+  end
+
   def page
     @room = Room.find_by(id: params[:id])
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC)
@@ -20,6 +32,8 @@ class RoomController < ApplicationController
 
   def create_room
     @room = Room.new(room_params)
+    now_user = User.find_by(id: @current_user.id)
+    @room.user << now_user
 
     if @room.save
       redirect_to "/room/#{@room.id}", notice: t("messages.create.notice")

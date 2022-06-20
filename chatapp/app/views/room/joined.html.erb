@@ -5,14 +5,10 @@
   <% end %>
 </div>
 
-<div class="content-column">
-  <div class="title">最新ルーム</div>
-</div>
-
 <div class="rooms">
   <th><%= sort_link(@q, :created_at, "作成日", hide_indicator: true) %></th>
   <% @results.each do |room| %>
-    <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
+    <% if UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
         <div class="room"> 
             <div class="room-image">
               <% if room.image.length > 0 %>
@@ -29,7 +25,6 @@
             <% else %>
               <%= room.created_at.strftime("%Y/%m/%d") %>
             <% end %>
-            <%= link_to "参加", room_join_path(room.id) %>
         </div>
     <% end %>
   <% end %>
