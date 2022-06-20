@@ -30,7 +30,26 @@
           <%= link_to "/", class: "menu-one" do %><i class="fa-solid fa-house"></i> トップ<% end %>
           <%= link_to "/room", class: "menu-one" do %><i class="fa-solid fa-comment"></i> 参加中のルーム<% end %>
           <%= link_to "/room", class: "menu-one" do %><i class="fa-solid fa-magnifying-glass"></i> ルームを探す<% end %>
-          <%= link_to new_room_path, class: "menu-one" do %><i class="fa-solid fa-plus"></i> ルームを作成<% end %>
+
+          <div class="menu-one" id="open-modal" name="open-modal-btn"><i class="fa-solid fa-plus"></i> ルームを作成</div>
+
+            <div id="demo-modal" class="modal">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <span class='close'><i class="fa-solid fa-circle-xmark"></i></span>
+                  <h2>新規作成</h2>
+                </div>
+                <div class="modal-body">
+                    カテゴリ<div class="create-from"><input type="text"></div>
+                    ルーム名<div class="create-from"><input type="text"></div>
+                    ルームアイコン<div class="create-from"><input type="file"></div>
+                    ルーム詳細情報<div class="create-from">
+                    <textarea class="modal-textarea"></textarea></div>
+                    <input type="submit">
+                </div>
+              </div>
+            </div>
+
           <%= link_to setting_path, class: "menu-one" do %><i class="fa-solid fa-gear"></i> 設定<% end %>
         </div>
       </div>

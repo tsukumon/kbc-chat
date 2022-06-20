@@ -25,7 +25,7 @@
   <% end %>
 </div>
 
-  <script type="text/javascript">
+<script type="text/javascript">
   function ChangeValue(e) {
     room_category.value = "未分類";
     room_category.value = e.target.textContent;
@@ -34,6 +34,7 @@
     document.getElementById("category-name-" + <%= i %>).addEventListener('click', ChangeValue, false)
  <% end %>
 </script>
+
 <script type="text/javascript">
 $(function() {
     const dataList = function(request, response) {
