@@ -138,52 +138,47 @@ body{
 
 .modal-content {
   position: relative;
-  background-color: #fff;
+  background-color: rgb(105, 209, 105);
   margin: 10% auto;
-  border: 10px solid rgb(79, 212, 79);
-  border-radius: 30px;
-  width: 40%;
+  border: 10px solid rgb(105, 209, 105);
+  border-radius: 10px;
+  width: 39%;
+  font-size: 1.25rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  font-size: 30px;
 }
 .modal-header {
   padding: 12px;
-  background-color: rgb(79, 212, 79);
+  background-color: rgb(105, 209, 105);
+  border-radius:10px 10px 0px 0px;
   color: white;
+  .close {
+    color: rgb(195, 4, 4);
+    float: right;
+    font-size: 16px;
+  }
 }
-.close {
-  color: rgb(195, 4, 4);
-  float: right;
-  font-size: 16px;
-}
+
 .modal-body {
+  background-color: #ffffff;
+  border-radius:0px 0px 10px 10px;
   padding: 12px;
-  display:inline-block;
-  margin-bottom: 5px;
-
-
   .create-from{
-    display:flex;
+    flex-flow: column;
     border-bottom:2px solid #7a7a7a;
     input[type="text"]{
-      margin-top:6px;
-      width: 400px;
+      width: 99%;
       height: 30px;
+      margin-bottom: 4px;
     }
     input[type="file"] {
-      margin:11px;
+      margin-bottom: 6px;
     }
     .modal-textarea{
       width: 100%;
     }
+    .input[type="submit"]{
+    }
   }
-}
-
-.modal-footer {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 12px;
 }
 
 @keyframes show {
