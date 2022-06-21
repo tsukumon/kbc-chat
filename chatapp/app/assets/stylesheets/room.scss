@@ -105,6 +105,57 @@
   padding-top: 8px;
 }
 
+.modal-menu-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: rgba(0,0,0,50%);
+  padding: 40px 20px;
+  overflow: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  box-sizing: border-box;
+  .modal-menu-container:before{
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
+  .modal-menu-container.active{
+    opacity: 1;
+    visibility: visible;
+  }
+  .modal-menu-body{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 500px;
+    width: 90%;
+  }
+  .modal-menu-close{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -40px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+  }
+  .modal-menu-content{
+    background: #fff;
+    text-align: left;
+    padding: 30px;
+  }
+}
+
 .room_header_right:hover{
   background-color: #f0f0f0;
   transition: 0.5s;
@@ -282,4 +333,61 @@
   outline: 0;
 }
 
+.modal-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 99999;
+  animation-name: show;
+  animation-duration: 0.5s
+}
 
+.modal-content-menu {
+  position: relative;
+  background-color: rgb(105, 209, 105);
+  margin: 10% auto;
+  border: 10px solid rgb(105, 209, 105);
+  border-radius: 10px;
+  width: 39%;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.modal-header-menu {
+  padding: 12px;
+  background-color: rgb(105, 209, 105);
+  border-radius:10px 10px 0px 0px;
+  color: white;
+  .close-menu {
+    color: rgb(195, 4, 4);
+    float: right;
+    font-size: 16px;
+  }
+}
+
+.modal-body-menu {
+  background-color: #ffffff;
+  border-radius:0px 0px 10px 10px;
+  padding: 12px;
+  .create-from2{
+    flex-flow: column;
+    border-bottom:2px solid #7a7a7a;
+    input[type="text"]{
+      width: 99%;
+      height: 30px;
+      margin-bottom: 4px;
+    }
+    input[type="file"] {
+      margin-bottom: 6px;
+    }
+    .modal-textarea2{
+      width: 100%;
+    }
+    .input[type="submit"]{
+    }
+  }
+}

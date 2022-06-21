@@ -1,29 +1,31 @@
+<div id="demo-modal-menu" class="modal-menu">
+  <div class="modal-content-menu">
+    <div class="modal-header-menu">
+      <span class='close-menu'><i class="fa-solid fa-circle-xmark"></i></span>
+      <h2>新規作成</h2>
+    </div>
+    <div class="modal-body-menu">
+        カテゴリ<div class="create-from2"><input type="text"></div>
+        ルーム名<div class="create-from2"><input type="text"></div>
+        ルームアイコン<div class="create-from2"><input type="file"></div>
+        ルーム詳細情報<div class="create-from2">
+        <textarea class="modal-textarea2"></textarea></div>
+        <input type="submit">
+    </div>
+  </div>
+</div>
 <div class="room-header-list">
   <div class="room-header">
     <div class="room_header_left">
       <%= link_to("/room") do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
       <div class="room_title"><%= @room.name %></div>
     </div>
-    <div class="room_header_right" id="menu-detail-modal" name="menu-detail-btn">
-        <i class="fa-solid fa-caret-down"></i>
+    <div class="room_header_right">
+      <i class="fa-solid fa-caret-down"></i>
     </div>
 
-    <div id="demo-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span class='close'><i class="fa-solid fa-circle-xmark"></i></span>
-          <h2>新規作成</h2>
-        </div>
-        <div class="modal-body">
-            カテゴリ<div class="create-from"><input type="text"></div>
-            ルーム名<div class="create-from"><input type="text"></div>
-            ルームアイコン<div class="create-from"><input type="file"></div>
-            ルーム詳細情報<div class="create-from">
-            <textarea class="modal-textarea"></textarea></div>
-            <input type="submit">
-        </div>
-      </div>
-    </div>
+    <div id="open-modal-2" name="open-modal-btn-2"><i class="fa-solid fa-plus"></i> ルームを作成</div>
+
   </div>
 <div id="message-notice"></div>
 </div>
