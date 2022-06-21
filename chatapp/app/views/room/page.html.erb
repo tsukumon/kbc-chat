@@ -9,6 +9,7 @@
         <i class="fa-solid fa-caret-down"></i>
       <% end %>
     </div>
+    <%= link_to "ルームから退室する", room_leave_path(@room.id), data: {turbo_method: :delete} %>
   </div>
 <div id="message-notice"></div>
 </div>

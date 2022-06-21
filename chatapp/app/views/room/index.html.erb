@@ -12,24 +12,25 @@
 <div class="rooms">
   <th><%= sort_link(@q, :created_at, "作成日", hide_indicator: true) %></th>
   <% @results.each do |room| %>
-    <%= link_to room_page_path(room.id), "data-turbolinks": false do %>
-      <div class="room"> 
-          <div class="room-image">
-            <% if room.image.length > 0 %>
-              <img src = "<%= room.image %>" class="room-image">
+    <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
+        <div class="room"> 
+            <div class="room-image">
+              <% if room.image.length > 0 %>
+                <img src = "<%= room.image %>" class="room-image">
+              <% else %>
+                <img src = "/room_image/default.png" class="room-image">
+              <% end %>
+            </div>
+            <%= room.name %>
+            <% if room.created_at >= Date.today.beginning_of_day %>
+              今日<%= room.created_at.strftime("%H:%M") %>
+            <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
+              昨日<%= room.created_at.strftime("%H:%M") %>
             <% else %>
-              <img src = "/room_image/default.png" class="room-image">
+              <%= room.created_at.strftime("%Y/%m/%d") %>
             <% end %>
-          </div>
-          <%= room.name %>
-          <% if room.created_at >= Date.today.beginning_of_day %>
-            今日<%= room.created_at.strftime("%H:%M") %>
-          <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
-            昨日<%= room.created_at.strftime("%H:%M") %>
-          <% else %>
-            <%= room.created_at.strftime("%Y/%m/%d") %>
-          <% end %>
-      </div>
+            <%= link_to "参加", room_join_path(room.id) %>
+        </div>
     <% end %>
   <% end %>
 </div>
@@ -56,6 +57,3 @@ $(function() {
     });
 });
 </script>
-
-
-
