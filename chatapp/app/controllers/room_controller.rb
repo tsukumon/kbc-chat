@@ -14,6 +14,14 @@ class RoomController < ApplicationController
     redirect_to room_page_path(id: params[:id])
   end
 
+  def leave
+    @room = Room.find_by(id: params[:id])
+    user = User.find_by(id: @current_user.id)
+    @room.user.delete(user)
+    redirect_to room_path, status: :see_other
+  end
+
+
   def joined
     @q = Room.ransack(params[:q])
     @results = @q.result.order(created_at: :DESC)
