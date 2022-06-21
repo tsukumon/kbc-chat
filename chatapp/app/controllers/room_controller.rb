@@ -1,6 +1,7 @@
 class RoomController < ApplicationController
   protect_from_forgery :except => [:create_message]
   before_action :authenticate_user
+  before_action :authenticate_room, only: :page
   
   def index
     @q = Room.ransack(params[:q])
@@ -19,6 +20,12 @@ class RoomController < ApplicationController
     user = User.find_by(id: @current_user.id)
     @room.user.delete(user)
     redirect_to room_path, status: :see_other
+  end
+
+  def authenticate_room
+    unless UserRoom.find_by(user_id: @current_user.id, room_id: params[:id])
+      redirect_to room_path
+    end
   end
 
 
