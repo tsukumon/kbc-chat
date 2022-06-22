@@ -14,22 +14,22 @@ function flexTextarea(el) {
 }
 document.querySelectorAll('.room-content').forEach(flexTextarea)
 
-var modal = document.getElementById('demo-modal-menu');
-var btn = document.getElementById('open-modal-2');
-var close = modal.getElementsByClassName('close-menu')[0];
+function popupImage() {
+  var popup = document.getElementById('js-modal-detail');
+  if(!popup) return;
 
-// When the user clicks the button, open the modal.
-btn.onclick = function() {
-  modal.style.display = 'block';
-};
-// When the user clicks on 'X', close the modal
-close.onclick = function() {
-  modal.style.display = 'none';
-};
-// When the user clicks outside the modal -- close it.
-window.onclick = function(event) {
-  if (event.target == modal) {
-    // Which means he clicked somewhere in the modal (background area), but not target = modal-content
-    modal.style.display = 'none';
+  var blackBg = document.getElementById('js-black-sh');
+  var closeBtn = document.getElementById('js-close-btn');
+  var showBtn = document.getElementById('js-show-modal-detail');
+
+  closePopUp(blackBg);
+  closePopUp(closeBtn);
+  closePopUp(showBtn);
+  function closePopUp(elem) {
+    if(!elem) return;
+    elem.addEventListener('click', function() {
+      popup.classList.toggle('is-show');
+    });
   }
-};
+}
+popupImage();
