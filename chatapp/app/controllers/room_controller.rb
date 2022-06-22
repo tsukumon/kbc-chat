@@ -116,6 +116,16 @@ class RoomController < ApplicationController
     @results = @q.result
   end
 
+  def search_form
+    @q = Room.ransack(params[:q])
+    @results = @q.result
+  end
+
+  def search_joined
+    @q = Room.ransack(params[:q])
+    @results = @q.result
+  end
+
   private
 
   def autocomplete_params

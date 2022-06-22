@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get "/room" => "room#index"
   get "/room/joined" => "room#joined"
   get "/search" => "room#search", as: :room_search
+  get "/search/rooms" => "room#search_form"
+  get "/search/join_rooms" => "room#search_joined", as: :room_search_joined
   get "/room/new" => "room#new_room", as: :new_room
   get "/room/:id" => "room#page", as: :room_page
   
