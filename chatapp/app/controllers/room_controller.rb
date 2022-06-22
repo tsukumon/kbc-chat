@@ -1,7 +1,7 @@
 class RoomController < ApplicationController
   protect_from_forgery :except => [:create_message]
   before_action :authenticate_user
-  before_action :authenticate_room, only: :page
+  before_action :authenticate_room, only: [:page, :create_message]
   
   def index
     @q = Room.ransack(params[:q])
