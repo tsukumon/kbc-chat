@@ -1,7 +1,7 @@
 「<%= @q.name_cont %>」の検索結果は<%= @results.count %>件です<br>
 <div class="rooms">
   <% @results.each do |room| %>
-    <% if not UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
+    <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) # not joined rooms %>
         <div class="room"> 
             <div class="room-image">
               <% if room.image.length > 0 %>
@@ -21,7 +21,7 @@
             <%= link_to "参加", room_join_path(room.id) %>
         </div>
 
-    <% else %>
+    <% else #joined rooms %>
         <div class="room"> 
             <div class="room-image">
               <% if room.image.length > 0 %>
@@ -42,4 +42,4 @@
     <% end %>
   <% end %>
 </div>
-<%= link_to "戻る", "/room" %>
+<%= link_to "戻る", "/search/rooms" %>
