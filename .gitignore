@@ -1,2 +1,3 @@
 chatapp/Dockerfile
 chatapp/docker-compose.yml
+chatapp/config/initializers/omniauth.rb

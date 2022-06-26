@@ -1,5 +1,7 @@
 class Room < ApplicationRecord
   has_many :message, dependent: :destroy
+  has_many :user_room, dependent: :destroy
+  has_many :user, through: :user_room
   mount_uploader :image, RoomUploader
 
   #VALID_CATEGORY = /\AQ&A\z|\A募集\z|\A雑談\z|\Aプログラミング\z|\AOS\z|\Aクラウド\z/

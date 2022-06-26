@@ -67,6 +67,7 @@ body{
       margin-bottom: 10px;
       display: inline-block;
       padding: 7px 10px;
+      width:88%;
     }
     .menu-one:hover{
       background-color: #F4F4F4;
@@ -120,4 +121,80 @@ body{
       }
     }
   } 
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 99999;
+  animation-name: show;
+  animation-duration: 0.5s
+}
+
+.modal-content {
+  position: relative;
+  background-color: rgb(105, 209, 105);
+  margin: 10% auto;
+  border: 10px solid rgb(105, 209, 105);
+  border-radius: 10px;
+  width: 39%;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.modal-header {
+  padding: 12px;
+  background-color: rgb(105, 209, 105);
+  border-radius:10px 10px 0px 0px;
+  color: white;
+  .close {
+    color: rgb(195, 4, 4);
+    float: right;
+    font-size: 16px;
+  }
+}
+
+.modal-body {
+  background-color: #ffffff;
+  border-radius:0px 0px 10px 10px;
+  padding: 12px;
+  .create-from{
+    flex-flow: column;
+    border-bottom:2px solid #7a7a7a;
+    input[type="text"]{
+      width: 99%;
+      height: 30px;
+      margin-bottom: 4px;
+    }
+    input[type="file"] {
+      margin-bottom: 6px;
+    }
+    .modal-textarea{
+      width: 100%;
+    }
+    .input[type="submit"]{
+    }
+  }
+}
+
+@keyframes show {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  cursor: pointer;
 }

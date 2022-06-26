@@ -1,8 +1,36 @@
 class RoomController < ApplicationController
   protect_from_forgery :except => [:create_message]
-  before_action :search
-
+  before_action :authenticate_user
+  before_action :authenticate_room, only: [:page, :create_message]
+  
   def index
+    @q = Room.ransack(params[:q])
+    @results = @q.result.order(created_at: :DESC)
+    @room = Room.all.order(created_at: :DESC).limit(5)
+  end
+
+  def join
+    @room = Room.find_by(id: params[:id])
+    user = User.find_by(id: @current_user.id)
+    @room.user << user
+    redirect_to room_page_path(id: params[:id])
+  end
+
+  def leave
+    @room = Room.find_by(id: params[:id])
+    user = User.find_by(id: @current_user.id)
+    @room.user.delete(user)
+    redirect_to room_path, status: :see_other
+  end
+
+  def authenticate_room
+    unless UserRoom.find_by(user_id: @current_user.id, room_id: params[:id])
+      redirect_to room_path
+    end
+  end
+
+
+  def joined
     @q = Room.ransack(params[:q])
     @results = @q.result.order(created_at: :DESC)
   end
@@ -20,6 +48,8 @@ class RoomController < ApplicationController
 
   def create_room
     @room = Room.new(room_params)
+    now_user = User.find_by(id: @current_user.id)
+    @room.user << now_user
 
     if @room.save
       redirect_to "/room/#{@room.id}", notice: t("messages.create.notice")
@@ -59,7 +89,8 @@ class RoomController < ApplicationController
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
       end
       @message.sentence = CGI.escapeHTML(@message.sentence).gsub(/\n|\r|\r\n/, "<br>")
-      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create" }
+      @user = User.find_by(id: @message.user_id)
+      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id, user: @user }
     end
   end
 
@@ -84,7 +115,18 @@ class RoomController < ApplicationController
   def search
     @q = Room.ransack(params[:q])
     @results = @q.result
+  end
+
+  def search_form
+    @room = Room.all.order(created_at: :DESC).limit(5)
+    @q = Room.ransack(params[:q])
+    @results = @q.result
     category_select
+  end
+
+  def search_joined
+    @q = Room.ransack(params[:q])
+    @results = @q.result
   end
 
   private
@@ -103,8 +145,8 @@ class RoomController < ApplicationController
 
   def message_params
     sentence = params.require(:message).permit(:sentence)
-    room_id = { "room_id" => params[:id] }
-    return sentence.merge(room_id)
+    ids = { "room_id" => params[:id], "user_id" => @current_user.id }
+    return sentence.merge(ids)
   end
 
   def category_select

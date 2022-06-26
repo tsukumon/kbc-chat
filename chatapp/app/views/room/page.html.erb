@@ -1,14 +1,17 @@
-<div class="room-header">
-  <div class="room_header_left">
-    <%= link_to("/room") do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
-    <div class="room_title"><%= @room.name %></div>
+<div class="room-header-list">
+  <div class="room-header">
+    <div class="room_header_left">
+      <%= link_to("/room") do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
+      <div class="room_title"><%= @room.name %></div>
+    </div>
+    <div class="room_header_right">
+      <%= link_to edit_room_path(params[:id]) do %>
+        <i class="fa-solid fa-caret-down"></i>
+      <% end %>
+    </div>
+    <%= link_to "ルームから退室する", room_leave_path(@room.id), data: {turbo_method: :delete} %>
   </div>
-  <div class="room_header_right">
-    <%= link_to edit_room_path(params[:id]) do %>
-      <i class="fa-solid fa-caret-down"></i>
-    <% end %>
-
-  </div>
+<div id="message-notice"></div>
 </div>
 
 
@@ -20,10 +23,11 @@
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
       <div id="message-<%= message.id%>" class="message-one">
-        <div class="message-left"><img src="/test_icon.png"></div>
+        <% @user = User.find_by(id: message.user_id) %>
+        <div class="message-left"><img src=<%= @user.image %>></div>
         <div class="message-right">
           <div class="message-user-info">
-            <div class="message-username">山口 一郎</div>
+            <div class="message-username"><%= @user.name %></div>
             <div id="message-time">
               <% if message.created_at >= Date.today.beginning_of_day %>
                 今日<%= message.created_at.strftime("%H:%M") %>
@@ -33,9 +37,11 @@
                 <%= message.created_at.strftime("%Y/%m/%d") %>
               <% end %>
             </div>
-            <div id="message-delete">
-              <%= link_to "削除", destroy_message_path(message.id), data: {turbo_method: :delete} %>
-            </div>
+            <% if @current_user.id == message.user_id %>
+              <div id="message-delete">
+                <%= link_to "削除", destroy_message_path(message.id), data: {turbo_method: :delete} %>
+              </div>
+            <% end %>
           </div>
           <p><%= safe_join(message.sentence.split("\n"),tag(:br)) %></p>
         </div>
@@ -46,7 +52,7 @@
 <div id="dummy-margin" class="dummy-margin"></div>
 
 <%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
-  <div class="message-form" >
+  <div class="message-form">
     <div class="message-textarea">
       <div id="dummy-textarea" class="dummy-textarea" aria-hidden="true"></div>
       <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する" %>
@@ -66,21 +72,40 @@
   button.disabled = true;
   input.addEventListener("keyup", () => {
     var count1 = input.value.length
-    if (chatRegex.test(input.value)) {
+    if(chatRegex.test(input.value)){
       button.disabled = false;
       $('.message-submit').css('opacity', '1.0');
-    } else {
+    }else{
       button.disabled = true;
       $('.message-submit').css('opacity', '0.2');
     };
 
-    if (count1 >= textCount){
+    if(count1 >= textCount){
       button.disabled = true;
-      $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(234, 57, 33, 0.3');
-    } else {
-      $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(35, 167, 195, 0.3');
-    };  
-
+      $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(234, 57, 33, 0.3)');
+    }else{
+      $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(35, 167, 195, 0.3)');
+    };
   });
+</script>
+<script type="text/javascript">
+$(window).on('scroll', function (){
+  var elem = $('.message-one');
+    var elemOffset = elem.last().offset().top;
+    var scrollPos = $(window).scrollTop();
+    var wh = $(window).height();
+
+    if(scrollPos >= elemOffset - wh){
+      document.getElementById('message-notice').textContent = "";
+    }
+
+});
+</script>
+
+<script type="text/javascript">
+  var butotn = document.getElementById('message-notice');
+  butotn.onclick = function() {
+    window.scrollTo(0, document.body.scrollHeight);
+  }
 </script>
 </div>

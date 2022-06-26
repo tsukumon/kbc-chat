@@ -68,12 +68,23 @@
   }
 }
 
+.room-header-list{
+  position: fixed;
+  top:0;
+  left: 202px;
+  width: 100%;
+  #message-notice{
+    width: 100%;
+    background-color: #10bc8a;
+    color:#fff;
+    font-size: 14px;
+    cursor: pointer;
+    cursor: hand;
+  }
+}
 .room-header{
   display: flex;
   align-items: flex-start;
-  position: fixed;
-  top:0;
-  left: 200px;
   width: 100%;
   padding: 0.2%;
   z-index: 0;
@@ -270,3 +281,5 @@
   box-shadow: 0 0 0 4px rgba(35, 167, 195, 0.3);
   outline: 0;
 }
+
+

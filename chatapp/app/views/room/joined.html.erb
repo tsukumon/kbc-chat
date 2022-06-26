@@ -1,0 +1,56 @@
+<div class="search-area">
+  <%= search_form_for @q, url: room_search_joined_path do |f| %>
+    <%= f.search_field :name_cont, placeholder: "キーワードを入力して参加済みのルームを検索", required: true  %>
+    <% f.submit '検索' %>
+  <% end %>
+</div>
+
+<div class="rooms">
+  <th><%= sort_link(@q, :created_at, "作成日", hide_indicator: true) %></th>
+  <% @results.each do |room| %>
+    <%= link_to room_page_path(room.id), "data-turbolinks": false do %>
+        <% if UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
+            <div class="room"> 
+                <div class="room-image">
+                <% if room.image.length > 0 %>
+                    <img src = "<%= room.image %>" class="room-image">
+                <% else %>
+                    <img src = "/room_image/default.png" class="room-image">
+                <% end %>
+                </div>
+                <%= room.name %>
+                <% if room.created_at >= Date.today.beginning_of_day %>
+                今日<%= room.created_at.strftime("%H:%M") %>
+                <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
+                昨日<%= room.created_at.strftime("%H:%M") %>
+                <% else %>
+                <%= room.created_at.strftime("%Y/%m/%d") %>
+                <% end %>
+            </div>
+        <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+
+<script type="text/javascript">
+$(function() {
+    const dataList = function(request, response) {
+      $.ajax({
+        url: '/name_auto/' + request.term,
+        dataType: 'json',
+        type: 'GET',
+        cache: true,
+        success: function(data) {
+          response(data);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          response(['']);
+        }
+      });
+    }
+    $("#q_name_cont").autocomplete({
+      source: dataList,
+    });
+});
+</script>

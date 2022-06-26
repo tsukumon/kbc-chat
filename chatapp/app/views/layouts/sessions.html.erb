@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>kbc-chat</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://kit.fontawesome.com/47ddc8fcd4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <% self_css_path = "/assets/"+controller.controller_path  %>
+    <%= stylesheet_link_tag self_css_path, :media => "all" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sub-container">
+        <div class="menu">
+          <%= link_to "/", class: "menu-one" do %><i class="fa-solid fa-house"></i> トップ<% end %>
+          <%= link_to "/room", class: "menu-one" do %><i class="fa-solid fa-comment"></i> 参加中のルーム<% end %>
+          <%= link_to "/room", class: "menu-one" do %><i class="fa-solid fa-magnifying-glass"></i> ルームを探す<% end %>
+          <%= link_to new_room_path, class: "menu-one" do %><i class="fa-solid fa-plus"></i> ルームを作成<% end %>
+          <%= link_to "/room", class: "menu-one" do %><i class="fa-solid fa-gear"></i> 設定<% end %>
+        </div>
+      </div>
+      <div class="main-container">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
