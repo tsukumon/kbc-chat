@@ -6,6 +6,7 @@ class RoomController < ApplicationController
   def index
     @q = Room.ransack(params[:q])
     @results = @q.result.order(created_at: :DESC)
+    @room = Room.all.order(created_at: :DESC).limit(5)
   end
 
   def join
@@ -112,6 +113,17 @@ class RoomController < ApplicationController
   end
   
   def search
+    @q = Room.ransack(params[:q])
+    @results = @q.result
+  end
+
+  def search_form
+    @room = Room.all.order(created_at: :DESC).limit(5)
+    @q = Room.ransack(params[:q])
+    @results = @q.result
+  end
+
+  def search_joined
     @q = Room.ransack(params[:q])
     @results = @q.result
   end

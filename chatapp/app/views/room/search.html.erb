@@ -1,5 +1,47 @@
 「<%= @q.name_cont %>」の検索結果は<%= @results.count %>件です<br>
-<% @results.each do |room| %>
-    <%= room.name %>
-<% end %>
-<%= link_to "戻る", "/room" %>
+<div class="rooms">
+  <% @results.each do |room| %>
+    <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) # not joined rooms %>
+        <div class="room"> 
+            <div class="room-image">
+              <% if room.image.length > 0 %>
+                <img src = "<%= room.image %>" class="room-image">
+              <% else %>
+                <img src = "/room_image/default.png" class="room-image">
+              <% end %>
+            </div>
+            <%= room.name %>
+            <% if room.created_at >= Date.today.beginning_of_day %>
+              今日<%= room.created_at.strftime("%H:%M") %>
+            <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
+              昨日<%= room.created_at.strftime("%H:%M") %>
+            <% else %>
+              <%= room.created_at.strftime("%Y/%m/%d") %>
+            <% end %>
+            <%= link_to "参加", room_join_path(room.id) %>
+        </div>
+
+    <% else #joined rooms %>
+        <%= link_to room_page_path(room.id) do %>
+            <div class="room"> 
+                <div class="room-image">
+                <% if room.image.length > 0 %>
+                    <img src = "<%= room.image %>" class="room-image">
+                <% else %>
+                    <img src = "/room_image/default.png" class="room-image">
+                <% end %>
+                </div>
+                <%= room.name %>
+                <% if room.created_at >= Date.today.beginning_of_day %>
+                今日<%= room.created_at.strftime("%H:%M") %>
+                <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
+                昨日<%= room.created_at.strftime("%H:%M") %>
+                <% else %>
+                <%= room.created_at.strftime("%Y/%m/%d") %>
+                <% end %>
+            </div>
+        <% end %>
+    <% end %>
+  <% end %>
+</div>
+<%= link_to "戻る", "/search/rooms" %>
