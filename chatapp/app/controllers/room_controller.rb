@@ -97,7 +97,7 @@ class RoomController < ApplicationController
   def destroy_message
     @message = Message.find_by(id: params[:id])
     if @message.destroy
-      ActionCable.server.broadcast "message_#{params[:room_id]}_channel",{ content: @message, mode: "delete" }
+      ActionCable.server.broadcast "message_#{@message.room_id}_channel",{ content: @message, mode: "delete" }
     end
   end
 
