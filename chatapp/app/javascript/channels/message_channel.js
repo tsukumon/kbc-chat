@@ -19,6 +19,8 @@ const isSubscribed = (channel, room_id, user_id) => {
   const subscription = consumer.subscriptions.findAll(identifier)
   return !!subscription.length
 };
+
+
 if(!isSubscribed(channel, room_id, user_id)) {
   consumer.subscriptions.create({channel: channel, room_id: room_id, user_id: user_id}, {
     connected() {
