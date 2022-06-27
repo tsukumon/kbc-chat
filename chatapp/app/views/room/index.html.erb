@@ -21,7 +21,7 @@
             <% else %>
               <%= room.created_at.strftime("%Y/%m/%d") %>
             <% end %>
-            <%= link_to "参加", room_join_path(room.id) %>
+            <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
         </div>
     <% end %>
   <% end %>
@@ -51,7 +51,7 @@
             <% else %>
               <%= room.created_at.strftime("%Y/%m/%d") %>
             <% end %>
-            <%= link_to "参加", room_join_path(room.id) %>
+            <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
         </div>
     <% end %>
   <% end %>
