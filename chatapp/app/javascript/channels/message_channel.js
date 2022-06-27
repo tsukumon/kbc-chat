@@ -1,6 +1,27 @@
 import consumer from "channels/consumer"
 
-consumer.subscriptions.create("MessageChannel", {
+const data = document.getElementById("data")
+try{
+  if(data == null){
+    throw new Error("exit");
+  }  
+}catch (e) {
+  console.log(e.message);
+
+}
+
+const channel = "MessageChannel"
+const room_id = data.getAttribute("data-room-id")
+const user_id = data.getAttribute("data-user-id")
+
+const isSubscribed = (channel, room_id, user_id) => {
+  const identifier = `{"channel":"${channel}","room_id":"${room_id}","user_id":"${user_id}"}`
+  const subscription = consumer.subscriptions.findAll(identifier)
+  return !!subscription.length
+};
+
+
+consumer.subscriptions.create({channel: channel, room_id: room_id, user_id: user_id}, {
   connected() {
     // Called when the subscription is ready for use on the server
   },
@@ -52,7 +73,7 @@ consumer.subscriptions.create("MessageChannel", {
       const newMessage = document.getElementById('message-sentence');
       const dummyMargin = $('.dummy-margin');
       const newMessageDummy  = document.getElementById('dummy-textarea');
-      if(data.user.id == data.current_user){ 
+      if(data.content.user_id == user_id){ 
         messages.insertAdjacentHTML('beforeend', html);
       }else{
         messages.insertAdjacentHTML('beforeend', html2);

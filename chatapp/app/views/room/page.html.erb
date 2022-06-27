@@ -19,6 +19,7 @@
 
 <div class="room-content">
 
+<div id="data" data-room-id="<%= @room.id %>" data-user-id="<%= @current_user.id %>"></div>
 <div id="messages">
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>

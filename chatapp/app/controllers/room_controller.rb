@@ -90,14 +90,14 @@ class RoomController < ApplicationController
       end
       @message.sentence = CGI.escapeHTML(@message.sentence).gsub(/\n|\r|\r\n/, "<br>")
       @user = User.find_by(id: @message.user_id)
-      ActionCable.server.broadcast "message_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id, user: @user }
+      ActionCable.server.broadcast "message_#{params[:id]}_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id, user: @user }
     end
   end
 
   def destroy_message
     @message = Message.find_by(id: params[:id])
     if @message.destroy
-      ActionCable.server.broadcast "message_channel",{ content: @message, mode: "delete" }
+      ActionCable.server.broadcast "message_#{params[:room_id]}_channel",{ content: @message, mode: "delete" }
     end
   end
 
