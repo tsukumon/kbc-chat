@@ -2,13 +2,25 @@
   <div class="modal-detail-inner">
   <div class="detail-header">
     <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
-    <h2>詳細情報</h2>
+    <p>詳細情報</p>
   </div>
     <div class="detail-body">
-      <div class="modal-inner-content">カテゴリ</div>
-      <div class="modal-inner-content">ルーム名</div>
-      <div class="modal-inner-content">ルーム詳細情報</div>
-      <div class="modal-inner-content">メンバー</div>
+      <div class="modal-inner-content">
+        <div class="title">カテゴリ</div>
+          <div class="contents"><%= @room.category %></div>
+      </div>
+      <div class="modal-inner-content">
+        <div class="title">ルーム名</div>
+          <div class="contents"><%= @room.name %></div>
+      </div>
+      <div class="modal-inner-content">
+        <div class="title">ルーム詳細情報</div>
+          <div class="contents"><%= @room.describe %></div>
+      </div>
+      <div class="modal-inner-content">
+        <div class="title">メンバー</div>
+          <div class="contents"></div>
+      </div>
     </div>
   </div>
   <div class="background-shadow" id="js-black-sh"></div>
