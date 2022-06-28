@@ -29,11 +29,11 @@
             <% else %>
               <%= room.created_at.strftime("%Y/%m/%d") %>
             <% end %>
-            <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
+            <%= link_to "参加", room_join_path(room.id) %>
         </div>
 
     <% else #joined rooms %>
-        <%= link_to room_page_path(room.id), "data-turbo": false do%>
+        <%= link_to room_page_path(room.id) do %>
           <div class="room"> 
               <div class="room-image">
                 <% if room.image.length > 0 %>
@@ -60,23 +60,25 @@
 
 
 <script type="text/javascript">
-$(function() {
-    const dataList = function(request, response) {
-      $.ajax({
-        url: '/name_auto/' + request.term,
-        dataType: 'json',
-        type: 'GET',
-        cache: true,
-        success: function(data) {
-          response(data);
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          response(['']);
-        }
+document.addEventListener("turbo:load", () => {
+  $(function() {
+      const dataList = function(request, response) {
+        $.ajax({
+          url: '/name_auto/' + request.term,
+          dataType: 'json',
+          type: 'GET',
+          cache: true,
+          success: function(data) {
+            response(data);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            response(['']);
+          }
+        });
+      }
+      $("#q_name_cont").autocomplete({
+        source: dataList,
       });
-    }
-    $("#q_name_cont").autocomplete({
-      source: dataList,
-    });
+  });
 });
 </script>

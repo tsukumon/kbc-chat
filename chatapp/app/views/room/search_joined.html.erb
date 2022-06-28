@@ -3,7 +3,7 @@
   <% @results.each do |room| %>
     <% if UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
         「<%= @q.name_cont %>」の検索結果は<%= @results.count %>件です<br>
-        <%= link_to room_page_path(room.id), "data-turbo": false do %>
+        <%= link_to room_page_path(room.id) do %>
             <div class="room"> 
                 <div class="room-image">
                 <% if room.image.length > 0 %>

@@ -18,11 +18,11 @@
             <% else %>
               <%= room.created_at.strftime("%Y/%m/%d") %>
             <% end %>
-            <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
+            <%= link_to "参加", room_join_path(room.id) %>
         </div>
 
     <% else #joined rooms %>
-        <%= link_to room_page_path(room.id), "data-turbo": false do %>
+        <%= link_to room_page_path(room.id) do %>
             <div class="room"> 
                 <div class="room-image">
                 <% if room.image.length > 0 %>

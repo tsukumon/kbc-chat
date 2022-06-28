@@ -12,24 +12,26 @@
 <% end %>
 
 <script type="text/javascript">
-$(function() {
-    const dataList = function(request, response) {
-      $.ajax({
-        url: '/room_auto/' + request.term,
-        dataType: 'json',
-        type: 'GET',
-        cache: true,
-        success: function(data) {
-          response(data);
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          response(['']);
-        }
+document.addEventListener("turbo:load", () => {
+  $(function() {
+      const dataList = function(request, response) {
+        $.ajax({
+          url: '/room_auto/' + request.term,
+          dataType: 'json',
+          type: 'GET',
+          cache: true,
+          success: function(data) {
+            response(data);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            response(['']);
+          }
+        });
+      }
+      $("#room_category").autocomplete({
+        source: dataList,
+        autoFocus: true
       });
-    }
-    $("#room_category").autocomplete({
-      source: dataList,
-      autoFocus: true
-    });
+  });
 });
 </script>
