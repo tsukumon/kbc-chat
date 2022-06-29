@@ -49,6 +49,15 @@
       </div>
     <% end %>
   <% end %>
+  <% @members.each do |member| %>
+    <% @joiner = User.find_by(id: member.user_id) %>
+    <div id="user-data" user-data-id="<%= @joiner.id %>"></div>
+    <%= @joiner.name %>
+    <% @status = @joiner.status ? "online":nil %>
+        <span class="activity-status <%= @status %> user-<%= @joiner.id %>-status">
+          ・
+        </span>
+  <% end %>
 </div>
 <div id="dummy-margin" class="dummy-margin"></div>
 
