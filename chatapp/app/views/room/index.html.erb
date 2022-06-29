@@ -21,7 +21,7 @@
             <% else %>
               <%= room.created_at.strftime("%Y/%m/%d") %>
             <% end %>
-            <%= link_to "参加", room_join_path(room.id) %>
+            <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
         </div>
     <% end %>
   <% end %>
@@ -51,7 +51,7 @@
             <% else %>
               <%= room.created_at.strftime("%Y/%m/%d") %>
             <% end %>
-            <%= link_to "参加", room_join_path(room.id) %>
+            <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
         </div>
     <% end %>
   <% end %>
@@ -59,23 +59,25 @@
 
 
 <script type="text/javascript">
-$(function() {
-    const dataList = function(request, response) {
-      $.ajax({
-        url: '/name_auto/' + request.term,
-        dataType: 'json',
-        type: 'GET',
-        cache: true,
-        success: function(data) {
-          response(data);
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          response(['']);
-        }
+document.addEventListener("turbo:load", () => {
+  $(function() {
+      const dataList = function(request, response) {
+        $.ajax({
+          url: '/name_auto/' + request.term,
+          dataType: 'json',
+          type: 'GET',
+          cache: true,
+          success: function(data) {
+            response(data);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            response(['']);
+          }
+        });
+      }
+      $("#q_name_cont").autocomplete({
+        source: dataList,
       });
-    }
-    $("#q_name_cont").autocomplete({
-      source: dataList,
-    });
+  });
 });
 </script>

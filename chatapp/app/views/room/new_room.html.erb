@@ -26,34 +26,38 @@
 </div>
 
 <script type="text/javascript">
-  function ChangeValue(e) {
-    room_category.value = "未分類";
-    room_category.value = e.target.textContent;
-  }
+  document.addEventListener("turbo:load", () => {
+    function ChangeValue(e) {
+      room_category.value = "未分類";
+      room_category.value = e.target.textContent;
+    }
   <% @categories.each_with_index do |category, i| %>
     document.getElementById("category-name-" + <%= i %>).addEventListener('click', ChangeValue, false)
- <% end %>
+  <% end %>
+  });
 </script>
 
 <script type="text/javascript">
-$(function() {
-    const dataList = function(request, response) {
-      $.ajax({
-        url: '/room_auto/' + request.term,
-        dataType: 'json',
-        type: 'GET',
-        cache: true,
-        success: function(data) {
-          response(data);
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          response(['']);
-        }
+document.addEventListener("turbo:load", () => {
+  $(function() {
+      const dataList = function(request, response) {
+        $.ajax({
+          url: '/room_auto/' + request.term,
+          dataType: 'json',
+          type: 'GET',
+          cache: true,
+          success: function(data) {
+            response(data);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            response(['']);
+          }
+        });
+      }
+      $("#room_category").autocomplete({
+        source: dataList,
+        autoFocus: true
       });
-    }
-    $("#room_category").autocomplete({
-      source: dataList,
-      autoFocus: true
-    });
+  });
 });
 </script>

@@ -1,7 +1,7 @@
 <div class="room-header-list">
   <div class="room-header">
     <div class="room_header_left">
-      <%= link_to("/room") do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
+      <%= link_to "/room/joined" do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
       <div class="room_title"><%= @room.name %></div>
     </div>
     <div class="room_header_right">
@@ -19,6 +19,7 @@
 
 <div class="room-content">
 
+<div id="data" data-room-id="<%= @room.id %>" data-user-id="<%= @current_user.id %>"></div>
 <div id="messages">
   <% if @messages != nil %>
     <% @messages.reverse_each do |message| %>
@@ -63,49 +64,55 @@
 <% end %>
 
 <script type="text/javascript">
-  const input = document.querySelector("#message-sentence");
-  const button = document.querySelector("#message-submit");
-  const p = document.querySelector("#helper-text");
-  const chatRegex = /[^\s\R]/;
-  var textCount = 2000;
+  document.addEventListener("turbo:load", () => {
+    const input = document.querySelector("#message-sentence");
+    const button = document.querySelector("#message-submit");
+    const p = document.querySelector("#helper-text");
+    const chatRegex = /[^\s\R]/;
+    var textCount = 2000;
 
-  button.disabled = true;
-  input.addEventListener("keyup", () => {
-    var count1 = input.value.length
-    if(chatRegex.test(input.value)){
-      button.disabled = false;
-      $('.message-submit').css('opacity', '1.0');
-    }else{
-      button.disabled = true;
-      $('.message-submit').css('opacity', '0.2');
-    };
+    button.disabled = true;
+    input.addEventListener("keyup", () => {
+      var count1 = input.value.length
+      if(chatRegex.test(input.value)){
+        button.disabled = false;
+        $('.message-submit').css('opacity', '1.0');
+      }else{
+        button.disabled = true;
+        $('.message-submit').css('opacity', '0.2');
+      };
 
-    if(count1 >= textCount){
-      button.disabled = true;
-      $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(234, 57, 33, 0.3)');
-    }else{
-      $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(35, 167, 195, 0.3)');
-    };
+      if(count1 >= textCount){
+        button.disabled = true;
+        $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(234, 57, 33, 0.3)');
+      }else{
+        $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(35, 167, 195, 0.3)');
+      };
+    });
   });
 </script>
 <script type="text/javascript">
-$(window).on('scroll', function (){
-  var elem = $('.message-one');
-    var elemOffset = elem.last().offset().top;
-    var scrollPos = $(window).scrollTop();
-    var wh = $(window).height();
+  document.addEventListener("turbo:load", () => {
+    $(window).on('scroll', function (){
+      var elem = $('.message-one');
+        var elemOffset = elem.last().offset().top;
+        var scrollPos = $(window).scrollTop();
+        var wh = $(window).height();
 
-    if(scrollPos >= elemOffset - wh){
-      document.getElementById('message-notice').textContent = "";
-    }
+        if(scrollPos >= elemOffset - wh){
+          document.getElementById('message-notice').textContent = "";
+        }
 
-});
+    });
+  });
 </script>
 
 <script type="text/javascript">
-  var butotn = document.getElementById('message-notice');
-  butotn.onclick = function() {
-    window.scrollTo(0, document.body.scrollHeight);
-  }
+  document.addEventListener("turbo:load", () => {
+    var butotn = document.getElementById('message-notice');
+    butotn.onclick = function() {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  });
 </script>
 </div>

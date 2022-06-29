@@ -8,7 +8,7 @@
 <div class="rooms">
   <th><%= sort_link(@q, :created_at, "作成日", hide_indicator: true) %></th>
   <% @results.each do |room| %>
-    <%= link_to room_page_path(room.id), "data-turbolinks": false do %>
+    <%= link_to room_page_path(room.id) do %>
         <% if UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
             <div class="room"> 
                 <div class="room-image">
@@ -34,23 +34,25 @@
 
 
 <script type="text/javascript">
-$(function() {
-    const dataList = function(request, response) {
-      $.ajax({
-        url: '/name_auto/' + request.term,
-        dataType: 'json',
-        type: 'GET',
-        cache: true,
-        success: function(data) {
-          response(data);
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          response(['']);
-        }
+document.addEventListener("turbo:load", () => {
+  $(function() {
+      const dataList = function(request, response) {
+        $.ajax({
+          url: '/name_auto/' + request.term,
+          dataType: 'json',
+          type: 'GET',
+          cache: true,
+          success: function(data) {
+            response(data);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            response(['']);
+          }
+        });
+      }
+      $("#q_name_cont").autocomplete({
+        source: dataList,
       });
-    }
-    $("#q_name_cont").autocomplete({
-      source: dataList,
-    });
+  });
 });
 </script>
