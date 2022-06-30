@@ -54,7 +54,7 @@
     <div id="user-data" user-data-id="<%= @joiner.id %>"></div>
     <%= @joiner.name %>
     <% @status = @joiner.status ? "online":nil %>
-        <span class="activity-status <%= @status %> user-<%= @joiner.id %>-status">
+        <span class="user-status <%= @status %> user-<%= @joiner.id %>-status">
           ・
         </span>
   <% end %>
