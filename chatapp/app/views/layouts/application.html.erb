@@ -23,7 +23,10 @@
           <img class="user-icon" src=<%= @current_user.image %>>
           <div class="user-info-right">
             <div class="user-name"><%= @current_user.name %></div>
-            <div class="user-status">●オンライン</div>
+            <div id="user-data" user-data-id="<%= @current_user.id %>"></div>
+            <div class="user-status <%= current_user_status %> user-<%= @current_user.id %>-status">
+              ●オンライン
+            </div>
           </div>
         </div>
         <div class="menu">

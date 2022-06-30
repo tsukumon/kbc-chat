@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_20_024405) do
+ActiveRecord::Schema.define(version: 2022_06_29_084034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2022_06_20_024405) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "provider"
     t.text "uid"
+    t.boolean "status", default: false, null: false
   end
 
   add_foreign_key "user_rooms", "rooms"

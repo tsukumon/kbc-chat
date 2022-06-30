@@ -89,35 +89,21 @@ body{
     margin: 10px 0px 20px 5px;
     padding:5px;
     .user-icon{
-      animation: user-border-change 20s ease infinite;
       border-radius: 50%;
       width: 45px;
       height: 45px;
-    }
-    @keyframes user-border-change{
-      0%   {border:3px solid #10bc8a;}
-      25%  {border:3px solid #43d8ae;}
-      50%  {border:3px solid #8af57c;}
-      75%  {border:3px solid #66e36a;}
-      90%  {border:3px solid #43d8ae;}
-      100% {border:3px solid #10bc8a;}
     }
     .user-info-right{
       margin-left: 10px;
       .user-name{
         font-size: 17px;
       }
-      .user-status{
-        font-size: 13px;
-        animation: user-status-change 20s ease infinite;
-      }
-      @keyframes user-status-change{
-        0%   {color: #10bc8a;}
-        25%  {color: #43d8ae;}
-        50%  {color: #8af57c;}
-        75%  {color: #66e36a;}
-        90%  {color: #43d8ae;}
-        100% {color: #10bc8a;}
+    }
+    .user-status{
+      color: #e0e0e0;
+      font-size: 13px;
+      &.online{
+        color: #64dd18;
       }
     }
   } 

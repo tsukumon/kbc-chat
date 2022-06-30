@@ -39,6 +39,7 @@ class RoomController < ApplicationController
     @room = Room.find_by(id: params[:id])
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC)
     @message = Message.new
+    @members = UserRoom.where(room_id: params[:id])
   end
 
   def new_room
