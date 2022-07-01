@@ -18,37 +18,8 @@
 <p id="notice"><%= notice %></p>
 
 <div class="room-content">
-
 <div id="data" data-room-id="<%= @room.id %>" data-user-id="<%= @current_user.id %>"></div>
-<div id="messages">
-  <% if @messages != nil %>
-    <% @messages.reverse_each do |message| %>
-      <div id="message-<%= message.id%>" class="message-one">
-        <% @user = User.find_by(id: message.user_id) %>
-        <div class="message-left"><img src=<%= @user.image %>></div>
-        <div class="message-right">
-          <div class="message-user-info">
-            <div class="message-username"><%= @user.name %></div>
-            <div id="message-time">
-              <% if message.created_at >= Date.today.beginning_of_day %>
-                今日<%= message.created_at.strftime("%H:%M") %>
-              <% elsif message.created_at < Date.today.beginning_of_day && message.created_at >= Date.yesterday.beginning_of_day%>
-                昨日<%= message.created_at.strftime("%H:%M") %>
-              <% else %>
-                <%= message.created_at.strftime("%Y/%m/%d") %>
-              <% end %>
-            </div>
-            <% if @current_user.id == message.user_id %>
-              <div id="message-delete">
-                <%= link_to "削除", destroy_message_path(message.id), data: {turbo_method: :delete} %>
-              </div>
-            <% end %>
-          </div>
-          <p><%= safe_join(message.sentence.split("\n"),tag(:br)) %></p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+<%= render "messages", messages: @messages %>
   <% @members.each do |member| %>
     <% @joiner = User.find_by(id: member.user_id) %>
     <div id="user-data" user-data-id="<%= @joiner.id %>"></div>
@@ -58,7 +29,8 @@
           ・
         </span>
   <% end %>
-</div>
+
+
 <div id="dummy-margin" class="dummy-margin"></div>
 
 <%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
