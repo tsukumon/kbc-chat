@@ -46,20 +46,21 @@ document.addEventListener("turbo:load", () => {
       console.log($(window).scrollTop() == 0)
       if (($(window).scrollTop() == 0) && (i <= parseInt($(".message_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))){
         console.log("ifのした")
-        $.ajax({
+        var def = $.ajax({
           url: $(".message_view").find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, i),
-          beforeSend: async function(){
+          beforeSend: function(){
             $('.cv-spinner').removeClass('hide');
-            const sleep = (second) => new Promise(resolve => setTimeout(resolve, second * 1000))
-            await sleep( 100000 )
           }
-        }).done(function(data) {
-          $("#messages").prepend($(data).find("#messages").html());
-          $(window).scrollTop($(window).first().height());
-          i++;
-          $('.cv-spinner').addClass('hide');
-          console.log(".done")
         })
+        setTimeout(function(){
+          $.when(def).done(function(data) {
+            $("#messages").prepend($(data).find("#messages").html());
+            $(window).scrollTop($(window).first().height());
+            i++;
+            $('.cv-spinner').addClass('hide');
+            console.log(".done")
+          })
+        }, 750)
       }
     })
 });
