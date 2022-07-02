@@ -51,7 +51,7 @@ document.addEventListener("turbo:load", () => {
           beforeSend: async function(){
             $('.cv-spinner').removeClass('hide');
             const sleep = (second) => new Promise(resolve => setTimeout(resolve, second * 1000))
-            await sleep(100000)
+            await sleep( 100000 )
           }
         }).done(function(data) {
           $("#messages").prepend($(data).find("#messages").html());
