@@ -2,13 +2,9 @@ import consumer from "channels/consumer"
 
 document.addEventListener("turbo:load", () => {
   const data = document.getElementById("data")
-  try{
-    if(data == null){
-      throw new Error("exit");
-    }  
-  }catch (e) {
-    console.log(e.message);
-
+  
+  if(data == null){
+    return
   }
 
   const channel = "MessageChannel"

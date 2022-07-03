@@ -37,15 +37,10 @@
 
 <script type="text/javascript">
 document.addEventListener("turbo:load", () => {
-    console.log("どうも")
     var i = 2;
     $(".message-all").scrollTop(1);
     window.addEventListener('scroll', function() {
-      console.log("ifのまえ")
-      console.log($(window).scrollTop())
-      console.log($(window).scrollTop() == 0)
       if (($(window).scrollTop() == 0) && (i <= parseInt($(".message_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))){
-        console.log("ifのした")
         var def = $.ajax({
           url: $(".message_view").find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, i),
           beforeSend: function(){
@@ -58,9 +53,8 @@ document.addEventListener("turbo:load", () => {
             $(window).scrollTop($(window).first().height());
             i++;
             $('.cv-spinner').addClass('hide');
-            console.log(".done")
           })
-        }, 750)
+        }, 850)
       }
     })
 });
