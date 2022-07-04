@@ -1,5 +1,5 @@
 class RoomController < ApplicationController
-include MarkdownHelper
+  include MarkdownHelper
 
   protect_from_forgery :except => [:create_message]
   before_action :authenticate_user
