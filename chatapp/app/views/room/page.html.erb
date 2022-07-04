@@ -1,3 +1,31 @@
+<div class="modal-detail" id="js-modal-detail">
+  <div class="modal-detail-inner">
+  <div class="detail-header">
+    <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+    <p>詳細情報</p>
+  </div>
+    <div class="detail-body">
+      <div class="modal-inner-content">
+        <div class="title">カテゴリ</div>
+          <div class="contents"><%= @room.category %></div>
+      </div>
+      <div class="modal-inner-content">
+        <div class="title">ルーム名</div>
+          <div class="contents"><%= @room.name %></div>
+      </div>
+      <div class="modal-inner-content">
+        <div class="title">ルーム詳細情報</div>
+          <div class="contents"><%= @room.describe %></div>
+      </div>
+      <div class="modal-inner-content">
+        <div class="title">メンバー</div>
+          <div class="contents"></div>
+      </div>
+    </div>
+  </div>
+  <div class="background-shadow" id="js-black-sh"></div>
+</div>
+
 <div class="room-header-list">
   <div class="room-header">
     <div class="room_header_left">
@@ -5,9 +33,7 @@
       <div class="room_title"><%= @room.name %></div>
     </div>
     <div class="room_header_right">
-      <%= link_to edit_room_path(params[:id]) do %>
-        <i class="fa-solid fa-caret-down"></i>
-      <% end %>
+      <i id="js-show-modal-detail" class="fa-solid fa-caret-down"></i>
     </div>
     <%= link_to "ルームから退室する", room_leave_path(@room.id), data: {turbo_method: :delete} %>
   </div>
@@ -18,37 +44,8 @@
 <p id="notice"><%= notice %></p>
 
 <div class="room-content">
-
 <div id="data" data-room-id="<%= @room.id %>" data-user-id="<%= @current_user.id %>"></div>
-<div id="messages">
-  <% if @messages != nil %>
-    <% @messages.reverse_each do |message| %>
-      <div id="message-<%= message.id%>" class="message-one">
-        <% @user = User.find_by(id: message.user_id) %>
-        <div class="message-left"><img src=<%= @user.image %>></div>
-        <div class="message-right">
-          <div class="message-user-info">
-            <div class="message-username"><%= @user.name %></div>
-            <div id="message-time">
-              <% if message.created_at >= Date.today.beginning_of_day %>
-                今日<%= message.created_at.strftime("%H:%M") %>
-              <% elsif message.created_at < Date.today.beginning_of_day && message.created_at >= Date.yesterday.beginning_of_day%>
-                昨日<%= message.created_at.strftime("%H:%M") %>
-              <% else %>
-                <%= message.created_at.strftime("%Y/%m/%d") %>
-              <% end %>
-            </div>
-            <% if @current_user.id == message.user_id %>
-              <div id="message-delete">
-                <%= link_to "削除", destroy_message_path(message.id), data: {turbo_method: :delete} %>
-              </div>
-            <% end %>
-          </div>
-          <p><%= safe_join(message.sentence.split("\n"),tag(:br)) %></p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+<%= render "messages", messages: @messages %>
   <% @members.each do |member| %>
     <% @joiner = User.find_by(id: member.user_id) %>
     <div id="user-data" user-data-id="<%= @joiner.id %>"></div>
@@ -58,7 +55,8 @@
           ・
         </span>
   <% end %>
-</div>
+
+
 <div id="dummy-margin" class="dummy-margin"></div>
 
 <%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>

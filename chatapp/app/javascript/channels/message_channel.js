@@ -2,13 +2,9 @@ import consumer from "channels/consumer"
 
 document.addEventListener("turbo:load", () => {
   const data = document.getElementById("data")
-  try{
-    if(data == null){
-      throw new Error("exit");
-    }  
-  }catch (e) {
-    console.log(e.message);
-
+  
+  if(data == null){
+    return
   }
 
   const channel = "MessageChannel"
@@ -86,7 +82,8 @@ document.addEventListener("turbo:load", () => {
           console.log("scrolltop" + scrollTop);
           console.log("most" + mostBottom);
           console.log("scroll" + document.body.scrollHeight);
-          if (scrollTop >= mostBottom) {
+          //if (scrollTop >= mostBottom && data.content.user_id == user_id) {
+          if (data.content.user_id == user_id) {
             window.scroll(0, document.body.scrollHeight);
           }else{
             document.getElementById('message-notice').textContent = "未読のメッセージがあります";
