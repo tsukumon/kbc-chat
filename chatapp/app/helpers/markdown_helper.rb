@@ -1,5 +1,6 @@
 module MarkdownHelper
     require 'rouge/plugins/redcarpet'
+    
     class HTML < Redcarpet::Render::HTML
       include Rouge::Plugins::Redcarpet
     end
