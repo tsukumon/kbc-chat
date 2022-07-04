@@ -134,6 +134,28 @@
   width: calc(100% - 40px);
   padding: 10px 0px 80px 10px;
   margin-top: 55px;
+  .cv-spinner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+  }
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border: 4px #ddd solid;
+    border-top: 4px #2e93e6 solid;
+    border-radius: 50%;
+    animation: sp-anime 0.8s infinite linear;
+  }
+  @keyframes sp-anime {
+    100% { 
+      transform: rotate(360deg); 
+    }
+  }
+  .hide{
+    display:none;
+  }
   .message-one{
     display: flex;
     font-size: 15px;
@@ -179,6 +201,10 @@
   .message-one:hover{
     background-color: #f4f4f4;
     transition: 0.5s;
+  }
+  .message_view{
+    display: none;
+    visibility: hidden;
   }
   .user-status{
     color: #e0e0e0;

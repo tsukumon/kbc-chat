@@ -137,6 +137,18 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     jwt (2.4.1)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     loofah (2.16.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -323,6 +335,7 @@ DEPENDENCIES
   jbuilder
   jquery-turbolinks
   jquery-ui-rails (= 6.0.1)
+  kaminari
   mini_magick
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
