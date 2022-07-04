@@ -245,10 +245,12 @@ GEM
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
+    redcarpet (3.5.1)
     regexp_parser (2.3.0)
     reline (0.3.1)
       io-console (~> 0.5)
     rexml (3.2.5)
+    rouge (3.29.0)
     rspec-core (3.11.0)
       rspec-support (~> 3.11.0)
     rspec-expectations (3.11.0)
@@ -344,6 +346,8 @@ DEPENDENCIES
   rails (= 7.0.1)
   rails-i18n (= 7.0.1)
   ransack
+  redcarpet
+  rouge
   rspec-rails
   sassc (= 2.4.0)
   sassc-rails (= 2.1.2)
