@@ -6,8 +6,8 @@ class RoomController < ApplicationController
   before_action :authenticate_room, only: [:page, :create_message]
   
   def index
-    @q = Room.ransack(params[:q])
-    @results = @q.result.order(created_at: :DESC)
+    @search = Room.ransack(params[:q])
+    @results = @search.result.order(created_at: :DESC)
     @room = Room.all.order(created_at: :DESC).limit(5)
   end
 
@@ -33,8 +33,8 @@ class RoomController < ApplicationController
 
 
   def joined
-    @q = Room.ransack(params[:q])
-    @results = @q.result.order(created_at: :DESC)
+    @search = Room.ransack(params[:q])
+    @results = @search.result.order(created_at: :DESC)
   end
 
   def page
@@ -115,21 +115,21 @@ class RoomController < ApplicationController
     render json: names
   end
   
-  def search
-    @q = Room.ransack(params[:q])
-    @results = @q.result
+  def search_result
+    @search = Room.ransack(params[:q])
+    @results = @search.result
   end
 
   def search_form
     @room = Room.all.order(created_at: :DESC).limit(5)
-    @q = Room.ransack(params[:q])
-    @results = @q.result
+    @search = Room.ransack(params[:q])
+    @results = @search.result
     category_select
   end
 
   def search_joined
-    @q = Room.ransack(params[:q])
-    @results = @q.result
+    @search = Room.ransack(params[:q])
+    @results = @search.result
   end
 
   private
