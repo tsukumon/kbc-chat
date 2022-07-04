@@ -1,3 +1,31 @@
+<div class="modal-detail" id="js-modal-detail">
+  <div class="modal-detail-inner">
+  <div class="detail-header">
+    <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+    <p>詳細情報</p>
+  </div>
+    <div class="detail-body">
+      <div class="modal-inner-content">
+        <div class="title">カテゴリ</div>
+          <div class="contents"><%= @room.category %></div>
+      </div>
+      <div class="modal-inner-content">
+        <div class="title">ルーム名</div>
+          <div class="contents"><%= @room.name %></div>
+      </div>
+      <div class="modal-inner-content">
+        <div class="title">ルーム詳細情報</div>
+          <div class="contents"><%= @room.describe %></div>
+      </div>
+      <div class="modal-inner-content">
+        <div class="title">メンバー</div>
+          <div class="contents"></div>
+      </div>
+    </div>
+  </div>
+  <div class="background-shadow" id="js-black-sh"></div>
+</div>
+
 <div class="room-header-list">
   <div class="room-header">
     <div class="room_header_left">
@@ -5,9 +33,7 @@
       <div class="room_title"><%= @room.name %></div>
     </div>
     <div class="room_header_right">
-      <%= link_to edit_room_path(params[:id]) do %>
-        <i class="fa-solid fa-caret-down"></i>
-      <% end %>
+      <i id="js-show-modal-detail" class="fa-solid fa-caret-down"></i>
     </div>
     <%= link_to "ルームから退室する", room_leave_path(@room.id), data: {turbo_method: :delete} %>
   </div>
