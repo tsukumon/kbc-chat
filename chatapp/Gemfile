@@ -55,6 +55,7 @@ gem 'jquery-turbolinks'
 #Install kaminari
 gem 'kaminari'
 
+#Install for Markdown
 gem 'redcarpet'
 gem 'rouge'
 
