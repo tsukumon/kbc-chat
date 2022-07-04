@@ -1,4 +1,6 @@
 class RoomController < ApplicationController
+  include MarkdownHelper
+
   protect_from_forgery :except => [:create_message]
   before_action :authenticate_user
   before_action :authenticate_room, only: [:page, :create_message]
@@ -89,7 +91,7 @@ class RoomController < ApplicationController
       else
         @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
       end
-      @message.sentence = CGI.escapeHTML(@message.sentence).gsub(/\n|\r|\r\n/, "<br>")
+      @message.sentence = markdown(@message.sentence)
       @user = User.find_by(id: @message.user_id)
       ActionCable.server.broadcast "message_#{params[:id]}_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id, user: @user }
     end
