@@ -116,6 +116,10 @@
 
 <script type="text/javascript">
   document.addEventListener("turbo:load", () => {
+
+    // したの一文はページにアクセスした際に一番したまでスクロールする処理です。
+    window.scroll(0, document.body.scrollHeight);
+
     var butotn = document.getElementById('message-notice');
     butotn.onclick = function() {
       window.scrollTo(0, document.body.scrollHeight);
