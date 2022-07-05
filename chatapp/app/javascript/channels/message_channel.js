@@ -73,12 +73,12 @@ document.addEventListener("turbo:load", () => {
           const newMessageDummy  = document.getElementById('dummy-textarea');
           if(data.content.user_id == user_id){ 
             messages.insertAdjacentHTML('beforeend', html);
+            newMessage.value = '';
+            dummyMargin.css("height", "0px");
+            newMessageDummy.textContent = '';  
           }else{
             messages.insertAdjacentHTML('beforeend', html2);
           }
-          newMessage.value = '';
-          dummyMargin.css("height", "0px");
-          newMessageDummy.textContent = '';
           console.log("scrolltop" + scrollTop);
           console.log("most" + mostBottom);
           console.log("scroll" + document.body.scrollHeight);
