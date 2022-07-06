@@ -19,39 +19,39 @@
 
 
  /* 共通処理 */
-* {
-  margin: 0;
-  padding: 0;
+*{
+  margin:0;
+  padding:0;
   color:#232323; /* default color */
   text-decoration: none;
   }
 
-li {
+li{
   list-style: none;
 }
 
 
-body {
+body{
   margin: 0;
   width: 100%;
   box-sizing: border-box;
   /* font-size: 62.5%; */
 }
 
-.container {
+.container{
   width: 100%;
   box-sizing: border-box;
   display: flex;
 }
 
-.main-container {
+.main-container{
   background: #fff;
   min-height: 100vh;
   width: calc(100% - 200px);
   margin-left: 202px;
 }
 
-.sub-container {
+.sub-container{
   background: #fff;
   position: fixed;
   width: 200px;
@@ -60,49 +60,49 @@ body {
   border-right: 2px solid #f6f6f6;
   z-index: 9999;
   /* メニュー */
-  .menu {
+  .menu{
     margin-left: 5px;
-    .menu-one {
+    .menu-one{
       font-size: 19px;
       margin-bottom: 10px;
       display: inline-block;
       padding: 7px 10px;
-      width: 88%;
+      width:88%;
     }
-    .menu-one:hover {
+    .menu-one:hover{
       background-color: #F4F4F4;
-      border-radius: 5px;
+      border-radius:5px;
       transform: 0.5s;
     }
-    a {
+    a{
       color: #4e4e4e;
     }
-    i {
+    i{
       font-size: 25px;
       color: #2e2e2e;
     }
   }
   /* ユーザー情報 */
-  .user-info {
-    display: flex;
+  .user-info{
+    display:flex;
     align-items: top;
     margin: 10px 0px 20px 5px;
-    padding: 5px;
-    .user-icon {
+    padding:5px;
+    .user-icon{
       border-radius: 50%;
       width: 45px;
       height: 45px;
     }
-    .user-info-right {
+    .user-info-right{
       margin-left: 10px;
-      .user-name {
+      .user-name{
         font-size: 17px;
       }
     }
-    .user-status {
+    .user-status{
       color: #e0e0e0;
       font-size: 13px;
-      &.online {
+      &.online{
         color: #64dd18;
       }
     }
@@ -110,16 +110,16 @@ body {
 }
 
 .modal {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   overflow: auto;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 99999;
-  animation-name: show;
+  background: rgba(0,0,0,0.78);
+  transition: .3s;
 }
 
 .modal-content {
@@ -135,23 +135,21 @@ body {
 .modal-header {
   padding: 12px;
   background-color: rgb(105, 209, 105);
-  border-radius: 10px 10px 0px 0px;
+  border-radius:10px 10px 0px 0px;
   color: white;
   .close {
-    color: rgb(195, 4, 4);
     float: right;
-    font-size: 16px;
   }
 }
 
 .modal-body {
   background-color: #ffffff;
-  border-radius: 0px 0px 10px 10px;
+  border-radius:0px 0px 10px 10px;
   padding: 12px;
-  .create-from {
+  .create-from{
     flex-flow: column;
-    border-bottom: 2px solid #7a7a7a;
-    input[type="text"] {
+    border-bottom:2px solid #7a7a7a;
+    input[type="text"]{
       width: 99%;
       height: 30px;
       margin-bottom: 4px;
@@ -159,10 +157,10 @@ body {
     input[type="file"] {
       margin-bottom: 6px;
     }
-    .modal-textarea {
+    .modal-textarea{
       width: 100%;
     }
-    .input[type="submit"] {
+    .input[type="submit"]{
     }
   }
 }
