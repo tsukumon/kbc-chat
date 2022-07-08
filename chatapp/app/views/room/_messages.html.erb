@@ -13,7 +13,8 @@
             <div id="message-time">
               <% if message.created_at >= Date.today.beginning_of_day %>
                 今日<%= message.created_at.strftime("%H:%M") %>
-              <% elsif message.created_at < Date.today.beginning_of_day && message.created_at >= Date.yesterday.beginning_of_day%>
+              <% elsif message.created_at < Date.today.beginning_of_day &&
+                       message.created_at >= Date.yesterday.beginning_of_day%>
                 昨日<%= message.created_at.strftime("%H:%M") %>
               <% else %>
                 <%= message.created_at.strftime("%Y/%m/%d") %>
@@ -21,7 +22,8 @@
             </div>
             <% if @current_user.id == message.user_id %>
               <div id="message-delete">
-                <%= link_to "削除", destroy_message_path(message.id), data: {turbo_method: :delete} %>
+                <%= link_to "削除", destroy_message_path(message.id),
+                data: {turbo_method: :delete} %>
               </div>
             <% end %>
           </div>
@@ -40,9 +42,11 @@ document.addEventListener("turbo:load", () => {
     var i = 2;
     $(".message-all").scrollTop(1);
     window.addEventListener('scroll', function() {
-      if (($(window).scrollTop() == 0) && (i <= parseInt($(".message_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))){
+      if (($(window).scrollTop() == 0) &&(i <= parseInt($(".message_view").
+          find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))){
         var def = $.ajax({
-          url: $(".message_view").find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, i),
+          url: $(".message_view").find("nav.pagination a[rel=next]").
+                prop("search").replace(/[0-9]/, i),
           beforeSend: function(){
             $('.cv-spinner').removeClass('hide');
           }
