@@ -59,7 +59,7 @@
 
 <div id="dummy-margin" class="dummy-margin"></div>
 
-<%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
+<%= form_with id: "message-form", url: create_message_path(params[:id]), model: @message, local: true do |f| %>
   <div class="message-form">
     <div class="message-textarea">
       <div id="dummy-textarea" class="dummy-textarea" aria-hidden="true"></div>
@@ -126,4 +126,19 @@
     }
   });
 </script>
+
+<script type="text/javascript">
+    // Enterキー押下時、送信処理が実行する
+
+    window.document.onkeydown = function(event){
+      if (!event.shiftKey && event.key == 'Enter'){
+        console.log("shift");
+        event.preventDefault();
+      }else if (event.key === 'Enter') {
+        console.log("oppai");
+        document.getElementById('message-form').submit();
+      }
+    }
+</script>
+
 </div>
