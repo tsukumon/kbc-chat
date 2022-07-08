@@ -33,8 +33,8 @@ class RoomController < ApplicationController
 
 
   def joined
-    @search = Room.ransack(params[:q])
-    @results = @search.result.order(created_at: :DESC)
+    @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id) #UserRoomテーブルのcurrent_userが参加してるroomのroom_idカラムだけ取る
+    @room_info = Room.where(id: @rooms).includes(:message).order(updated_at: :DESC)
   end
 
   def page
@@ -84,6 +84,8 @@ class RoomController < ApplicationController
   def create_message
     @message = Message.new(message_params)
     if @message.save
+      @rooms = Room.find_by(id: params[:id])
+      @rooms.update(updated_at: Time.now)
       if @message.created_at >= Date.today.beginning_of_day
         @time = "今日#{@message.created_at.strftime("%H:%M")}"
       elsif @message.created_at < Date.today.beginning_of_day && @message.created_at >= Date.yesterday.beginning_of_day
