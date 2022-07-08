@@ -14,22 +14,24 @@ function flexTextarea(el) {
 }
 document.querySelectorAll('.room-content').forEach(flexTextarea)
 
-function popupImage() {
-  var popup = document.getElementById('js-modal-detail');
-  if(!popup) return;
+document.addEventListener("turbo:load", () => {
+  function popupImage() {
+    var popup = document.getElementById('js-modal-detail');
+    if(!popup) return;
 
-  var blackBg = document.getElementById('js-black-sh');
-  var closeBtn = document.getElementById('js-close-btn');
-  var showBtn = document.getElementById('js-show-modal-detail');
+    var blackBg = document.getElementById('js-black-sh');
+    var closeBtn = document.getElementById('js-close-btn');
+    var showBtn = document.getElementById('js-show-modal-detail');
 
-  closePopUp(blackBg);
-  closePopUp(closeBtn);
-  closePopUp(showBtn);
-  function closePopUp(elem) {
-    if(!elem) return;
-    elem.addEventListener('click', function() {
-      popup.classList.toggle('is-show');
-    });
+    closePopUp(blackBg);
+    closePopUp(closeBtn);
+    closePopUp(showBtn);
+    function closePopUp(elem) {
+      if(!elem) return;
+      elem.addEventListener('click', function() {
+        popup.classList.toggle('is-show');
+      });
+    }
   }
-}
-popupImage();
+  popupImage();
+});
