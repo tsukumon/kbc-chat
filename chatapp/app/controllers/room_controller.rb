@@ -1,5 +1,6 @@
 class RoomController < ApplicationController
   include MarkdownHelper
+  include RoomHelper
 
   protect_from_forgery :except => [:create_message]
   before_action :authenticate_user
@@ -84,13 +85,7 @@ class RoomController < ApplicationController
   def create_message
     @message = Message.new(message_params)
     if @message.save
-      if @message.created_at >= Date.today.beginning_of_day
-        @time = "今日#{@message.created_at.strftime("%H:%M")}"
-      elsif @message.created_at < Date.today.beginning_of_day && @message.created_at >= Date.yesterday.beginning_of_day
-        @time = "昨日#{@message.created_at.strftime("%H:%M")}"
-      else
-        @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
-      end
+      @time = date_format(@message.created_at)
       @message.sentence = markdown(@message.sentence)
       @user = User.find_by(id: @message.user_id)
       ActionCable.server.broadcast "message_#{params[:id]}_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id, user: @user }
