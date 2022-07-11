@@ -1,27 +1,17 @@
-<div class="search-area">
-  <%= search_form_for @search, url: room_search_joined_path do |f| %>
-    <%= f.search_field :name_cont, placeholder: "キーワードを入力して参加済みのルームを検索", required: true  %>
-    <% f.submit '検索' %>
-  <% end %>
-</div>
-
 <div class="rooms">
-  <th><%= sort_link(@search, :created_at, "作成日", hide_indicator: true) %></th>
-  <% @results.each do |room| %>
+  <% @room_info.each do |room| %>
     <%= link_to room_page_path(room.id) do %>
-        <% if UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
-            <div class="room"> 
-                <div class="room-image">
-                <% if room.image.length > 0 %>
-                    <img src = "<%= room.image %>" class="room-image">
-                <% else %>
-                    <img src = "/room_image/default.png" class="room-image">
-                <% end %>
-                </div>
-                <%= room.name %>
-                <%= date_format(room.created_at)%>
-            </div>
-        <% end %>
+      <div class="room"> 
+          <div class="room-image">
+          <% if room.image.length > 0 %>
+              <img src = "<%= room.image %>" class="room-image">
+          <% else %>
+              <img src = "/room_image/default.png" class="room-image">
+          <% end %>
+          </div>
+          <%= room.name %>
+          <%= date_format(room.created_at)%>
+      </div>
     <% end %>
   <% end %>
 </div>

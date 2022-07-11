@@ -34,8 +34,8 @@ class RoomController < ApplicationController
 
 
   def joined
-    @search = Room.ransack(params[:q])
-    @results = @search.result.order(created_at: :DESC)
+    @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id) #UserRoomテーブルのcurrent_userが参加してるroomのroom_idカラムだけ取る
+    @room_info = Room.where(id: @rooms).includes(:message).order(updated_at: :DESC)
   end
 
   def page
