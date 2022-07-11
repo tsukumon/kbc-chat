@@ -133,10 +133,8 @@
     window.document.onkeydown = function(event){
       if (!event.shiftKey && event.key == 'Enter'){
         if (event.key === 'Enter') {
-          console.log("oppai");
           document.getElementById('message-form').submit();
         }
-        console.log("shift");
         event.preventDefault();
       }
     }
