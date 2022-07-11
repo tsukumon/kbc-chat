@@ -5,7 +5,7 @@
   <% if messages != nil %>
     <% messages.reverse_each do |message| %>
       <div id="message-<%= message.id%>" class="message-one">
-        <% @user = User.find_by(id: message.user_id) %>
+        <% @user = @members %>
         <div class="message-left"><img src=<%= @user.image %>></div>
         <div class="message-right">
           <div class="message-user-info">
