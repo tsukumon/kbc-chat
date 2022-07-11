@@ -399,15 +399,66 @@
   .detail-body{
     height: calc(92% - 24px);
     background-color: #fff;
+    
+    .cp_tab *, .cp_tab *:before, .cp_tab *:after {
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+    }
+    .cp_tab {
+      margin: 1em auto;
+    }
+    .cp_tab > input[type='radio'] {
+      margin: 0;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      outline: none;
+      background: none;
+      -webkit-appearance: none;
+              appearance: none;
+      display: none;
+    }
+    .cp_tab .cp_tabpanel {
+      display: none;
+    }
+    .cp_tab > input:first-child:checked ~ .cp_tabpanels > .cp_tabpanel:first-child,
+    .cp_tab > input:nth-child(3):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(2),
+    .cp_tab > input:nth-child(5):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(3){
+      display: block;
+    }
+    .cp_tab > label {
+      display: inline-block;
+      padding: 5px 10px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-bottom: 0;
+    }
+    .cp_tab > label:hover,
+    .cp_tab > input:focus + label {
+      color: #0066cc;
+    }
+    .cp_tab > input:checked + label {
+      margin-bottom: -1px;
+      border-bottom: 2px solid #5ede9c;
+    }
+    .cp_tab .cp_tabpanel {
+      padding: 0.5em 1em;
+      border-top: 1px solid #cccccc;
+    }
+    @media (max-width: 480px) {
+      .cp_tab {
+        width: 100%;
+        font-size: 0.8em;
+      }
+      .cp_tab label {
+        padding: 0.5em;
+      }
+    }
   }
 }
 
 .detail-header{
-  padding: 4px;
-  height: 8%;
   background-color: #fff;
-  font-size: 1.50rem;
-  font-weight: bolder; 
 }
 
 .modal-inner-content{
