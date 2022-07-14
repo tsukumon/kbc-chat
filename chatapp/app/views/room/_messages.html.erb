@@ -5,11 +5,11 @@
   <% if messages != nil %>
     <% messages.reverse_each do |message| %>
       <div id="message-<%= message.id%>" class="message-one">
-        <% @user = @members %>
-        <div class="message-left"><img src=<%= @user.image %>></div>
+        <% user = members[message.user_id] %>
+        <div class="message-left"><img src=<%= user["image"] %>></div>
         <div class="message-right">
           <div class="message-user-info">
-            <div class="message-username"><%= @user.name %></div>
+            <div class="message-username"><%= user["name"] %></div>
             <div id="message-time">
               <%= date_format(message.created_at) %>
             </div>
