@@ -409,7 +409,7 @@
       display: inline-block;
       padding: 15px;
       cursor: pointer;
-      border: 1px solid transparent;
+      border: 2px solid transparent;
       border-bottom: 0;
     }
     .tab_container > label:hover {
@@ -423,7 +423,7 @@
       padding: 1em 1em 0;
       clear: both;
       overflow: hidden;
-      border-top: 1px solid #cccccc;
+      border-top: 2px solid #cccccc;
     }
     #tab1:checked ~ #tab1_content,
     #tab2:checked ~ #tab2_content,
@@ -434,8 +434,8 @@
     .tab_container input:checked + label {
       background-color: #fff ;
       color: rgb(0, 0, 0);
-      margin-bottom: -1px;
-      border-bottom: 1px solid #53bc8b;/*背景色と同じ*/
+      margin-bottom: -2px;
+      border-bottom: 2px solid #53bc8b;/*背景色と同じ*/
     }
   }
 }
