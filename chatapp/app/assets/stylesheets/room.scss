@@ -403,16 +403,22 @@
     .tab_container {
       padding-bottom: 1em;
       background-color: #fff;
+      border:1px solid #37beb0;
       margin: 0 auto;}
-    .tab_container > label {
-      position: relative;
-      display: inline-block;
-      padding: 15px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      border-bottom: 0;
+    .tab_item {
+      width: calc(100%/4);
+      padding:15px 0;
+      border-bottom: 3px solid #37beb0 ;
+      background-color: #ececec;
+      text-align: center;
+      color: #37beb0 ;
+      display: block;
+      float: left;
+      text-align: center;
+      font-weight: bold;
+      transition: all 0.2s ease;
     }
-    .tab_container > label:hover {
+    .tab_item:hover {
       opacity: 0.75;
     }
     input[name="tab_item"] {
@@ -423,7 +429,6 @@
       padding: 1em 1em 0;
       clear: both;
       overflow: hidden;
-      border-top: 2px solid #cccccc;
     }
     #tab1:checked ~ #tab1_content,
     #tab2:checked ~ #tab2_content,
@@ -431,11 +436,9 @@
     #tab4:checked ~ #tab4_content {
       display: block;
     }
-    .tab_container input:checked + label {
-      background-color: #fff ;
-      color: rgb(0, 0, 0);
-      margin-bottom: -2px;
-      border-bottom: 2px solid #53bc8b;/*背景色と同じ*/
+    .tab_container input:checked + .tab_item {
+      background-color: #37beb0 ;
+      color: #fff;
     }
   }
 }
