@@ -400,59 +400,42 @@
     height: calc(92% - 24px);
     background-color: #fff;
     
-    .cp_tab *, .cp_tab *:before, .cp_tab *:after {
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-    }
-    .cp_tab {
-      margin: 1em auto;
-    }
-    .cp_tab > input[type='radio'] {
-      margin: 0;
-      padding: 0;
-      border: none;
-      border-radius: 0;
-      outline: none;
-      background: none;
-      -webkit-appearance: none;
-              appearance: none;
-      display: none;
-    }
-    .cp_tab .cp_tabpanel {
-      display: none;
-    }
-    .cp_tab > input:first-child:checked ~ .cp_tabpanels > .cp_tabpanel:first-child,
-    .cp_tab > input:nth-child(3):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(2),
-    .cp_tab > input:nth-child(5):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(3){
-      display: block;
-    }
-    .cp_tab > label {
+    .tab_container {
+      padding-bottom: 1em;
+      background-color: #fff;
+      margin: 0 auto;}
+    .tab_container > label {
+      position: relative;
       display: inline-block;
-      padding: 5px 10px;
+      padding: 15px;
       cursor: pointer;
       border: 1px solid transparent;
       border-bottom: 0;
     }
-    .cp_tab > label:hover,
-    .cp_tab > input:focus + label {
-      color: #0066cc;
+    .tab_container > label:hover {
+      opacity: 0.75;
     }
-    .cp_tab > input:checked + label {
-      margin-bottom: -1px;
-      border-bottom: 2px solid #5ede9c;
+    input[name="tab_item"] {
+      display: none;
     }
-    .cp_tab .cp_tabpanel {
-      padding: 0.5em 1em;
+    .tab_content {
+      display: none;
+      padding: 1em 1em 0;
+      clear: both;
+      overflow: hidden;
       border-top: 1px solid #cccccc;
     }
-    @media (max-width: 480px) {
-      .cp_tab {
-        width: 100%;
-        font-size: 0.8em;
-      }
-      .cp_tab label {
-        padding: 0.5em;
-      }
+    #tab1:checked ~ #tab1_content,
+    #tab2:checked ~ #tab2_content,
+    #tab3:checked ~ #tab3_content,
+    #tab4:checked ~ #tab4_content {
+      display: block;
+    }
+    .tab_container input:checked + label {
+      background-color: #fff ;
+      color: rgb(0, 0, 0);
+      margin-bottom: -1px;
+      border-bottom: 1px solid #53bc8b;/*背景色と同じ*/
     }
   }
 }
