@@ -39,7 +39,6 @@ class RoomController < ApplicationController
   end
 
   def page
-    p "あああああああああああああああああああ"
     @room = Room.find_by(id: params[:id])
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
