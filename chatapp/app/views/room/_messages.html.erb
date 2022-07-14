@@ -1,5 +1,10 @@
-<div class="cv-spinner hide">
-    <span class="spinner"></span>
+<div class="infinite-scroll">
+  <div class="cv-spinner hide">
+      <span class="spinner"></span>
+  </div>
+  <div class="more-messages hide">
+    <input type="button" id="more-messages">
+  </div>
 </div>
 <div id="messages" class="message-all">
   <% if messages != nil %>
@@ -28,28 +33,3 @@
   <%= paginate messages %>
   </div>
 </div>
-
-<script type="text/javascript">
-document.addEventListener("turbo:load", () => {
-    var i = 2;
-    $(".message-all").scrollTop(1);
-    window.addEventListener('scroll', function() {
-      if (($(window).scrollTop() == 0) && (i <= parseInt($(".message_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))){
-        var def = $.ajax({
-          url: $(".message_view").find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, i),
-          beforeSend: function(){
-            $('.cv-spinner').removeClass('hide');
-          }
-        })
-        setTimeout(function(){
-          $.when(def).done(function(data) {
-            $("#messages").prepend($(data).find("#messages").html());
-            $(window).scrollTop($(window).first().height());
-            i++;
-            $('.cv-spinner').addClass('hide');
-          })
-        }, 850)
-      }
-    })
-});
-</script>
