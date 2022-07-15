@@ -54,12 +54,8 @@
         </div>
         <div class="tab_content" id="tab3_content">
           <div class="tab_content_description">
-            <div class="modal-inner-content">
-              <div class="title">ルーム詳細情報</div>
-              <div class="contents"><%= room.describe %></div>
-            </div>
-            <div class="modal-inner-content">
-              <div class="contents"> 
+            <div class="modal-room-back">
+              <div class="room-back-contents"> 
                 <%= link_to "ルームから退室する", room_leave_path(room.id), 
                     data: {turbo_method: :delete} %>
               </div>

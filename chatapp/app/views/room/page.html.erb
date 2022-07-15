@@ -2,12 +2,11 @@
 
 <div class="room-header-list">
   <div class="room-header">
-    <div class="room_header_left">
+    <div class="room_header_left" id="js-show-modal-detail">
       <%= link_to "/room/joined" do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
-      <div class="room_title"><%= @room.name %></div>
-    </div>
-    <div class="room_header_right">
-      <i id="js-show-modal-detail" class="fa-solid fa-caret-down"></i>
+        <div class="room_title"><%= @room.name %>
+          <div class="room_datail_button"><i  class="fa-solid fa-caret-down"></i></div>
+        </div>
     </div>
   </div>
 <div id="message-notice"></div>
