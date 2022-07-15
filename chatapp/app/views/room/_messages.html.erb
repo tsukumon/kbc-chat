@@ -1,23 +1,22 @@
-<div class="cv-spinner hide">
-    <span class="spinner"></span>
+<div class="infinite-scroll">
+  <div class="cv-spinner hide">
+      <span class="spinner"></span>
+  </div>
+  <div class="more-messages hide">
+    <input type="button" id="more-messages">
+  </div>
 </div>
 <div id="messages" class="message-all">
   <% if messages != nil %>
     <% messages.reverse_each do |message| %>
       <div id="message-<%= message.id%>" class="message-one">
-        <% @user = User.find_by(id: message.user_id) %>
-        <div class="message-left"><img src=<%= @user.image %>></div>
+        <% user = members[message.user_id] %>
+        <div class="message-left"><img src=<%= user["image"] %>></div>
         <div class="message-right">
           <div class="message-user-info">
-            <div class="message-username"><%= @user.name %></div>
+            <div class="message-username"><%= user["name"] %></div>
             <div id="message-time">
-              <% if message.created_at >= Date.today.beginning_of_day %>
-                今日<%= message.created_at.strftime("%H:%M") %>
-              <% elsif message.created_at < Date.today.beginning_of_day && message.created_at >= Date.yesterday.beginning_of_day%>
-                昨日<%= message.created_at.strftime("%H:%M") %>
-              <% else %>
-                <%= message.created_at.strftime("%Y/%m/%d") %>
-              <% end %>
+              <%= date_format(message.created_at) %>
             </div>
             <% if @current_user.id == message.user_id %>
               <div id="message-delete">
@@ -34,28 +33,3 @@
   <%= paginate messages %>
   </div>
 </div>
-
-<script type="text/javascript">
-document.addEventListener("turbo:load", () => {
-    var i = 2;
-    $(".message-all").scrollTop(1);
-    window.addEventListener('scroll', function() {
-      if (($(window).scrollTop() == 0) && (i <= parseInt($(".message_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))){
-        var def = $.ajax({
-          url: $(".message_view").find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, i),
-          beforeSend: function(){
-            $('.cv-spinner').removeClass('hide');
-          }
-        })
-        setTimeout(function(){
-          $.when(def).done(function(data) {
-            $("#messages").prepend($(data).find("#messages").html());
-            $(window).scrollTop($(window).first().height());
-            i++;
-            $('.cv-spinner').addClass('hide');
-          })
-        }, 850)
-      }
-    })
-});
-</script>

@@ -1,4 +1,4 @@
-「カテゴリー: <%= @q.category_eq %>」、「ルーム名: <%= @q.name_cont %>」の検索結果は<%= @results.count %>件です<br>
+「カテゴリー: <%= @search.category_eq %>」、「ルーム名: <%= @search.name_cont %>」の検索結果は<%= @results.count %>件です<br>
 <div class="rooms">
   <% @results.each do |room| %>
     <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) # not joined rooms %>
@@ -11,13 +11,7 @@
               <% end %>
             </div>
             <%= room.name %>
-            <% if room.created_at >= Date.today.beginning_of_day %>
-              今日<%= room.created_at.strftime("%H:%M") %>
-            <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
-              昨日<%= room.created_at.strftime("%H:%M") %>
-            <% else %>
-              <%= room.created_at.strftime("%Y/%m/%d") %>
-            <% end %>
+            <%= date_format(room.created_at)%>
             <%= link_to "参加", room_join_path(room.id) %>
         </div>
 
@@ -32,13 +26,7 @@
                 <% end %>
                 </div>
                 <%= room.name %>
-                <% if room.created_at >= Date.today.beginning_of_day %>
-                今日<%= room.created_at.strftime("%H:%M") %>
-                <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
-                昨日<%= room.created_at.strftime("%H:%M") %>
-                <% else %>
-                <%= room.created_at.strftime("%Y/%m/%d") %>
-                <% end %>
+                <%= date_format(room.created_at)%>
             </div>
         <% end %>
     <% end %>

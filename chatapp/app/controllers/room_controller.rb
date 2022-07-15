@@ -1,13 +1,14 @@
 class RoomController < ApplicationController
   include MarkdownHelper
+  include RoomHelper
 
   protect_from_forgery :except => [:create_message]
   before_action :authenticate_user
   before_action :authenticate_room, only: [:page, :create_message]
   
   def index
-    @q = Room.ransack(params[:q])
-    @results = @q.result.order(created_at: :DESC)
+    @search = Room.ransack(params[:q])
+    @results = @search.result.order(created_at: :DESC)
     @room = Room.all.order(created_at: :DESC).limit(5)
   end
 
@@ -33,15 +34,18 @@ class RoomController < ApplicationController
 
 
   def joined
-    @q = Room.ransack(params[:q])
-    @results = @q.result.order(created_at: :DESC)
+    @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id) #UserRoomテーブルのcurrent_userが参加してるroomのroom_idカラムだけ取る
+    @room_info = Room.where(id: @rooms).includes(:message).order(updated_at: :DESC)
   end
 
   def page
     @room = Room.find_by(id: params[:id])
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
-    @members = UserRoom.where(room_id: params[:id])
+
+    @members_id = UserRoom.where(room_id: params[:id]).pluck(:user_id)
+    @members = User.where(id: @members_id)
+    @members_hash = @members.map{ |user| [user.id, user.attributes]}.to_h
   end
 
   def new_room
@@ -51,6 +55,7 @@ class RoomController < ApplicationController
 
   def create_room
     @room = Room.new(room_params)
+    @categories = Room.group(:category).select("category, count(category) as category_count").order("category_count desc").limit(10).map { |m| [m.category, m.category_count] }.to_h
     now_user = User.find_by(id: @current_user.id)
     @room.user << now_user
 
@@ -84,13 +89,7 @@ class RoomController < ApplicationController
   def create_message
     @message = Message.new(message_params)
     if @message.save
-      if @message.created_at >= Date.today.beginning_of_day
-        @time = "今日#{@message.created_at.strftime("%H:%M")}"
-      elsif @message.created_at < Date.today.beginning_of_day && @message.created_at >= Date.yesterday.beginning_of_day
-        @time = "昨日#{@message.created_at.strftime("%H:%M")}"
-      else
-        @time = "#{@message.created_at.strftime("%Y/%m/%d")}"
-      end
+      @time = date_format(@message.created_at)
       @message.sentence = markdown(@message.sentence)
       @user = User.find_by(id: @message.user_id)
       ActionCable.server.broadcast "message_#{params[:id]}_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id, user: @user }
@@ -115,21 +114,21 @@ class RoomController < ApplicationController
     render json: names
   end
   
-  def search
-    @q = Room.ransack(params[:q])
-    @results = @q.result
+  def search_result
+    @search = Room.ransack(params[:q])
+    @results = @search.result
   end
 
   def search_form
     @room = Room.all.order(created_at: :DESC).limit(5)
-    @q = Room.ransack(params[:q])
-    @results = @q.result
+    @search = Room.ransack(params[:q])
+    @results = @search.result
     category_select
   end
 
   def search_joined
-    @q = Room.ransack(params[:q])
-    @results = @q.result
+    @search = Room.ransack(params[:q])
+    @results = @search.result
   end
 
   private

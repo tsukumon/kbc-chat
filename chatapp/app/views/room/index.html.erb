@@ -14,13 +14,7 @@
               <% end %>
             </div>
             <%= room.name %>
-            <% if room.created_at >= Date.today.beginning_of_day %>
-              今日<%= room.created_at.strftime("%H:%M") %>
-            <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
-              昨日<%= room.created_at.strftime("%H:%M") %>
-            <% else %>
-              <%= room.created_at.strftime("%Y/%m/%d") %>
-            <% end %>
+            <%= date_format(room.created_at)%>
             <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
         </div>
     <% end %>
@@ -32,7 +26,7 @@
 </div>
 
 <div class="rooms">
-  <th><%= sort_link(@q, :created_at, "作成日", hide_indicator: true) %></th>
+  <th><%= sort_link(@search, :created_at, "作成日", hide_indicator: true) %></th>
   <% @results.each do |room| %>
     <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
         <div class="room"> 
@@ -44,13 +38,7 @@
               <% end %>
             </div>
             <%= room.name %>
-            <% if room.created_at >= Date.today.beginning_of_day %>
-              今日<%= room.created_at.strftime("%H:%M") %>
-            <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
-              昨日<%= room.created_at.strftime("%H:%M") %>
-            <% else %>
-              <%= room.created_at.strftime("%Y/%m/%d") %>
-            <% end %>
+            <%= date_format(room.created_at)%>
             <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
         </div>
     <% end %>

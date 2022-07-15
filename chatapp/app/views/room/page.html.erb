@@ -18,12 +18,12 @@
 
 <div class="room-content">
 <div id="data" data-room-id="<%= @room.id %>" data-user-id="<%= @current_user.id %>"></div>
-<%= render "messages", messages: @messages %>
 
+<%= render "messages", messages: @messages %>
 
 <div id="dummy-margin" class="dummy-margin"></div>
 
-<%= form_with url: create_message_path(params[:id]), model: @message, local: true do |f| %>
+<%= form_with id: "message-form", url: create_message_path(params[:id]), model: @message, local: true do |f| %>
   <div class="message-form">
     <div class="message-textarea">
       <div id="dummy-textarea" class="dummy-textarea" aria-hidden="true"></div>
@@ -80,14 +80,26 @@
 
 <script type="text/javascript">
   document.addEventListener("turbo:load", () => {
-
     // したの一文はページにアクセスした際に一番したまでスクロールする処理です。
-    window.scroll(0, document.body.scrollHeight);
-
-    var butotn = document.getElementById('message-notice');
-    butotn.onclick = function() {
-      window.scrollTo(0, document.body.scrollHeight);
-    }
+    var msg = document.getElementById("messages")
+    setTimeout(function(){
+      window.scroll(0, msg.scrollHeight);
+    },1)
+    $("#messages").fadeIn();
   });
 </script>
+
+<script type="text/javascript">
+    // Enterキー押下時、送信処理が実行する
+
+    window.document.onkeydown = function(event){
+      if (!event.shiftKey && event.key == 'Enter'){
+        if (event.key === 'Enter') {
+          document.getElementById('message-form').submit();
+        }
+        event.preventDefault();
+      }
+    }
+</script>
+
 </div>

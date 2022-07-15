@@ -1,8 +1,8 @@
 <div class="search-area">
-  <%= search_form_for @q, url: room_search_path do |f| %>
+  <%= search_form_for @search, url: room_search_path do |f| %>
     <%= f.label :category_eq, 'カテゴリー', class: 'label' %>
     <%= f.collection_select :category_eq, @category_sel, :first, :first, include_blank: '指定なし', class: 'search-select' %>
-    <%= f.search_field :name_cont, placeholder: "キーワードを入力してルームを検索" %>
+    <%= f.search_field :name_cont, placeholder: "キーワードを入力してルームを検索", required: true %>
     <% f.submit '検索' %>
   <% end %>
 </div>
@@ -22,13 +22,7 @@
               <% end %>
             </div>
             <%= room.name %>
-            <% if room.created_at >= Date.today.beginning_of_day %>
-              今日<%= room.created_at.strftime("%H:%M") %>
-            <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
-              昨日<%= room.created_at.strftime("%H:%M") %>
-            <% else %>
-              <%= room.created_at.strftime("%Y/%m/%d") %>
-            <% end %>
+            <%= date_format(room.created_at)%>
             <%= link_to "参加", room_join_path(room.id) %>
         </div>
 
@@ -43,13 +37,7 @@
                 <% end %>
               </div>
               <%= room.name %>
-              <% if room.created_at >= Date.today.beginning_of_day %>
-                今日<%= room.created_at.strftime("%H:%M") %>
-              <% elsif room.created_at < Date.today.beginning_of_day && room.created_at >= Date.yesterday.beginning_of_day%>
-                昨日<%= room.created_at.strftime("%H:%M") %>
-              <% else %>
-                <%= room.created_at.strftime("%Y/%m/%d") %>
-              <% end %>
+              <%= date_format(room.created_at)%>
           </div>
         <% end %>
     <% end %>

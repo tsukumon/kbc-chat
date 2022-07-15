@@ -34,7 +34,7 @@ gem 'rails-i18n', '= 7.0.1'
 gem 'carrierwave'
 gem 'mini_magick'
 
-#Install carrierwave&mini_magick
+#Install ransack
 gem 'ransack'
 
 # Use Redis adapter to run Action Cable in production
