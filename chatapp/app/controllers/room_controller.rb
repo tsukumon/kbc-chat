@@ -23,7 +23,7 @@ class RoomController < ApplicationController
     @room = Room.find_by(id: params[:id])
     user = User.find_by(id: @current_user.id)
     @room.user.delete(user)
-    redirect_to room_path, status: :see_other
+    redirect_to "/room/joined", status: :see_other
   end
 
   def authenticate_room
