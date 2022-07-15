@@ -411,7 +411,6 @@
     .tab_container {
       padding-bottom: 1em;
       background-color: #fff;
-      margin: 0 auto;
       
       #tab1:checked ~ #tab1_content,
       #tab2:checked ~ #tab2_content,
@@ -445,8 +444,22 @@
         display: none;
         padding: 10px;
         clear: both;
-        overflow: hidden;
+        overflow-y: scroll;
+        height: 320px;
       }
+      .tab_content::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+        }
+        
+        .tab_content::-webkit-scrollbar-track {
+          background: linear-gradient(white ,white);
+        }
+        
+        .tab_content::-webkit-scrollbar-thumb {
+          background: rgb(213, 213, 213);
+          border-radius:5px;
+        }
     }
   }
 }
