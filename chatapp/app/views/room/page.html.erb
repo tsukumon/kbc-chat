@@ -46,14 +46,14 @@
 <div class="room-content">
 <div id="data" data-room-id="<%= @room.id %>" data-user-id="<%= @current_user.id %>"></div>
 <%= render "messages", messages: @messages, members: @members_hash %>
-  <% @members.each do |member| %>
-    <div id="user-data" user-data-id="<%= member.id %>"></div>
-    <%= member.name %>
-    <% @status = member.status ? "online":nil %>
-        <span class="user-status <%= @status %> user-<%= member.id %>-status">
-          ・
-        </span>
-  <% end %>
+<% @members.each do |member| %>
+  <div id="user-data" user-data-id="<%= member.id %>"></div>
+  <%= member.name %>
+  <% @status = member.status ? "online":nil %>
+  <span class="user-status <%= @status %> user-<%= member.id %>-status">
+    ・
+  </span>
+<% end %>
 
 
 <div id="dummy-margin" class="dummy-margin"></div>
