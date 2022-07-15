@@ -271,7 +271,7 @@
   color: #e0e0e0;
   font-size: 25px;
   &.online {
-    color: #64dd18;
+    color: #31d347;
   }
 }
 
@@ -411,7 +411,6 @@
     .tab_container {
       padding-bottom: 1em;
       background-color: #fff;
-      margin: 0 auto;
       
       #tab1:checked ~ #tab1_content,
       #tab2:checked ~ #tab2_content,
@@ -494,4 +493,51 @@
   background-color: rgba(0,0,0,.8);
   z-index: 1;
   cursor: pointer;
+}
+
+.room-user-list {
+  display: flex;
+  padding:10px; 
+  &:hover{
+    background-color: #F4F4F4;
+    transition: 0.6s;
+  }
+  .icon {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+  
+  .info {
+    margin-left: 5px;
+    
+    .info-top {
+      display: flex;
+      align-items: center;
+      .name {
+        font-size: 18px;
+        color: #363636;
+      }
+      
+      .user-status{
+        font-size: 10px;
+        align-items: center;
+        margin-left: 3px;
+        color: #e0e0e0;
+        &.online{
+          color: #31d347;
+        }
+      }
+    } 
+    
+    .role {
+      margin-left: 1px;
+      font-size: 13px;
+      color: #626262;
+    }
+  }
+
 }
