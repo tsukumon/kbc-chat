@@ -1,41 +1,13 @@
-<div class="modal-detail" id="js-modal-detail">
-  <div class="modal-detail-inner">
-  <div class="detail-header">
-    <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
-    <p>詳細情報</p>
-  </div>
-    <div class="detail-body">
-      <div class="modal-inner-content">
-        <div class="title">カテゴリ</div>
-          <div class="contents"><%= @room.category %></div>
-      </div>
-      <div class="modal-inner-content">
-        <div class="title">ルーム名</div>
-          <div class="contents"><%= @room.name %></div>
-      </div>
-      <div class="modal-inner-content">
-        <div class="title">ルーム詳細情報</div>
-          <div class="contents"><%= @room.describe %></div>
-      </div>
-      <div class="modal-inner-content">
-        <div class="title">メンバー</div>
-          <div class="contents"></div>
-      </div>
-    </div>
-  </div>
-  <div class="background-shadow" id="js-black-sh"></div>
-</div>
+<%= render "room_info", room: @room %>
 
 <div class="room-header-list">
   <div class="room-header">
-    <div class="room_header_left">
+    <div class="room_header_left" id="js-show-modal-detail">
       <%= link_to "/room/joined" do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
-      <div class="room_title"><%= @room.name %></div>
+        <div class="room_title"><%= @room.name %>
+          <div class="room_datail_button"><i  class="fa-solid fa-caret-down"></i></div>
+        </div>
     </div>
-    <div class="room_header_right">
-      <i id="js-show-modal-detail" class="fa-solid fa-caret-down"></i>
-    </div>
-    <%= link_to "ルームから退室する", room_leave_path(@room.id), data: {turbo_method: :delete} %>
   </div>
 <div id="message-notice"></div>
 </div>
@@ -45,16 +17,8 @@
 
 <div class="room-content">
 <div id="data" data-room-id="<%= @room.id %>" data-user-id="<%= @current_user.id %>"></div>
-<%= render "messages", messages: @messages, members: @members_hash %>
-<% @members.each do |member| %>
-  <div id="user-data" user-data-id="<%= member.id %>"></div>
-  <%= member.name %>
-  <% @status = member.status ? "online":nil %>
-  <span class="user-status <%= @status %> user-<%= member.id %>-status">
-    ・
-  </span>
-<% end %>
 
+<%= render "messages", messages: @messages %>
 
 <div id="dummy-margin" class="dummy-margin"></div>
 

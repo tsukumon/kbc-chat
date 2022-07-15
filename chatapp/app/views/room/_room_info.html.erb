@@ -1,0 +1,69 @@
+<div class="modal-detail" id="js-modal-detail">
+  <div class="modal-detail-inner">
+    <div class="detail-header">
+      <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+    </div>
+    <div class="detail-body">
+      <div class="tab_container">
+          <input id="tab1" type="radio" name="tab_item" checked>
+          <label class="tab_item" for="tab1">ルーム情報</label>
+          <input id="tab2" type="radio" name="tab_item">
+          <label class="tab_item" for="tab2">メンバー</label>
+          <input id="tab3" type="radio" name="tab_item">
+          <label class="tab_item" for="tab3">設定</label>
+        <div class="unkounkounko"></div>
+        <div class="tab_content" id="tab1_content">
+          <div class="tab_content_description">
+            <div class="modal-inner-content">
+              <div class="title">ルーム名</div>
+              <div class="contents"><%= room.name %></div>
+            </div>
+            <div class="modal-inner-content">
+              <div class="title">カテゴリ</div>
+              <div class="contents"><%= room.category %></div>
+            </div>
+            <div class="modal-inner-content">
+              <div class="title">ルーム詳細情報</div>
+              <div class="contents"><%= room.describe %></div>
+            </div>
+          </div>
+        </div>
+        <div class="tab_content" id="tab2_content">
+          <div class="tab_content_description">
+              <div class="contents">
+                <% @members.each do |member| %>
+                  <div id="user-data" user-data-id="<%= member.id %>"></div>
+                  <div class="room-user-list">
+                    <img src="<%= member.image %>" class="icon">
+                    <div class="info">
+                      <div class="info-top">
+                        <div class="name">
+                          <%= member.name %>
+                          <% status = member.status ? "online":nil %>
+                        </div>
+                        <span class="user-status <%= status %> user-<%= member.id %>-status">
+                          ●
+                        </span>
+                      </div>
+                      <div class="role">管理者</div>
+                    </div>
+                  </div>
+                  <% end %>
+              </div>
+            </div>
+        </div>
+        <div class="tab_content" id="tab3_content">
+          <div class="tab_content_description">
+            <div class="modal-room-back">
+              <div class="room-back-contents"> 
+                <%= link_to "ルームから退室する", room_leave_path(room.id), 
+                    data: {turbo_method: :delete} %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- tab container end -->
+    </div>
+  </div>
+  <div class="background-shadow" id="js-black-sh"></div>
+</div>
