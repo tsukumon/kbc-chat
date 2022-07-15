@@ -33,11 +33,10 @@
               <div class="title">メンバー</div>
               <div class="contents">
                 <% @members.each do |member| %>
-                  <% @joiner = User.find_by(id: member.user_id) %>
-                  <div id="user-data" user-data-id="<%= @joiner.id %>"></div>
-                  <%= @joiner.name %>
-                  <% @status = @joiner.status ? "online":nil %>
-                  <span class="user-status <%= @status %> user-<%= @joiner.id %>-status">
+                  <div id="user-data" user-data-id="<%= member.id %>"></div>
+                  <%= member.name %>
+                  <% status = member.status ? "online":nil %>
+                  <span class="user-status <%= status %> user-<%= member.id %>-status">
                     ・
                   </span>
                 <% end %>
