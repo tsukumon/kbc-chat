@@ -9,6 +9,7 @@ window.Stimulus   = application
 export { application }
 
 document.addEventListener("turbo:load", () => {
+  Turbo.clearCache();
   var modal = document.getElementById('demo-modal');
   var btn = document.getElementById('open-modal');
   var close = modal.getElementsByClassName('close')[0];
