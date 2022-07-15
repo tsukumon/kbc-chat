@@ -1,0 +1,68 @@
+<div id="demo-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class='close'><i class="fa-solid fa-circle-xmark"></i></span>
+            <h2>新規作成</h2>
+        </div>
+        <div class="modal-body">
+            <div class="create-from">
+            <%= form_with url: create_room_path, model: @new_room, local: true do |f| %>
+                <%= render "error_messages", model: @new_room %>
+                <%= f.label :category %>
+                <%= f.text_field :category, required: true %>
+                人気カテゴリー  
+                <div class="category">
+                <% @categories.each_with_index do |category, i| %>
+                    <div id="category-name-<%= i %>"><%= category[0] %></div>
+                    <div class="category-count">(<%= category[1] %>)</div>
+                <% end %>
+                </div>
+                <%= f.label :name %>
+                <%= f.text_field :name, required: true %>
+                <%= f.label :image %><br>
+                <%= f.file_field :image %><br>
+                <%= f.label :describe %>
+                <%= f.text_area :describe %>
+                <%= f.submit "登録する" %>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  document.addEventListener("turbo:load", () => {
+    function ChangeValue(e) {
+      room_category.value = "未分類";
+      room_category.value = e.target.textContent;
+    }
+  <% @categories.each_with_index do |category, i| %>
+    document.getElementById("category-name-" + <%= i %>).addEventListener('click', ChangeValue, false)
+  <% end %>
+  });
+</script>
+
+<script type="text/javascript">
+document.addEventListener("turbo:load", () => {
+  $(function() {
+      const dataList = function(request, response) {
+        $.ajax({
+          url: '/room_auto/' + request.term,
+          dataType: 'json',
+          type: 'GET',
+          cache: true,
+          success: function(data) {
+            response(data);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            response(['']);
+          }
+        });
+      }
+      $("#room_category").autocomplete({
+        source: dataList,
+        autoFocus: true
+      });
+  });
+});
+</script>

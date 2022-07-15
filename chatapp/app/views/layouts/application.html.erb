@@ -77,22 +77,7 @@
 
           <div class="menu-one" id="open-modal" name="open-modal-btn"><i class="fa-solid fa-plus"></i> ルームを作成</div>
 
-            <div id="demo-modal" class="modal">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <span class='close'><i class="fa-solid fa-circle-xmark"></i></span>
-                  <h2>新規作成</h2>
-                </div>
-                <div class="modal-body">
-                    カテゴリ<div class="create-from"><input type="text"></div>
-                    ルーム名<div class="create-from"><input type="text"></div>
-                    ルームアイコン<div class="create-from"><input type="file"></div>
-                    ルーム詳細情報<div class="create-from">
-                    <textarea class="modal-textarea"></textarea></div>
-                    <input type="submit">
-                </div>
-              </div>
-            </div>
+        <%= render "room/new_room" %>
 
           <%= link_to setting_path, class: "menu-one" do %><i class="fa-solid fa-gear"></i> 設定<% end %>
         </div>
