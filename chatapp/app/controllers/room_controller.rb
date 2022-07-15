@@ -7,9 +7,9 @@ class RoomController < ApplicationController
   before_action :authenticate_room, only: [:page, :create_message]
   
   def index
-    @search = Room.ransack(params[:q])
-    @results = @search.result.order(created_at: :DESC)
-    @room = Room.all.order(created_at: :DESC).limit(5)
+    @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id) #UserRoomテーブルのcurrent_userが参加してるroomのroom_idカラムだけ取る
+    @room_all = Room.where.not(id: @rooms)
+    @room_latest = @room_all.order(created_at: :DESC).limit(5)
   end
 
   def join
