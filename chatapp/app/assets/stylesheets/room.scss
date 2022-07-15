@@ -427,7 +427,7 @@
           font-weight: bold;
           cursor: pointer;
           cursor: hand;
-          margin-bottom: -3px;
+          margin-bottom: -2px;
         }
         .tab_item:hover {
           opacity: 0.75;
@@ -436,11 +436,11 @@
           display: none;
         }
         input:checked + .tab_item {
-          border-bottom: 3px solid #10bc8a;
+          border-bottom: 2px solid #10bc8a;
           color: #10bc8a;
         }
       .tab_content {
-        border-top: 3px solid #eaeaea;
+        border-top: 2px solid #eaeaea;
         display: none;
         padding: 10px;
         clear: both;
