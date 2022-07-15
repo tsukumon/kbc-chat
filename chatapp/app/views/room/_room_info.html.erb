@@ -52,7 +52,6 @@
               <div class="contents"><%= room.describe %></div>
             </div>
             <div class="modal-inner-content">
-              <div class="title">設定</div>
               <div class="contents"> 
                 <%= link_to "ルームから退室する", room_leave_path(room.id), 
                     data: {turbo_method: :delete} %>
