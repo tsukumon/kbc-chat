@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     else
       render(
         turbo_stream: turbo_stream.update(
-          "errors",
+          "form-errors",
           partial: "room/error_messages",
           locals: {
             model: @new_room
