@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
       redirect_to "/room/#{@new_room.id}"
     else
       render(
-        turbo_stream: turbo_stream.replace(
+        turbo_stream: turbo_stream.update(
           "errors",
           partial: "room/error_messages",
           locals: {
