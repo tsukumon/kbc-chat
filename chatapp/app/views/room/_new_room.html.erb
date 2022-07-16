@@ -6,10 +6,10 @@
         </div>
         <div class="modal-body">
             <div class="create-from">
-            <%= form_with url: create_room_path, model: @new_room, local: true do |f| %>
-                <%= render "error_messages", model: @new_room %>
+            <%= form_with url: create_room_path, model: @new_room, data: { turbo_frame: "_top" } do |f| %>
+                <div id="errors"></div>
                 <%= f.label :category %>
-                <%= f.text_field :category, required: true %>
+                <%= f.text_field :category %>
                 人気カテゴリー  
                 <div class="category">
                 <% @categories.each_with_index do |category, i| %>
@@ -18,7 +18,7 @@
                 <% end %>
                 </div>
                 <%= f.label :name %>
-                <%= f.text_field :name, required: true %>
+                <%= f.text_field :name %>
                 <%= f.label :image %><br>
                 <%= f.file_field :image %><br>
                 <%= f.label :describe %>

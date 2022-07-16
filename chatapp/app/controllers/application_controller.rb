@@ -31,7 +31,15 @@ class ApplicationController < ActionController::Base
     if @new_room.save
       redirect_to "/room/#{@new_room.id}"
     else
-      render "room/new_room", status: :unprocessable_entity
+      render(
+        turbo_stream: turbo_stream.replace(
+          "errors",
+          partial: "room/error_messages",
+          locals: {
+            model: @new_room
+          }
+        )
+      )
     end
   end
 
