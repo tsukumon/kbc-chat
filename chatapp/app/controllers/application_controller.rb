@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :set_current_user
+  before_action :set_current_user, :new_room
 
   def set_current_user
     @current_user = User.find_by(id: session[:user_id])
@@ -16,4 +16,37 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def new_room
+    @new_room = Room.new
+    @categories = Room.group(:category).select("category, count(category) as category_count").order("category_count desc").limit(5).map { |m| [m.category, m.category_count] }.to_h
+  end
+
+  def create_room
+    @new_room = Room.new(room_params)
+    @categories = Room.group(:category).select("category, count(category) as category_count").order("category_count desc").limit(10).map { |m| [m.category, m.category_count] }.to_h
+    now_user = User.find_by(id: @current_user.id)
+    @new_room.user << now_user
+
+    if @new_room.save
+      redirect_to "/room/#{@new_room.id}"
+    else
+      render(
+        turbo_stream: turbo_stream.update(
+          "errors-create-room",
+          partial: "room/error_messages",
+          locals: {
+            model: @new_room
+          }
+        )
+      )
+    end
+  end
+
+  private
+
+  def room_params
+    params.require(:room).permit(:name, :describe, :image, :category)
+  end
+
 end

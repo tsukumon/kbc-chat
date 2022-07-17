@@ -1,6 +1,6 @@
 <% if model.errors.any? %>
-  <%= pluralize(model.errors.count, "件のエラー") %>
+  <p><%= pluralize(model.errors.count, "件のエラー") %></p>
   <% model.errors.each do |error| %>
-    <%= error.full_message %>
+    <p><%= error.full_message %><p>
   <% end %>
 <% end %>

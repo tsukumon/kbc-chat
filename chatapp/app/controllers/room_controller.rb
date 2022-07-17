@@ -32,7 +32,6 @@ class RoomController < ApplicationController
     end
   end
 
-
   def joined
     @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id) #UserRoomテーブルのcurrent_userが参加してるroomのroom_idカラムだけ取る
     @room_info = Room.where(id: @rooms).includes(:message).order(updated_at: :DESC)
@@ -43,27 +42,9 @@ class RoomController < ApplicationController
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
 
-    @members_id = UserRoom.where(room_id: params[:id]).pluck(:user_id)
-    @members = User.where(id: @members_id)
+    members_id = UserRoom.where(room_id: params[:id]).pluck(:user_id)
+    @members = User.where(id: members_id)
     @members_hash = @members.map{ |user| [user.id, user.attributes]}.to_h
-  end
-
-  def new_room
-    @room = Room.new
-    @categories = Room.group(:category).select("category, count(category) as category_count").order("category_count desc").limit(10).map { |m| [m.category, m.category_count] }.to_h
-  end
-
-  def create_room
-    @room = Room.new(room_params)
-    @categories = Room.group(:category).select("category, count(category) as category_count").order("category_count desc").limit(10).map { |m| [m.category, m.category_count] }.to_h
-    now_user = User.find_by(id: @current_user.id)
-    @room.user << now_user
-
-    if @room.save
-      redirect_to "/room/#{@room.id}", notice: t("messages.create.notice")
-    else
-      render "room/new_room", status: :unprocessable_entity, alert: t("messages.create.alert")
-    end
   end
 
   def edit_room
@@ -139,10 +120,6 @@ class RoomController < ApplicationController
     elsif params[:name]
       params.permit(:name)
     end
-  end
-
-  def room_params
-    params.require(:room).permit(:name, :describe, :image, :category)
   end
 
   def message_params

@@ -157,10 +157,15 @@ body{
     input[type="file"] {
       margin-bottom: 6px;
     }
-    .modal-textarea{
-      width: 100%;
+    textarea{
+      width: 99%;
+      height: 30px;
+      margin-bottom: 4px;
     }
-    .input[type="submit"]{
+    input[type="submit"]{
+    }
+    .category{
+        display: flex;
     }
   }
 }
