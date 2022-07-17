@@ -42,7 +42,7 @@ class RoomController < ApplicationController
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
 
-    members_id = UserRoom.where(room_id: params[:id]).pluck(:user_id)
+    members_id = Message.where(room_id: params[:id]).pluck(:user_id)
     @members = User.where(id: members_id)
     @members_hash = @members.map{ |user| [user.id, user.attributes]}.to_h
   end
