@@ -31,24 +31,24 @@
         <div class="tab_content" id="tab2_content">
           <div class="tab_content_description">
               <div class="contents">
-                <% @members.each do |member| %>
-                  <div id="user-data" user-data-id="<%= member.id %>"></div>
-                  <div class="room-user-list">
-                    <img src="<%= member.image %>" class="icon">
-                    <div class="info">
-                      <div class="info-top">
-                        <div class="name">
-                          <%= member.name %>
-                          <% status = member.status ? "online":nil %>
+                <% @info_members.each do |member| %>
+                    <div id="user-data" user-data-id="<%= member.id %>"></div>
+                    <div class="room-user-list">
+                      <img src="<%= member.image %>" class="icon">
+                      <div class="info">
+                        <div class="info-top">
+                          <div class="name">
+                            <%= member.name %>
+                            <% status = member.status ? "online":nil %>
+                          </div>
+                          <span class="user-status <%= status %> user-<%= member.id %>-status">
+                            ●
+                          </span>
                         </div>
-                        <span class="user-status <%= status %> user-<%= member.id %>-status">
-                          ●
-                        </span>
+                        <div class="role">管理者</div>
                       </div>
-                      <div class="role">管理者</div>
                     </div>
-                  </div>
-                  <% end %>
+                <% end %>
               </div>
             </div>
         </div>

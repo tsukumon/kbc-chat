@@ -41,10 +41,16 @@ class RoomController < ApplicationController
     @room = Room.find_by(id: params[:id])
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
+    
+    #modal room member list
+    info_members_id = UserRoom.where(room_id: params[:id]).pluck(:user_id)
+    @info_members = User.where(id: info_members_id)
+    @info_members_hash = @info_members.map{ |user| [user.id, user.attributes]}.to_h
 
-    members_id = UserRoom.where(room_id: params[:id]).pluck(:user_id)
+    #messages
+    members_id = Message.where(room_id: params[:id]).pluck(:user_id)
     @members = User.where(id: members_id)
-    @members_hash = @members.map{ |user| [user.id, user.attributes]}.to_h
+    @members_hash = @members.map{ |member| [member.id, member.attributes]}.to_h  
   end
 
   def edit_room
