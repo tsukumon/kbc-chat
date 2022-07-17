@@ -31,8 +31,7 @@
         <div class="tab_content" id="tab2_content">
           <div class="tab_content_description">
               <div class="contents">
-                <% @members.each do |member| %>
-                  <% if UserRoom.find_by(room_id: params[:id], user_id: member.id) %>
+                <% @info_members.each do |member| %>
                     <div id="user-data" user-data-id="<%= member.id %>"></div>
                     <div class="room-user-list">
                       <img src="<%= member.image %>" class="icon">
@@ -49,7 +48,6 @@
                         <div class="role">管理者</div>
                       </div>
                     </div>
-                  <% end %>
                 <% end %>
               </div>
             </div>
