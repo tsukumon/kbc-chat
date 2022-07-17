@@ -11,10 +11,17 @@
     <% messages.reverse_each do |message| %>
       <div id="message-<%= message.id%>" class="message-one">
         <% user = @members_hash[message.user_id] %>
-        <div class="message-left"><img src=<%= user["image"] %>></div>
-        <div class="message-right">
-          <div class="message-user-info">
-            <div class="message-username"><%= user["name"] %></div>
+        <% unless user == nil %>
+          <div class="message-left"><img src=<%= user["image"] %>></div>
+          <div class="message-right">
+            <div class="message-user-info">
+              <div class="message-username"><%= user["name"] %></div>
+        <% else %>
+          <div class="message-left"><img src="http://www.haruzou.com/wp-content/uploads/illust-54.png"></div>
+          <div class="message-right">
+            <div class="message-user-info">
+              <div class="message-username">退室済みのユーザー</div>
+        <% end %>
             <div id="message-time">
               <%= date_format(message.created_at) %>
             </div>
