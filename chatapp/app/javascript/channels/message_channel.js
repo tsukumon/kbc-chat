@@ -36,6 +36,8 @@ document.addEventListener("turbo:load", () => {
           );
           const mostBottom = allHeight - window.innerHeight;
           const scrollTop = window.pageYOffset + 0.5;
+          const scrollHeight = $(document).height();
+          const scrollPosition = $(window).height() + $(window).scrollTop();
     
         if (data.mode == "create") {
           const html = `
@@ -82,11 +84,14 @@ document.addEventListener("turbo:load", () => {
           console.log("scrolltop" + scrollTop);
           console.log("most" + mostBottom);
           console.log("scroll" + document.body.scrollHeight);
-          //if (scrollTop >= mostBottom && data.content.user_id == user_id) {
+          var button = document.getElementById('message-notice');
           if (data.content.user_id == user_id) {
             window.scroll(0, document.body.scrollHeight);
-          }else{
+          }else if((scrollHeight - scrollPosition) / scrollHeight >= 0.08){
             document.getElementById('message-notice').textContent = "未読のメッセージがあります";
+            button.onclick = function() {
+              window.scrollTo(0, document.body.scrollHeight);
+            }
           }
           $("#message-submit").disabled = true;
           $('.message-submit').css('opacity', '0.2');
