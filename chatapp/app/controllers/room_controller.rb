@@ -110,7 +110,6 @@ class RoomController < ApplicationController
     @room = Room.all.order(created_at: :DESC).limit(5)
     @search = Room.ransack(params[:q])
     @results = @search.result
-    category_select
   end
 
   def search_joined
@@ -132,10 +131,6 @@ class RoomController < ApplicationController
     sentence = params.require(:message).permit(:sentence)
     ids = { "room_id" => params[:id], "user_id" => @current_user.id }
     return sentence.merge(ids)
-  end
-
-  def category_select
-    @category_sel = Room.group(:category).order(count_all: :DESC).count
   end
 
 end
