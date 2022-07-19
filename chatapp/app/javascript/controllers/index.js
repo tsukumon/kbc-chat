@@ -19,9 +19,7 @@ document.addEventListener("turbo:load", () => {
 document.addEventListener("turbo:load", () => {
   Turbo.clearCache();
   const detail_button = document.getElementById("room-title-bar")
-  console.log(detail_button)
   detail_button.addEventListener("click", function(){
-
     function popupImage() {
       var popup = document.getElementById('js-modal-detail');
       if(!popup) return;
