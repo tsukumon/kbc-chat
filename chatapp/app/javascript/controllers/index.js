@@ -17,24 +17,29 @@ document.addEventListener("turbo:load", () => {
 });
 
 document.addEventListener("turbo:load", () => {
-  function popupImage() {
-    Turbo.clearCache();
-    var popup = document.getElementById('js-modal-detail');
-    if(!popup) return;
+  Turbo.clearCache();
+  const detail_button = document.getElementById("room-title-bar")
+  console.log(detail_button)
+  detail_button.addEventListener("click", function(){
 
-    var blackBg = document.getElementById('js-black-sh');
-    var closeBtn = document.getElementById('js-close-btn');
-    var showBtn = document.getElementById('js-show-modal-detail');
+    function popupImage() {
+      var popup = document.getElementById('js-modal-detail');
+      if(!popup) return;
 
-    closePopUp(blackBg);
-    closePopUp(closeBtn);
-    closePopUp(showBtn);
-    function closePopUp(elem) {
-      if(!elem) return;
-      elem.addEventListener('click', function() {
-        popup.classList.toggle('is-show');
-      });
+      var blackBg = document.getElementById('js-black-sh');
+      var closeBtn = document.getElementById('js-close-btn');
+      var showBtn = document.getElementById('js-show-modal-detail');
+
+      closePopUp(blackBg);
+      closePopUp(closeBtn);
+      closePopUp(showBtn);
+      function closePopUp(elem) {
+        if(!elem) return;
+        elem.addEventListener('click', function() {
+          popup.classList.toggle('is-show');
+        });
+      }
     }
-  }
-  popupImage();
+    popupImage();
+  })
 });
