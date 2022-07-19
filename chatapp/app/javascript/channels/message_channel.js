@@ -87,7 +87,7 @@ document.addEventListener("turbo:load", () => {
           var button = document.getElementById('message-notice');
           if (data.content.user_id == user_id) {
             window.scroll(0, document.body.scrollHeight);
-          }else if((scrollHeight - scrollPosition) / scrollHeight >= 0.08){
+          }else if((scrollHeight - scrollPosition) / scrollHeight >= 0.05){
             document.getElementById('message-notice').textContent = "未読のメッセージがあります";
             button.onclick = function() {
               window.scrollTo(0, document.body.scrollHeight);
