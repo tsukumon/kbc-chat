@@ -1,7 +1,5 @@
 <div class="search-area">
   <%= search_form_for @search, url: room_search_path do |f| %>
-    <%= f.label :category_eq, 'カテゴリー', class: 'label' %>
-    <%= f.collection_select :category_eq, @category_sel, :first, :first, include_blank: '指定なし', class: 'search-select' %>
     <%= f.search_field :name_cont, placeholder: "キーワードを入力してルームを検索", required: true %>
     <% f.submit '検索' %>
   <% end %>
