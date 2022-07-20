@@ -1,19 +1,34 @@
 <div class="rooms">
   <% @rooms.each do |room| %>
-    <% category = @rooms_hash[room.id] %>
-    <%= link_to room_page_path(room.id) do %>
-        <div class="room"> 
-            <div class="room-image">
-              <% if category["image"] != nil %>
-                <img src = "<%= category["image"] %>" class="room-image">
-              <% else %>
-                <img src = "/room_image/default.png" class="room-image">
-              <% end %>
-            </div>
-            <%= category["name"] %>
-            <%= date_format(category["created_at"])%>
-            <%= category["category"] %>
-        </div>
+    <% if @rooms_hash[room.id] == @rooms_joined_hash[room.id] %>
+      <%= link_to room_page_path(room.id) do %>
+          <div class="room"> 
+              <div class="room-image">
+                <% if room.image != nil %>
+                  <img src = "<%= room.image %>" class="room-image">
+                <% else %>
+                  <img src = "/room_image/default.png" class="room-image">
+                <% end %>
+              </div>
+              <%= room.name %>
+              <%= date_format(room.created_at)%>
+              <%= room.category %>
+          </div>
+      <% end %>
+    <% else %>
+          <div class="room"> 
+              <div class="room-image">
+                <% if room.image != nil %>
+                  <img src = "<%= room.image %>" class="room-image">
+                <% else %>
+                  <img src = "/room_image/default.png" class="room-image">
+                <% end %>
+              </div>
+              <%= room.name %>
+              <%= date_format(room.created_at)%>
+              <%= link_to "参加", room_join_path(room.id) %>
+              <%= room.category %>
+          </div>
     <% end %>
   <% end %>
 </div>
