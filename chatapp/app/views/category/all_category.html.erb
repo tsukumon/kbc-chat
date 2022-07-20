@@ -1,7 +1,6 @@
 <div class="rooms">
-  <% @rooms.each do |room| %>
-    <% category = @rooms_hash[room.id] %>
-    <%= link_to room_page_path(room.id) do %>
+  <% @rooms_all.each do |room| %>
+    <% category = @rooms_all_hash[room.id] %>
         <div class="room"> 
             <div class="room-image">
               <% if category["image"] != nil %>
@@ -12,8 +11,9 @@
             </div>
             <%= category["name"] %>
             <%= date_format(category["created_at"])%>
+            <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
             <%= category["category"] %>
         </div>
-    <% end %>
   <% end %>
 </div>
+<%= link_to "戻る", "/room" %>
