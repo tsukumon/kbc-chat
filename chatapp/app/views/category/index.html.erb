@@ -1,4 +1,7 @@
 <div class="rooms">
+  <div class="content-column">
+    <div class="title">カテゴリ別ルーム一覧</div>
+  </div>
   <% @rooms.each do |room| %>
         <div class="room"> 
             <div class="room-image">
@@ -13,6 +16,11 @@
             <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
             <%= room.category %>
         </div>
+  <% end %>
+  <% if @rooms_joined.length > 0 %>
+    <div class="content-column">
+    <div class="title">参加中のルーム</div>
+    </div>
   <% end %>
   <% @rooms_joined.each do |room| %>
       <%= link_to room_page_path(room.id) do %>
