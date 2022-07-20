@@ -15,6 +15,7 @@
             <%= room.name %>
             <%= date_format(room.created_at)%>
             <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
+            <%= room.category %>
         </div>
   <% end %>
 </div>
@@ -36,6 +37,7 @@
             <%= room.name %>
             <%= date_format(room.created_at)%>
             <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
+            <%= room.category %>
         </div>
   <% end %>
 </div>
