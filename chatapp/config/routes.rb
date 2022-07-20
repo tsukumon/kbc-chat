@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get "/signin" => "sessions#new", as: :new_session
   post "/signout" => "sessions#destroy", as: :destroy_session
 
-  get 'category/:id' => "category#index", as: :category
+  get 'category/:category' => "category#index", as: :category
 
   get "/setting" => "settings#index", as: :setting
 end
