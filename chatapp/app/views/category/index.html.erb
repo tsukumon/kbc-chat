@@ -1,0 +1,34 @@
+<div class="rooms">
+  <% @rooms.each do |room| %>
+        <div class="room"> 
+            <div class="room-image">
+              <% if room.image != nil %>
+                <img src = "<%= room.image %>" class="room-image">
+              <% else %>
+                <img src = "/room_image/default.png" class="room-image">
+              <% end %>
+            </div>
+            <%= room.name %>
+            <%= date_format(room.created_at)%>
+            <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
+            <%= room.category %>
+        </div>
+  <% end %>
+  <% @rooms_joined.each do |room| %>
+      <%= link_to room_page_path(room.id) do %>
+          <div class="room"> 
+              <div class="room-image">
+                <% if room.image != nil %>
+                  <img src = "<%= room.image %>" class="room-image">
+                <% else %>
+                  <img src = "/room_image/default.png" class="room-image">
+                <% end %>
+              </div>
+              <%= room.name %>
+              <%= date_format(room.created_at)%>
+              <%= room.category %>
+          </div>
+      <% end %>
+  <% end %>
+</div>
+<%= link_to "戻る", "/room" %>

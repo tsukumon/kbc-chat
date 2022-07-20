@@ -3,7 +3,7 @@
 </div>
 <div class="rooms">
   <% @room_info.each do |room| %>
-    <%= link_to room.category, joined_category_path(CGI.escape(room.category)) %>
+    <%= link_to room.category, category_path(CGI.escape(room.category)) %>
     <%= link_to room_page_path(room.id) do %>
       <div class="room"> 
           <div class="room-image">
