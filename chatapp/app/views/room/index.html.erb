@@ -6,7 +6,7 @@
   <% @room_latest.each do |room| %>
         <div class="room"> 
             <div class="room-image">
-              <% if room.image.length > 0 %>
+              <% if room.image.length > 0 || room.image != nil %>
                 <img src = "<%= room.image %>" class="room-image">
               <% else %>
                 <img src = "/room_image/default.png" class="room-image">
@@ -28,7 +28,7 @@
   <% @room_all.each do |room| %>
         <div class="room"> 
             <div class="room-image">
-              <% if room.image.length > 0 %>
+              <% if room.image.length > 0 || room.image != nil %>
                 <img src = "<%= room.image %>" class="room-image">
               <% else %>
                 <img src = "/room_image/default.png" class="room-image">

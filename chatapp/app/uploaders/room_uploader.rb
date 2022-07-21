@@ -27,7 +27,7 @@ class RoomUploader < CarrierWave::Uploader::Base
   end
   
   def default_url
-    "/default.png"
+    "/room_image/default.png"
   end
 
   def size_range
