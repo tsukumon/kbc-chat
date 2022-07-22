@@ -3,10 +3,11 @@
 </div>
 <div class="rooms">
   <% @room_info.each do |room| %>
+    <%= link_to room.category, category_path(CGI.escape(room.category)) %>
     <%= link_to room_page_path(room.id) do %>
       <div class="room"> 
           <div class="room-image">
-          <% if room.image.length > 0 %>
+          <% if room.image.length > 0 || room.image != nil %>
               <img src = "<%= room.image %>" class="room-image">
           <% else %>
               <img src = "/room_image/default.png" class="room-image">

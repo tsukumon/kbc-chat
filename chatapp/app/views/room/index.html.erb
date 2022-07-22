@@ -6,7 +6,7 @@
   <% @room_latest.each do |room| %>
         <div class="room"> 
             <div class="room-image">
-              <% if room.image.length > 0 %>
+              <% if room.image.length > 0 || room.image != nil %>
                 <img src = "<%= room.image %>" class="room-image">
               <% else %>
                 <img src = "/room_image/default.png" class="room-image">
@@ -15,6 +15,7 @@
             <%= room.name %>
             <%= date_format(room.created_at)%>
             <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
+            <%= link_to room.category, category_path(CGI.escape(room.category)) %>
         </div>
   <% end %>
 </div>
@@ -27,7 +28,7 @@
   <% @room_all.each do |room| %>
         <div class="room"> 
             <div class="room-image">
-              <% if room.image.length > 0 %>
+              <% if room.image.length > 0 || room.image != nil %>
                 <img src = "<%= room.image %>" class="room-image">
               <% else %>
                 <img src = "/room_image/default.png" class="room-image">
@@ -36,6 +37,7 @@
             <%= room.name %>
             <%= date_format(room.created_at)%>
             <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
+            <%= link_to room.category, category_path(CGI.escape(room.category)) %>
         </div>
   <% end %>
 </div>

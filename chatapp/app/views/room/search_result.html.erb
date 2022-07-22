@@ -4,7 +4,7 @@
     <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) # not joined rooms %>
         <div class="room"> 
             <div class="room-image">
-              <% if room.image.length > 0 %>
+              <% if room.image.length > 0 || room.image != nil %>
                 <img src = "<%= room.image %>" class="room-image">
               <% else %>
                 <img src = "/room_image/default.png" class="room-image">
@@ -19,7 +19,7 @@
         <%= link_to room_page_path(room.id) do %>
             <div class="room"> 
                 <div class="room-image">
-                <% if room.image.length > 0 %>
+                <% if room.image.length > 0 || room.image != nil %>
                     <img src = "<%= room.image %>" class="room-image">
                 <% else %>
                     <img src = "/room_image/default.png" class="room-image">
