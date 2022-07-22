@@ -1,5 +1,9 @@
 <div class="content-column">
-  <div class="title">参加中のルーム</div>
+  <% if @room_info.length > 0 %>
+    <div class="title">参加中のルーム</div>
+  <% else %>
+    <div class="title">参加中のルームはありません</div>
+  <% end %>
 </div>
 <div class="rooms">
   <% @room_info.each do |room| %>
