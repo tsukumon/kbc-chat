@@ -1,6 +1,6 @@
 <div class="rooms">
   <div class="content-column">
-    <div class="title">カテゴリ別ルーム一覧</div>
+    <div class="title">カテゴリ別ルーム一覧（<%= CGI.unescape(params[:category]) %>）</div>
   </div>
   <% @rooms.each do |room| %>
     <div class="room"> 
@@ -14,7 +14,6 @@
       <%= room.name %>
       <%= date_format(room.created_at)%>
       <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
-      <%= room.category %>
     </div>
   <% end %>
   <% if @rooms_joined.length > 0 || @room_joined != nil %>
@@ -34,7 +33,6 @@
         </div>
         <%= room.name %>
         <%= date_format(room.created_at) %>
-        <%= room.category %>
       </div>
     <% end %>
   <% end %>
