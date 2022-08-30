@@ -1,11 +1,12 @@
 <div class="infinite-scroll">
   <div class="cv-spinner hide">
-      <span class="spinner"></span>
+    <span class="spinner"></span>
   </div>
   <div class="more-messages hide">
     <input type="button" id="more-messages">
   </div>
 </div>
+
 <div id="messages" class="message-all">
   <% if messages != nil %>
     <% messages.reverse_each do |message| %>
@@ -17,26 +18,28 @@
             <div class="message-user-info">
               <div class="message-username"><%= user["name"] %></div>
         <% else %>
-          <div class="message-left"><img src="http://www.haruzou.com/wp-content/uploads/illust-54.png"></div>
+          <div class="message-left">
+            <img src="http://www.haruzou.com/wp-content/uploads/illust-54.png">
+          </div>
           <div class="message-right">
             <div class="message-user-info">
               <div class="message-username">退室済みのユーザー</div>
         <% end %>
-            <div id="message-time">
-              <%= date_format(message.created_at) %>
-            </div>
-            <% if @current_user.id == message.user_id %>
-              <div id="message-delete">
-                <%= link_to "削除", destroy_message_path(message.id), data: {turbo_method: :delete} %>
-              </div>
-            <% end %>
-          </div>
-          <p><%= markdown(message.sentence) %></p>
+        <div id="message-time">
+          <%= date_format(message.created_at) %>
         </div>
+        <% if @current_user.id == message.user_id %>
+          <div id="message-delete">
+            <%= link_to "削除", destroy_message_path(message.id), data: {turbo_method: :delete} %>
+          </div>
+        <% end %>
+            </div>
+              <p><%= markdown(message.sentence) %></p>
+          </div>
       </div>
     <% end %>
   <% end %>
   <div class="message_view">
-  <%= paginate messages %>
+    <%= paginate messages %>
   </div>
 </div>
