@@ -452,6 +452,28 @@
         clear: both;
         overflow-y: scroll;
         height: 320px;
+
+        .edit_room_function{
+          flex-flow: column;
+          input[type="text"]{
+            width: 99%;
+            height: 30px;
+            margin-bottom: 4px;
+          }
+          input[type="file"] {
+            margin-bottom: 6px;
+          }
+          textarea{
+            width: 99%;
+            height: 30px;
+            margin-bottom: 4px;
+          }
+          input[type="submit"]{
+          }
+          .category{
+              display: flex;
+          }
+        }
       }
       .tab_content::-webkit-scrollbar {
           width: 6px;
