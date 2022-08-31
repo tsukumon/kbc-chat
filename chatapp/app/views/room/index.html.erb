@@ -4,7 +4,8 @@
 
 <div class="rooms">
   <% @room_latest.each do |room| %>
-        <%= link_to room.category, category_path(CGI.escape(room.category), category_name: room.category) %>
+        <%= link_to room.category, category_path(CGI.escape(room.category), 
+            category_name: room.category) %>
         <div class="room"> 
             <div class="room-image">
               <% if room.image.length > 0 || room.image != nil %>
