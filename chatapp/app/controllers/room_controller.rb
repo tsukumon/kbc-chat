@@ -63,6 +63,16 @@ class RoomController < ApplicationController
 
     if @room.save
       redirect_to "/room/#{@room.id}"
+    else
+      render(
+        turbo_stream: turbo_stream.update(
+          "errors-update-room",
+          partial: "room/error_messages",
+          locals: {
+            model: @room
+          }
+        )
+      )
     end
   end
 
@@ -133,4 +143,7 @@ class RoomController < ApplicationController
     return sentence.merge(ids)
   end
 
+  def room_params
+    params.require(:room).permit(:name, :describe, :image, :category)
+  end
 end
