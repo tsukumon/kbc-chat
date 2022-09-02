@@ -28,7 +28,8 @@
       <div id="dummy-textarea" class="dummy-textarea" aria-hidden="true"></div>
       <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する" %>
     </div>
-    <input type="submit" name="commit" value="" id="message-submit" class="message-submit">
+    <%= f.submit "", id: "message-submit", class: "message-submit" %>
+    <%# <input type="submit" name="commit" value="" id="message-submit" class="message-submit"> %>
     <p id="helper-text" style="color: red;"></p>
   </div>
 <% end %>
