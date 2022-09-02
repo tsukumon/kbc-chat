@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_30_023345) do
+ActiveRecord::Schema.define(version: 2022_09_02_022701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2022_08_30_023345) do
     t.text "image"
     t.string "category", default: "未分類"
     t.integer "admin"
+    t.boolean "private", default: false, null: false
   end
 
   create_table "user_rooms", force: :cascade do |t|
