@@ -4,43 +4,25 @@
 
 <div class="rooms">
   <% @room_latest.each do |room| %>
-        <%= link_to room.category, category_path(CGI.escape(room.category)) %>
         <div class="room"> 
-            <div class="room-image">
-              <% if room.image.length > 0 || room.image != nil %>
-                <img src = "<%= room.image %>" class="room-image">
-              <% else %>
-                <img src = "/room_image/default.png" class="room-image">
-              <% end %>
+            <div class="room-bg-image"><img src="background.png"></div>
+            <div class="room-titles">
+              <div class="room-image">
+                <% if room.image.length > 0 || room.image != nil %>
+                  <img src = "<%= room.image %>" class="room-image">
+                <% else %>
+                  <img src = "/room_image/default.png" class="room-image">
+                <% end %>
+              </div>
+              <%= link_to room.category, category_path(CGI.escape(room.category)) %>
+              <%= room.name %>
+              <%= date_format(room.created_at)%>
+              <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
             </div>
-            <%= room.name %>
-            <%= date_format(room.created_at)%>
-            <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
         </div>
   <% end %>
 </div>
 
-<div class="content-column">
-  <div class="title">ルーム一覧</div>
-</div>
-
-<div class="rooms">
-  <% @room_all.each do |room| %>
-        <%= link_to room.category, category_path(CGI.escape(room.category)) %>
-        <div class="room"> 
-            <div class="room-image">
-              <% if room.image.length > 0 || room.image != nil %>
-                <img src = "<%= room.image %>" class="room-image">
-              <% else %>
-                <img src = "/room_image/default.png" class="room-image">
-              <% end %>
-            </div>
-            <%= room.name %>
-            <%= date_format(room.created_at)%>
-            <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
-        </div>
-  <% end %>
-</div>
 
 
 <script type="text/javascript">
