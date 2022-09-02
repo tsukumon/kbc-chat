@@ -219,59 +219,63 @@
   }
   .message-all {
     display: none;
-  }
-  .message-one {
-    display: flex;
-    font-size: 15px;
-    padding: 15px 10px 15px 10px;
-    margin-bottom: 10px;
-    word-break: break-all;
-    .message-left {
+    .message-one {
+      display: flex;
+      font-size: 15px;
+      padding: 15px 10px 15px 10px;
+      margin-bottom: 10px;
+      word-break: break-all;
       img{
-        width: 35px;
-        height: 35px;
-        object-fit: cover;
-        overflow: hidden;
-        border-radius: 50%;
-        margin-right: 6px;
+        max-width: 90%;
       }
-    }
-    .message-right {
-      width: 100%;
-      .message-user-info {
-        display: flex;
-        align-items: flex-end;
-        .message-username {
-          font-size: 15px;
-          font-weight: bold;
-          color: #2e2e2e;
-        }
-        #message-time {
-          color: rgb(148, 148, 148);
-          margin-left: 6px;
-          padding-bottom: 2px;
-          font-size: 12px;
-        }
-        #message-delete {
-          font-size: 12px;
-          padding-bottom: 2px;
-          margin-left: 10px;
+      .message-left {
+        img{
+          width: 35px;
+          height: 35px;
+          object-fit: cover;
+          overflow: hidden;
+          border-radius: 50%;
+          margin-right: 6px;
         }
       }
+      .message-right {
+        width: 100%;
+        .message-user-info {
+          display: flex;
+          align-items: flex-end;
+          .message-username {
+            font-size: 15px;
+            font-weight: bold;
+            color: #2e2e2e;
+          }
+          #message-time {
+            color: rgb(148, 148, 148);
+            margin-left: 6px;
+            padding-bottom: 2px;
+            font-size: 12px;
+          }
+          #message-delete {
+            font-size: 12px;
+            padding-bottom: 2px;
+            margin-left: 10px;
+          }
+        }
+      }
+      p {
+        color:rgb(68, 68, 68);
+      }
     }
-    p {
-      color:rgb(68, 68, 68);
+    .message-one:hover {
+      background-color: #f4f4f4;
+      transition: 0.5s;
     }
-  }
-  .message-one:hover {
-    background-color: #f4f4f4;
-    transition: 0.5s;
-  }
-  .message_view {
-    display: none;
-    visibility: hidden;
+    .message_view {
+      display: none;
+      visibility: hidden;
+    }
   }
 }
+
 
 .user-status {
   color: #e0e0e0;
@@ -451,7 +455,7 @@
         padding: 10px;
         clear: both;
         overflow-y: scroll;
-        height: 320px;
+        height: 55vh;
 
         .edit_room_function {
           flex-flow: column;
@@ -463,12 +467,12 @@
           input[type="file"] {
             margin-bottom: 6px;
           }
-          textarea{
+          textarea {
             width: 99%;
             height: 30px;
             margin-bottom: 4px;
           }
-          .category{
+          .category {
             display: flex;
           }
         }
