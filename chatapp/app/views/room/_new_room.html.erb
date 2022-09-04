@@ -17,6 +17,16 @@
                     <div class="category-count">(<%= category[1] %>)</div>
                 <% end %>
                 </div>
+                メンバーを制限する
+                <div class="switchArea">
+                  <%= f.check_box :private, checked: false, id: "switch1" %>
+                  <%= f.label :private, for: "switch1" do %>
+                    <span></span>
+                  <% end %>
+                  <%# <input type="checkbox" id="switch1">
+                  <label for="switch1"><span></span></label> %>
+                  <div id="swImg"></div>
+                </div>
                 <%= f.label :name %>
                 <%= f.text_field :name %>
                 <%= f.label :image %><br>

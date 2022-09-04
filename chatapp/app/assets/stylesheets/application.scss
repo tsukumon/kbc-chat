@@ -156,6 +156,51 @@ body{
     .create-from{
       flex-flow: column;
       border-bottom:2px solid #7a7a7a;
+      /* === ボタンを表示するエリア ============================== */
+      .switchArea {
+        text-align: left;
+        position       : relative;            /* 親要素が基点       */
+        //margin         : auto;                /* 中央寄せ           */
+        width          : 60px;               /* ボタンの横幅       */
+        background     : #fff;                /* デフォルト背景色   */
+      }
+
+      /* === チェックボックス ==================================== */
+      .switchArea input[type="checkbox"] {
+        display        : none;            /* チェックボックス非表示 */
+      }
+
+      /* === チェックボックスのラベル（標準） ==================== */
+      .switchArea label {
+        display        : block;               /* ボックス要素に変更 */
+        box-sizing     : border-box;          /* 枠線を含んだサイズ */
+        height         : 28px;                /* ボタンの高さ       */
+        border         : 2px solid #999999;   /* 未選択タブのの枠線 */
+        border-radius  : 14px;                /* 角丸               */
+      }
+
+      /* === チェックボックスのラベル（ONのとき） ================ */
+      .switchArea input[type="checkbox"]:checked +label {
+        border-color   : #78bd78;             /* 選択タブの枠線     */
+      }
+
+      /* === 丸部分のSTYLE（標準） =============================== */
+      .switchArea #swImg {
+        position       : absolute;            /* 親要素からの相対位置*/
+        width          : 20px;                /* 丸の横幅           */
+        height         : 20px;                /* 丸の高さ           */
+        background     : #999999;             /* カーソルタブの背景 */
+        top            : 4px;                 /* 親要素からの位置   */
+        left           : 4px;                 /* 親要素からの位置   */
+        border-radius  : 10px;                /* 角丸               */
+        transition     : .2s;                 /* 滑らか変化         */
+      }
+
+      /* === 丸部分のSTYLE（ONのとき） =========================== */
+      .switchArea input[type="checkbox"]:checked ~ #swImg {
+        transform      : translateX(32px);    /* 丸も右へ移動       */
+        background     : #78bd78;             /* カーソルタブの背景 */
+      }
       input[type="text"]{
         width: 99%;
         height: 30px;
