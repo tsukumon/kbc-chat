@@ -2,10 +2,10 @@
   <div class="title">最新ルーム</div>
 </div>
 
-<div class="rooms">
+<div class="latest-rooms">
   <% @room_latest.each do |room| %>
         <%= link_to room.category, category_path(CGI.escape(room.category)) %>
-        <div class="room"> 
+        <div class="latest-room"> 
             <div class="room-image">
               <% if room.image.length > 0 || room.image != nil %>
                 <img src = "<%= room.image %>" class="room-image">
@@ -24,7 +24,7 @@
   <div class="title">ルーム一覧</div>
 </div>
 
-<div class="rooms">
+<div class="rooms jscroll">
   <% @room_all.each do |room| %>
         <%= link_to room.category, category_path(CGI.escape(room.category)) %>
         <div class="room"> 
@@ -40,7 +40,65 @@
             <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
         </div>
   <% end %>
+
+  <div class="room_view">
+    <%= paginate @room_all, param_name: "room_page" %>
+  </div>
+  <div class="infinite-scroll">
+    <div class="cv-spinner">
+      <span class="spinner"></span>
+    </div>
+  </div>
 </div>
+<%# <div class="infinite-scroll">
+  <div class="cv-spinner">
+    <span class="spinner"></span>
+  </div>
+</div> %>
+
+
+
+<script type="text/javascript">
+  $(document).on('turbo:load', function() {
+  // document.addEventListener("turbo:load", () => {
+  var i = 2;
+  console.log($('.room'))
+    $(window).on('scroll', function() {
+      var scrollHeight = $(document).height();
+      var scrollPosition = $(window).height() + $(window).scrollTop();
+      // if ((scrollHeight - scrollPosition) / scrollHeight <= 0.05 && (i <= parseInt($(".room_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))) {
+      if ($("nav.pagination a[rel=next]").length){
+          setTimeout(function(){
+            //$(".cv-spinner").removeClass("hide")
+            $('.jscroll').jscroll({
+              autoTrigger: true,
+              padding: 5,
+              // 無限に追加する要素は、どこに入れる？
+              contentSelector: '.rooms', 
+              // 次のページにいくためのリンクの場所は？ ＞aタグの指定
+              nextSelector: 'span.next:last a',
+              // 読み込み中の表示はどうする？
+              loadingHtml: $(".cv-spinner"),
+              // loadingFunction: function(){
+              //   $('.cv-spinner').addClass('hide')
+              // },
+              // callback: function(){
+              //   console.log("コールバック")
+              //   $(".cv-spinner").addClass("hide")
+              //   // console.log("くるくるまえ" + i)
+              //   // $('.cv-spinner').addClass('hide');
+              //   i++;
+              //   // console.log("くるくるあと" + i)
+              // },
+            })
+          },850)
+      }else{
+        console.log("else")
+        $(".cv-spinner").addClass("hide")
+      }
+    });
+  });
+</script>
 
 
 <script type="text/javascript">

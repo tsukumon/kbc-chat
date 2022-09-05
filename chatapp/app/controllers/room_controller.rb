@@ -8,7 +8,7 @@ class RoomController < ApplicationController
   
   def index
     @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id) #UserRoomテーブルのcurrent_userが参加してるroomのroom_idカラムだけ取る
-    @room_all = Room.where.not(id: @rooms)
+    @room_all = Room.where.not(id: @rooms).page(params[:room_page]).per(10)
     @room_latest = @room_all.order(created_at: :DESC).limit(5)
   end
 
