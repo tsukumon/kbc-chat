@@ -44,8 +44,8 @@
                             ●
                           </span>
                         </div>
-                        <% if @room.admin == @current_user.id %>
-                        <div class="role">管理者</div>
+                        <% if @room.admin == member.id %>
+                          <div class="role">管理者</div>
                         <% end %>
                       </div>
                     </div>
