@@ -45,7 +45,7 @@
       <%= paginate @room_all, param_name: "room_page" %>
     </div>
     <div class="infinite-scroll">
-      <div class="cv-spinner">
+      <div class="cv-spinner hide">
         <span class="spinner"></span>
       </div>
     </div>
@@ -70,7 +70,6 @@
       // if ((scrollHeight - scrollPosition) / scrollHeight <= 0.05 && (i <= parseInt($(".room_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))) {
       if ($("nav.pagination a[rel=next]").length){
           setTimeout(function(){
-            //$(".cv-spinner").removeClass("hide")
             $('.jscroll').jscroll({
               autoTrigger: true,
               padding: 5,
@@ -79,22 +78,25 @@
               // 次のページにいくためのリンクの場所は？ ＞aタグの指定
               nextSelector: 'span.next:last a',
               // 読み込み中の表示はどうする？
-              loadingHtml: $(".cv-spinner"),
-
+              // loadingHtml: $(".cv-spinner"),
+              loadingHtml: function(){
+                $(".cv-spinner").removeClass("hide")
+              },
               //  loadingHtmlが描画された後に実行する JavaScript 関数。
               // loadingFunction: function(){
               //   $('.cv-spinner').addClass('hide')
               // },
 
               //  必要に応じて、一連のコンテンツが読み込まれた後に呼び出されるコールバック関数を定義
-              // callback: function(){
+              callback: function(){
+                $(".cv-spinner").addClass("hide")
               //   console.log("コールバック")
               //   $(".cv-spinner").addClass("hide")
               //   // console.log("くるくるまえ" + i)
               //   // $('.cv-spinner').addClass('hide');
               //   i++;
               //   // console.log("くるくるあと" + i)
-              // },
+              },
             })
           },850)
       }else{
