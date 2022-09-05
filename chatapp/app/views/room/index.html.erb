@@ -25,28 +25,29 @@
 </div>
 
 <div class="rooms jscroll">
-  <% @room_all.each do |room| %>
-        <%= link_to room.category, category_path(CGI.escape(room.category)) %>
-        <div class="room"> 
-            <div class="room-image">
-              <% if room.image.length > 0 || room.image != nil %>
-                <img src = "<%= room.image %>" class="room-image">
-              <% else %>
-                <img src = "/room_image/default.png" class="room-image">
-              <% end %>
-            </div>
-            <%= room.name %>
-            <%= date_format(room.created_at)%>
-            <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
-        </div>
-  <% end %>
-
-  <div class="room_view">
-    <%= paginate @room_all, param_name: "room_page" %>
-  </div>
-  <div class="infinite-scroll">
-    <div class="cv-spinner">
-      <span class="spinner"></span>
+  <div class="rooms-list">
+    <% @room_all.each do |room| %>
+          <%= link_to room.category, category_path(CGI.escape(room.category)) %>
+          <div class="room"> 
+              <div class="room-image">
+                <% if room.image.length > 0 || room.image != nil %>
+                  <img src = "<%= room.image %>" class="room-image">
+                <% else %>
+                  <img src = "/room_image/default.png" class="room-image">
+                <% end %>
+              </div>
+              <%= room.name %>
+              <%= date_format(room.created_at)%>
+              <%= link_to "参加", room_join_path(room.id), "data-turbo": false %>
+          </div>
+    <% end %>
+    <div class="room_view">
+      <%= paginate @room_all, param_name: "room_page" %>
+    </div>
+    <div class="infinite-scroll">
+      <div class="cv-spinner">
+        <span class="spinner"></span>
+      </div>
     </div>
   </div>
 </div>
@@ -74,7 +75,7 @@
               autoTrigger: true,
               padding: 5,
               // 無限に追加する要素は、どこに入れる？
-              contentSelector: '.rooms', 
+              contentSelector: '.rooms-list', 
               // 次のページにいくためのリンクの場所は？ ＞aタグの指定
               nextSelector: 'span.next:last a',
               // 読み込み中の表示はどうする？
