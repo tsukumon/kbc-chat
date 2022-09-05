@@ -34,7 +34,7 @@ class RoomController < ApplicationController
 
   def joined
     @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id) #UserRoomテーブルのcurrent_userが参加してるroomのroom_idカラムだけ取る
-    @room_info = Room.where(id: @rooms).includes(:message).order("messages.updated_at DESC")
+    @room_info = Room.where(id: @rooms).includes(:message).order(updated_at: :DESC)
   end
 
   def page
@@ -89,6 +89,8 @@ class RoomController < ApplicationController
       @time = date_format(@message.created_at)
       @message.sentence = markdown(@message.sentence)
       @user = User.find_by(id: @message.user_id)
+      @room = Room.find_by(id: params[:id])
+      @room.update(updated_at: Time.now)
       ActionCable.server.broadcast "message_#{params[:id]}_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id, user: @user }
     end
   end
