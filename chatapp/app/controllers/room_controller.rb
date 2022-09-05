@@ -89,8 +89,8 @@ class RoomController < ApplicationController
       @time = date_format(@message.created_at)
       @message.sentence = markdown(@message.sentence)
       @user = User.find_by(id: @message.user_id)
-      @room = Room.find_by(id: params[:id])
-      @room.update(updated_at: Time.now)
+      @rooms = Room.find_by(id: params[:id])
+      @rooms.update(updated_at: Time.now)
       ActionCable.server.broadcast "message_#{params[:id]}_channel",{ content: @message, time: @time, mode: "create", current_user: @current_user.id, user: @user }
     end
   end
