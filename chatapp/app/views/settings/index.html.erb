@@ -1,1 +1,12 @@
 設定
+<div>
+    ユーザー情報
+    <div>
+        <% if @current_user %>
+        <%= @current_user.name %>
+        <%= @current_user.email %>
+        <img src=<%= @current_user.image %>><br>
+        <%= link_to "ログアウト", destroy_session_path, data: {turbo_method: :post} %>
+        <% end %>
+    </div>
+</div>
