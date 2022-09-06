@@ -620,20 +620,27 @@
   display: none;
 }
 .acd-label{
-  background: #333;
-  color: #fff;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   display: block;
   margin-bottom: 1px;
   padding: 10px;
   border-radius: 3px;
   position: relative;
+  border:1px solid #333;
+  cursor: pointer;
+  cursor: hand;
+  &:hover{
+    color: #10bc8a;
+    transition: 0.6s;
+  }
 }
 .acd-label:after{
-  background: #00479d;
+  background: #ffffff;
   box-sizing: border-box;
-  content: '\f067';
+  content: '\f619';
   display: block;
-  font-family: "Font Awesome 5 Free";
+  font: var(--fa-font-solid);
   height: 44px;
   padding: 10px 20px;
   position: absolute;
@@ -649,7 +656,7 @@
   visibility: hidden;
 }
 .acd-check:checked + .acd-label:after{
-  content: '\f068';
+  content: '\f2fe';
 }
 .acd-check:checked + .acd-label + .acd-content{
   height: auto;
