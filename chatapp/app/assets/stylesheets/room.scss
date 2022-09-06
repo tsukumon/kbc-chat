@@ -63,107 +63,10 @@
   }
 }
 
-.latest-rooms {
-  margin-left: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  .latest-room {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: calc((100% - 8%) / 4);
-    margin: 0px 2% 40px 0;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-    background-color: #ffffff;
-    
-    .room-bg-image {
-      width: 100%;
-      height: 120px;
-      background-color: #d1d1d1;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        overflow: hidden;
-        opacity: 0.8;
-      }
-    }
-    .room-titles {
-      padding: 10px;
-      margin-top: 30px;      
-      .room-category-time {
-        display: flex;
-        align-items: center;
-      }
-      .room-category a {
-        border: 1px solid #5ac29c;
-        border-radius: 5px;
-        padding: 2px 8px;
-        font-size: 15px;
-        color: #5ac29c;
-        margin-right: 10px;
-      }
-      .room-category a:hover {
-        border: 1px solid #5ac29c;
-        color: #fff;
-        background-color: #5ac29c;
-        transition: 0.5s;
-      }
-      
-      .room-create-time {
-        color: #acacac;
-        font-size: 14px;
-        i {
-          color: #acacac;
-        }
-      }
-      
-      .title {
-        font-size: 16px;
-        color: #4b4b4b;
-      }
-    }
-    .join-btn-area {
-      text-align: right;
-      margin: auto 5px 10px 10px;
-    }
-    .join-btn {
-      width: 30%;
-      text-align: center;
-      border: 1px solid #62a1e5;
-      border-radius: 5px;
-      padding: 8px 13px;
-      font-size: 16px;
-      color: #62a1e5;
-    }
-    .join-btn:hover {
-      border: 1px solid #62a1e5;
-      color: #fff;
-      background-color: #62a1e5;
-      transition: 0.5s;
-      }
-    
-    .room-image {
-      position: absolute;
-      top: 26%;
-      left: 35%;
-      z-index: 9;
-      img {
-        width: 85px;
-        height: 85px;
-        object-fit: cover;
-        overflow: hidden;
-        border-radius: 50%;
-      }
-    }
-  }
-}
-
 .rooms {
   margin-left: 10px;
   display: flex;
   flex-wrap: wrap;
-  .rooms-list{
     .room {
       display: flex;
       flex-direction: column;
@@ -283,7 +186,6 @@
         display:none;
       }  
     }
-  }
 }
 
 .joined-rooms {
