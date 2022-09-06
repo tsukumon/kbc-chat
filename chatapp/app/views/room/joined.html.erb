@@ -7,24 +7,28 @@
 </div>
 <div class="joined-rooms">
   <% @room_info.each do |room| %>
-        <div class="joined-room">
-            <div class="room-image">
-              <% if room.image.length > 0 || room.image != nil %>
-                <img src = "<%= room.image %>" class="room-image">
-              <% else %>
-                <img src = "/room_image/default.png" class="room-image">
-              <% end %>
-            </div>
-            <div class="room-titles">
+      <div class="joined-room">
+        <%= link_to room_page_path(room.id) do %>
+          <div class="room-image">
+            <% if room.image.length > 0 || room.image != nil %>
+              <img src = "<%= room.image %>" class="room-image">
+            <% else %>
+              <img src = "/room_image/default.png" class="room-image">
+            <% end %>
+          </div>
+        <% end %>
+          <div class="room-titles">
+            <%= link_to room_page_path(room.id) do %>
               <div class="title"><%= room.name %></div>
-              <div class="room-category-time">
-                <div class="room-category">
-                  <%= link_to "##{room.category}", category_path(CGI.escape(room.category)) %>
-                </div>
-                <div class="room-create-time">最終更新 <%= date_format(room.updated_at)%></div>
+            <% end %>
+            <div class="room-category-time">
+              <div class="room-category">
+                <%= link_to "##{room.category}", category_path(CGI.escape(room.category)) %>
               </div>
+              <div class="room-create-time">最終更新 <%= date_format(room.updated_at)%></div>
             </div>
-        </div>
+          </div>
+      </div>
   <% end %>
 </div>
 
