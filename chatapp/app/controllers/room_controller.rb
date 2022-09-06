@@ -9,7 +9,7 @@ class RoomController < ApplicationController
   def index
     @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id) #UserRoomテーブルのcurrent_userが参加してるroomのroom_idカラムだけ取る
     @room_all = Room.where.not(id: @rooms)
-    @room_latest = @room_all.order(created_at: :DESC).limit(5)
+    @room_latest = @room_all.order(created_at: :DESC).limit(4)
   end
 
   def join
@@ -33,12 +33,13 @@ class RoomController < ApplicationController
   end
 
   def joined
-    @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id) #UserRoomテーブルのcurrent_userが参加してるroomのroom_idカラムだけ取る
-    @room_info = Room.where(id: @rooms).includes(:message).order("messages.updated_at DESC")
+    @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
+    @room_info = Room.where(id: @rooms).includes(:message).order(updated_at: :DESC)
   end
 
   def page
-    @room = Room.find_by(id: params[:id])
+    @room_data = Room.find_by(id: params[:id])
+    @room_data.update(updated_at: Time.now)
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
     
@@ -117,16 +118,11 @@ class RoomController < ApplicationController
   end
 
   def search_form
-    @room = Room.all.order(created_at: :DESC).limit(5)
+    @room = Room.all.order(created_at: :DESC).limit(12)
     @search = Room.ransack(params[:q])
     @results = @search.result
   end
-
-  def search_joined
-    @search = Room.ransack(params[:q])
-    @results = @search.result
-  end
-
+  
   private
 
   def autocomplete_params

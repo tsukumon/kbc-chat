@@ -1,10 +1,10 @@
-<%= render "room_info", room: @room %>
+<%= render "room_info", room: @room_data %>
 
 <div class="room-header-list">
   <div class="room-header">
     <div class="room_header_left">
       <%= link_to "/room/joined" do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
-        <div class="room_title" id="js-show-modal-detail"><%= @room.name %>
+        <div class="room_title" id="js-show-modal-detail"><%= @room_data.name %>
           <div class="room_datail_button"><i  class="fa-solid fa-caret-down"></i></div>
         </div>
     </div>
@@ -16,7 +16,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="room-content">
-<div id="data" data-room-id="<%= @room.id %>" data-user-id="<%= @current_user.id %>"></div>
+<div id="data" data-room-id="<%= @room_data.id %>" data-user-id="<%= @current_user.id %>"></div>
 
 <%= render "messages", messages: @messages %>
 
