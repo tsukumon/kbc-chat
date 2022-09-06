@@ -77,27 +77,28 @@
 
 <script type="text/javascript">
   $(document).on('turbo:load', function() {
-  var i = 2;
-  var html= `<div class="infinite-scroll">
-              <div class="cv-spinner"> 
-                <span class="spinner"></span>
-              </div>
-            </div>`
-  var options = {
+    var i = 2;
+    var html = 
+      `<div class="infinite-scroll">
+        <div class="cv-spinner"> 
+          <span class="spinner"></span>
+        </div>
+      </div>`
+    var options = {
       autoTrigger: true,
       padding: 20,
       loadingHtml: html,
       nextSelector: 'span.next:last a',
       contentSelector: '#inf',
       pagingSelector: $(".room_view")
-  };
+    };
     $(window).on('scroll', function() {
       var scrollHeight = $(document).height();
       var scrollPosition = $(window).height() + $(window).scrollTop();
       if ($("nav.pagination a[rel=next]").length){
-          setTimeout(function(){
-            $('.jscroll').jscroll(options)
-          },850)
+        setTimeout(function(){
+          $('.jscroll').jscroll(options)
+        },850)
       }
     });
   });
