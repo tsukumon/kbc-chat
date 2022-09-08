@@ -42,11 +42,11 @@
     function getMessageChild() {
       const pare_msg = document.getElementById("messages");
       const last_msg = pare_msg.lastElementChild;
-      console.log(last_msg);
+      //console.log(last_msg);
       const rect = last_msg.getBoundingClientRect();
       const isInView = 0 < rect.bottom && rect.top < window.innerHeight;
-      console.log(rect);
-      console.log(isInView);
+      //console.log(rect);
+      //console.log(isInView);
       return isInView;
     }
   </script>

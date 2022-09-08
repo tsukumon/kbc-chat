@@ -81,7 +81,7 @@ document.addEventListener("turbo:load", () => {
             messages.insertAdjacentHTML('beforeend', html2);
           }
           //位置判定
-          console.log(getMessageChild());
+          //console.log(getMessageChild());
           let flag = getMessageChild();
           
           if (data.content.user_id == user_id) {
