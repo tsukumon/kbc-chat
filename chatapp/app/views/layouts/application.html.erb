@@ -15,40 +15,6 @@
     <% self_css_path = "/assets/"+controller.controller_path  %>
     <%= stylesheet_link_tag self_css_path, :media => "all" %>
     <%= javascript_importmap_tags %>
-    <% if controller.controller_name == "room" && controller.action_name ==  "page" %>
-      <script type="text/javascript">
-        document.addEventListener("turbo:load", () => {
-          Turbo.clearCache()
-          let button = document.getElementById('more-messages');
-          var i = 2;
-          var jqxhr;
-          $(".message-all").scrollTop(1);
-          window.addEventListener('scroll', function() {
-            if(jqxhr){
-              jqxhr.abort()
-            }
-            if (($(window).scrollTop() == 0) && (i <= parseInt($(".message_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))){
-              var count = 0;
-              button.click()
-              jqxhr = $.ajax({
-                url: $(".message_view").find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, i),
-                beforeSend: function(){
-                  $('.cv-spinner').removeClass('hide');
-                },
-                success: function(data){
-                  setTimeout(function(){
-                    $("#messages").prepend($(data).find("#messages").html());
-                    $(window).scrollTop($(window).first().height())
-                    i++;
-                    $('.cv-spinner').addClass('hide');
-                  }, 850)
-                }
-              })
-            }
-          })
-        });
-      </script>
-    <% end %>
   </head>
 
   <body>
