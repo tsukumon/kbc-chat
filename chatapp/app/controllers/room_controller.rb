@@ -35,12 +35,11 @@ class RoomController < ApplicationController
 
   def joined
     @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
-    @room_info = Room.where(id: @rooms).includes(:message).order(updated_at: :DESC)
+    @room_info = Room.where(id: @rooms).order(updated_at: :DESC)
   end
 
   def page
     @room_data = Room.find_by(id: params[:id])
-    @room_data.update(updated_at: Time.now)
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
     
@@ -88,6 +87,8 @@ class RoomController < ApplicationController
   def create_message
     @message = Message.new(message_params)
     if @message.save
+      @room_data = Room.find_by(id: params[:id])
+      @room_data.update(updated_at: Time.now)
       @time = date_format(@message.created_at)
       @message.sentence = markdown(@message.sentence)
       @user = User.find_by(id: @message.user_id)
