@@ -14,15 +14,15 @@ function flexTextarea(el) {
 }
 document.querySelectorAll('.room-content').forEach(flexTextarea)
 
+/*
 document.addEventListener("turbo:load", () => {
+  Turbo.clearCache();
   function popupImage() {
     var popup = document.getElementById('js-modal-detail');
-    if(!popup) return;
-
     var blackBg = document.getElementById('js-black-sh');
     var closeBtn = document.getElementById('js-close-btn');
     var showBtn = document.getElementById('js-show-modal-detail');
-
+    
     closePopUp(blackBg);
     closePopUp(closeBtn);
     closePopUp(showBtn);
@@ -34,4 +34,22 @@ document.addEventListener("turbo:load", () => {
     }
   }
   popupImage();
+});
+*/
+
+document.addEventListener("turbo:load", () => {
+  Turbo.clearCache();
+  var popup = document.getElementById('js-modal-detail');
+  var blackBg = document.getElementById('js-black-sh');
+  var closeBtn = document.getElementById('js-close-btn');
+  var showBtn = document.getElementById('js-show-modal-detail');
+  
+  // When the user clicks the button, open the modal.
+  showBtn.onclick = function() {
+    popup.classList.add('is-show');
+  };
+  // When the user clicks on 'X', close the modal
+  closeBtn.onclick = function() {
+    popup.classList.remove('is-show');
+  };
 });

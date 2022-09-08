@@ -544,7 +544,7 @@
   transition: .6s;
 }
 
-.modal-detail.is-show {
+.is-show {
   opacity: 1;
   visibility: visible;
 }
@@ -699,7 +699,6 @@
   height: 100%;
   background-color: rgba(0,0,0,.8);
   z-index: 1;
-  cursor: pointer;
 }
 
 .room-user-list {

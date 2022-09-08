@@ -2,11 +2,3 @@
 <% if !@current_user %>
   <%= link_to "ログインする", "/signin" %>
 <% end %>
-
-<% @rooms.each do |room| %>
-  <%= room.name %>
-  <br>
-  <%= safe_join(room.describe.split("\n"),tag(:br)) %>
-<% end %> 
-
-<%= link_to "ルーム一覧", "/room" %>
