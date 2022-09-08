@@ -60,7 +60,7 @@
       let textCount = 2000;
       
       button.disabled = true;
-      input.addEventListener("keyup", () => {
+      input.addEventListener("input", () => {
         let count1 = input.value.length
         if(chatRegex.test(input.value)){
           button.disabled = false;
