@@ -40,7 +40,6 @@ document.addEventListener("turbo:load", () => {
 document.addEventListener("turbo:load", () => {
   Turbo.clearCache();
   var popup = document.getElementById('js-modal-detail');
-  var blackBg = document.getElementById('js-black-sh');
   var closeBtn = document.getElementById('js-close-btn');
   var showBtn = document.getElementById('js-show-modal-detail');
   
