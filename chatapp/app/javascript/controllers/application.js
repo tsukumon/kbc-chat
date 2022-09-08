@@ -27,7 +27,6 @@ document.addEventListener("turbo:load", () => {
   };
   // When the user clicks outside the modal -- close it.
   window.onclick = function(event) {
-      console.log("aa");
     if (event.target == blackBg || event.target == blackBg2) {
       modal.classList.remove('is-show');
       popup.classList.remove('is-show');
