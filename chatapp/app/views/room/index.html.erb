@@ -25,15 +25,14 @@
                 </div>
                 <div class="room-create-time"><%= date_format(room.created_at)%></div>
               </div>
-              <%= link_to room_page_path(room.id) do %>
                 <div class="title"><%= room.name %></div>
-              <% end %>
             </div>
             <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
               <div class="join-btn-area">
                 <%= link_to "参加する", room_join_path(room.id), "data-turbo": false, class: "join-btn" %>
               </div>
             <% else %>
+              <%= link_to room_page_path(room.id), class: "spread-link" do %><% end %>
             <br>
             <% end %>
         </div>
@@ -68,15 +67,14 @@
                 </div>
                 <div class="room-create-time"><%= date_format(room.created_at)%></div>
               </div>
-              <%= link_to room_page_path(room.id) do %>
-                <div class="title"><%= room.name %></div>
-              <% end %>
+              <div class="title"><%= room.name %></div>
             </div>
-            <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
+          <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
               <div class="join-btn-area">
                 <%= link_to "参加する", room_join_path(room.id), "data-turbo": false, class: "join-btn" %>
               </div>
             <% else %>
+              <%= link_to room_page_path(room.id), class: "spread-link" do %><% end %>
             <br>
             <% end %>
         </div>
@@ -110,15 +108,14 @@
                 </div>
                 <div class="room-create-time"><%= date_format(room.created_at)%></div>
               </div>
-              <%= link_to room_page_path(room.id) do %>
-                <div class="title"><%= room.name %></div>
-              <% end %>
+              <div class="title"><%= room.name %></div>
             </div>
             <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
               <div class="join-btn-area">
                 <%= link_to "参加する", room_join_path(room.id), "data-turbo": false, class: "join-btn" %>
               </div>
             <% else %>
+              <%= link_to room_page_path(room.id), class: "spread-link" do %><% end %>
             <br>
             <% end %>
         </div>
