@@ -72,9 +72,10 @@
         
         if(count1 >= textCount){
           button.disabled = true;
+          $('.message-submit').css('opacity', '0.2');
           $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(234, 57, 33, 0.3)');
         }else{
-          $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(35, 167, 195, 0.3)');
+          $('.message-sentense-class:focus').css('box-shadow','none');
         };
       });
     });
