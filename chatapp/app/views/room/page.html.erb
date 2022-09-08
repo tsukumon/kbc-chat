@@ -26,7 +26,7 @@
   <div class="message-form">
     <div class="message-textarea">
       <div id="dummy-textarea" class="dummy-textarea" aria-hidden="true"></div>
-      <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する" %>
+      <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する", onkeydown: "messageFunc()" %>
     </div>
     <%= f.submit "", id: "message-submit", class: "message-submit" %>
     <p id="helper-text" style="color: red;"></p>
@@ -79,7 +79,6 @@
 
 <script type="text/javascript">
   document.addEventListener("turbo:load", () => {
-    // したの一文はページにアクセスした際に一番したまでスクロールする処理です。
     var msg = document.getElementById("messages")
     setTimeout(function(){
       window.scroll(0, msg.scrollHeight);
@@ -87,18 +86,15 @@
     $("#messages").fadeIn();
   });
 </script>
-
-<script type="text/javascript">
-    // Enterキー押下時、送信処理が実行する
-
-    window.document.onkeydown = function(event){
-      if (!event.shiftKey && event.key == 'Enter'){
-        if (event.key === 'Enter') {
-          document.getElementById('message-form').submit();
-        }
-        event.preventDefault();
-      }
-    }
-</script>
-
 </div>
+
+<script>
+  function messageFunc() {
+    if (!event.shiftKey && event.key == "Enter"){
+      if (event.key === "Enter" && !event.isComposing) {
+        document.getElementById('message-form').submit();
+      }
+      event.preventDefault();
+    }
+  }
+</script>
