@@ -79,9 +79,6 @@ document.addEventListener("turbo:load", () => {
           }else{
             messages.insertAdjacentHTML('beforeend', html2);
           }
-          console.log("scrolltop" + scrollTop);
-          console.log("most" + mostBottom);
-          console.log("scroll" + document.body.scrollHeight);
           //if (scrollTop >= mostBottom && data.content.user_id == user_id) {
           if (data.content.user_id == user_id) {
             window.scroll(0, document.body.scrollHeight);

@@ -9,7 +9,7 @@
         </div>
     </div>
   </div>
-<div id="message-notice"></div>
+<div id="message-notice" onclick="noticeScroll()"></div>
 </div>
 
 
@@ -77,6 +77,12 @@
           }
       });
     });
+  </script>
+  
+  <script>
+    function noticeScroll() {
+      window.scroll(0, document.body.scrollHeight);
+    }
   </script>
   
   <script>
