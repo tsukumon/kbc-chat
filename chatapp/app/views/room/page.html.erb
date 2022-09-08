@@ -3,7 +3,7 @@
 <div class="room-header-list">
   <div class="room-header">
     <div class="room_header_left">
-      <%= link_to "/room/joined" do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
+      <%= link_to request.referer do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
         <div class="room_title" id="js-show-modal-detail"><%= @room_data.name %>
           <div class="room_datail_button"><i  class="fa-solid fa-caret-down"></i></div>
         </div>
