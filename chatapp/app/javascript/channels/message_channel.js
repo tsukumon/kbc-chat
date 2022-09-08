@@ -83,6 +83,7 @@ document.addEventListener("turbo:load", () => {
           //位置判定
           console.log(getMessageChild());
           let flag = getMessageChild();
+          
           if (data.content.user_id == user_id) {
             window.scroll(0, document.body.scrollHeight);
           }else if(flag) {
