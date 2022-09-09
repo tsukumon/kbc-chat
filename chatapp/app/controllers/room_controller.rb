@@ -7,9 +7,10 @@ class RoomController < ApplicationController
   before_action :authenticate_room, only: [:page, :create_message]
   
   def index
-    @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id) #UserRoomテーブルのcurrent_userが参加してるroomのroom_idカラムだけ取る
-    @room_all = Room.where.not(id: @rooms)
-    @room_latest = @room_all.order(created_at: :DESC).limit(4)
+    #@rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
+    @room_all = Room.all
+    @room_latest = Room.order(created_at: :DESC).limit(4)
+    @room_update = Room.order(updated_at: :DESC).limit(4)
   end
 
   def join
@@ -34,12 +35,11 @@ class RoomController < ApplicationController
 
   def joined
     @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
-    @room_info = Room.where(id: @rooms).includes(:message).order(updated_at: :DESC)
+    @room_info = Room.where(id: @rooms).order(updated_at: :DESC)
   end
 
   def page
     @room_data = Room.find_by(id: params[:id])
-    @room_data.update(updated_at: Time.now)
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
     
@@ -87,6 +87,8 @@ class RoomController < ApplicationController
   def create_message
     @message = Message.new(message_params)
     if @message.save
+      @room_data = Room.find_by(id: params[:id])
+      @room_data.update(updated_at: Time.now)
       @time = date_format(@message.created_at)
       @message.sentence = markdown(@message.sentence)
       @user = User.find_by(id: @message.user_id)
