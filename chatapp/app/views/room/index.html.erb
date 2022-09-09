@@ -121,7 +121,6 @@
         </div>
   <% end %>
 </div>
-<div class="rooms-bottom"></div>
 <div class="rooms_view">
   <%= paginate @room_all, param_name: "room_page" %>
 </div>
@@ -130,7 +129,7 @@
     <span class="spinner"></span>
   </div>
 </div>
-
+<div class="rooms-bottom" id="roombottom"></div>
 
 <script type="text/javascript">
 document.addEventListener("turbo:load", () => {
@@ -166,9 +165,14 @@ document.addEventListener("turbo:load", () => {
     
   function getRoomsChild(){
     const pare_room = document.getElementById("rooms-inf");
-    const last_room = pare_room.lastElementChild;
-    const rect = last_room.getBoundingClientRect();
-    const isInView = window.innerHeight;
+    const bottom_room = document.getElementById("roombottom")
+    // const last_room = pare_room.lastElementChild;
+    const last_room = bottom_room.lastElementChild;
+    // console.log(last_room)
+    const rect = bottom_room.getBoundingClientRect();
+    const isInView = 0 < rect.top && rect.bottom < window.innerHeight;
+    // console.log(rect)
+    // console.log(isInView)
     return isInView;
   }
 
@@ -179,10 +183,9 @@ document.addEventListener("turbo:load", () => {
     let height;
     let jqxhr;
     let flag = getRoomsChild();
-    let scrollHeight = $(document).height();
-    let scrollPosition = $(window).height() + $(window).scrollTop();
-    
-    if (((scrollHeight - scrollPosition) / scrollHeight <= 0.05) && (flag) && (p <= parseInt($(".rooms_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))) {
+    console.log("カウント"+ p)
+    console.log("ifまえ"+ flag)
+    if ((flag) && (p <= parseInt($(".rooms_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))) {
       jqxhr = $.ajax({
         url: $(".rooms_view").find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, p),
         beforeSend: function(){
@@ -190,14 +193,21 @@ document.addEventListener("turbo:load", () => {
         },
         success: function(data){
           setTimeout(function(){
+          console.log("ifカウント"+ p)
             $("#rooms-inf").append($(data).find("#rooms-inf").html());
+            // flag = getRoomsChild();
             height = rooms.scrollHeight - prev;
             $(window).scrollTop(height);
+            // window.scroll(0, height);
+            console.log(height)
+            flag = getRoomsChild();
+            console.log("success"+ flag)
             $(".cv-spinner").addClass("hide");
           }, 850)
         }
       })
       p++;
+      console.log("doneカウント"+ p)
     }
   }
 </script>
