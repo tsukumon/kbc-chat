@@ -126,8 +126,8 @@ body{
 .modal-content {
   z-index: 9999;
   position: absolute;
-  background-color: rgb(105, 209, 105);
-  border: 10px solid rgb(105, 209, 105);
+  background-color: #fff;
+  border: 10px solid #fff;
   border-radius: 10px;
   font-size: 1.25rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -139,9 +139,13 @@ body{
   margin: auto 10px;
   .modal-header {
     padding: 12px;
-    background-color: rgb(105, 209, 105);
+    background-color: #fff;
     border-radius:10px 10px 0px 0px;
+    border-bottom: solid 3px #2dbb8c;
     color: white;
+    h2 {
+      color: #2dbb8c;
+    }
     .close {
       float: right;
     }
@@ -151,14 +155,14 @@ body{
     border-radius:0px 0px 10px 10px;
     padding: 12px;
     overflow-y: scroll;
-    height: 370px;
+    height: 450px;
     .create-from{
+      padding: 12px;
       flex-flow: column;
-      border-bottom:2px solid #7a7a7a;
       input[type="text"]{
         width: 99%;
         height: 30px;
-        margin-bottom: 4px;
+        margin-bottom: 16px;
       }
       input[type="file"] {
         margin-bottom: 6px;
@@ -185,7 +189,7 @@ body{
   .modal-body::-webkit-scrollbar-thumb {
     background: rgb(213, 213, 213);
     border-radius:5px;
-}
+  }
 }
 
 
