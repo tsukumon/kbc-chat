@@ -1,22 +1,22 @@
-<%= render "room_info", room: @room %>
+<%= render "room_info", room: @room_data %>
 
 <div class="room-header-list">
   <div class="room-header">
-    <div class="room_header_left" id="js-show-modal-detail">
-      <%= link_to "/room/joined" do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
-        <div class="room_title"><%= @room.name %>
+    <div class="room_header_left">
+      <%= link_to request.referer do %><div class="room_back"><i class="fa-solid fa-angle-left"></i></div><% end %>
+        <div class="room_title" id="js-show-modal-detail"><%= @room_data.name %>
           <div class="room_datail_button"><i  class="fa-solid fa-caret-down"></i></div>
         </div>
     </div>
   </div>
-<div id="message-notice"></div>
+<div id="message-notice" onclick="noticeScroll()"></div>
 </div>
 
 
 <p id="notice"><%= notice %></p>
 
 <div class="room-content">
-<div id="data" data-room-id="<%= @room.id %>" data-user-id="<%= @current_user.id %>"></div>
+<div id="data" data-room-id="<%= @room_data.id %>" data-user-id="<%= @current_user.id %>"></div>
 
 <%= render "messages", messages: @messages %>
 
@@ -26,79 +26,135 @@
   <div class="message-form">
     <div class="message-textarea">
       <div id="dummy-textarea" class="dummy-textarea" aria-hidden="true"></div>
-      <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する" %>
+      <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する", onkeydown: "messageFunc()" %>
     </div>
     <%= f.submit "", id: "message-submit", class: "message-submit" %>
     <p id="helper-text" style="color: red;"></p>
   </div>
 <% end %>
+</div>
 
-<script type="text/javascript">
-  document.addEventListener("turbo:load", () => {
-    const input = document.querySelector("#message-sentence");
-    const button = document.querySelector("#message-submit");
-    const p = document.querySelector("#helper-text");
-    const chatRegex = /[^\s\R]/;
-    var textCount = 2000;
-
-    button.disabled = true;
-    input.addEventListener("keyup", () => {
-      var count1 = input.value.length
-      if(chatRegex.test(input.value)){
-        button.disabled = false;
-        $('.message-submit').css('opacity', '1.0');
-      }else{
-        button.disabled = true;
-        $('.message-submit').css('opacity', '0.2');
-      };
-
-      if(count1 >= textCount){
-        button.disabled = true;
-        $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(234, 57, 33, 0.3)');
-      }else{
-        $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(35, 167, 195, 0.3)');
-      };
+<% if controller.controller_name == "room" && controller.action_name ==  "page" %>
+  <script>
+    document.addEventListener("turbo:load", () => {
+      getMessageChild();
     });
-  });
-</script>
-<script type="text/javascript">
-  document.addEventListener("turbo:load", () => {
-    $(window).on('scroll', function (){
-      var elem = $('.message-one');
-        var elemOffset = elem.last().offset().top;
-        var scrollPos = $(window).scrollTop();
-        var wh = $(window).height();
-
-        if(scrollPos >= elemOffset - wh){
-          document.getElementById('message-notice').textContent = "";
-        }
-
+    function getMessageChild() {
+      const pare_msg = document.getElementById("messages");
+      const last_msg = pare_msg.lastElementChild;
+      //console.log(last_msg);
+      const rect = last_msg.getBoundingClientRect();
+      const isInView = 0 < rect.bottom && rect.top < window.innerHeight;
+      //console.log(rect);
+      //console.log(isInView);
+      return isInView;
+    }
+  </script>
+  
+  <script>
+    document.addEventListener("turbo:load", () => {
+      const input = document.querySelector("#message-sentence");
+      const button = document.querySelector("#message-submit");
+      const p = document.querySelector("#helper-text");
+      const chatRegex = /[^\s\R]/;
+      let textCount = 2000;
+      
+      button.disabled = true;
+      input.addEventListener("input", () => {
+        let count1 = input.value.length
+        if(chatRegex.test(input.value)){
+          button.disabled = false;
+          $('.message-submit').css('opacity', '1.0');
+        }else{
+          button.disabled = true;
+          $('.message-submit').css('opacity', '0.2');
+        };
+        
+        if(count1 >= textCount){
+          button.disabled = true;
+          $('.message-submit').css('opacity', '0.2');
+          $('.message-sentense-class:focus').css('box-shadow','0 0 0 4px rgba(234, 57, 33, 0.3)');
+        }else{
+          $('.message-sentense-class:focus').css('box-shadow','none');
+        };
+      });
     });
-  });
-</script>
-
-<script type="text/javascript">
-  document.addEventListener("turbo:load", () => {
-    // したの一文はページにアクセスした際に一番したまでスクロールする処理です。
-    var msg = document.getElementById("messages")
-    setTimeout(function(){
-      window.scroll(0, msg.scrollHeight);
-    },1)
-    $("#messages").fadeIn();
-  });
-</script>
-
-<script type="text/javascript">
-    // Enterキー押下時、送信処理が実行する
-
-    window.document.onkeydown = function(event){
-      if (!event.shiftKey && event.key == 'Enter'){
-        if (event.key === 'Enter') {
+  </script>
+  
+  <script>
+    document.addEventListener("turbo:load", () => {
+      $(window).on('scroll', function (){
+        let elem = $('.message-one');
+          let elemOffset = elem.last().offset().top;
+          let scrollPos = $(window).scrollTop();
+          let wh = $(window).height();
+          
+          if(scrollPos >= elemOffset - wh){
+            document.getElementById('message-notice').textContent = "";
+          }
+      });
+    });
+  </script>
+  
+  <script>
+    function noticeScroll() {
+      window.scroll(0, document.body.scrollHeight);
+    }
+  </script>
+  
+  <script>
+    document.addEventListener("turbo:load", () => {
+      let msg = document.getElementById("messages");
+      setTimeout(function(){
+        window.scroll(0, msg.scrollHeight);
+      }, 1)
+      $("#messages").fadeIn();
+    });
+  </script>
+  
+  <script>
+    function messageFunc() {
+      if (!event.shiftKey && event.key == "Enter"){
+        if (event.key === "Enter" && !event.isComposing) {
           document.getElementById('message-form').submit();
         }
         event.preventDefault();
       }
     }
-</script>
-
-</div>
+  </script>
+  
+  <script>
+    let i = 2;
+    document.addEventListener("turbo:load", () => {
+      Turbo.clearCache();
+      i = 2;
+      window.addEventListener("scroll", msgScroll);
+    });
+    
+    function msgScroll() {
+      //変数定義
+      let messages = document.getElementById("messages");
+      let prev = messages.scrollHeight;
+      let height;
+      let jqxhr;
+      
+      if (($(window).scrollTop() == 0) && (i <= parseInt($(".message_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))) {
+        jqxhr = $.ajax({
+          url: $(".message_view").find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, i),
+          beforeSend: function(){
+            $(".cv-spinner").removeClass("hide");
+          },
+          success: function(data){
+            setTimeout(function(){
+              $("#messages").prepend($(data).find("#messages").html());
+              height = messages.scrollHeight - prev;
+              $(window).scrollTop(height);
+              $(".cv-spinner").addClass("hide");
+            }, 850)
+          }
+        })
+        i++;
+      }
+    }
+  </script>
+<% end %>

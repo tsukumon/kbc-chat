@@ -1,17 +1,4 @@
 <br>
-<% if @current_user %>
-  <%= link_to "ログアウト", destroy_session_path, data: {turbo_method: :post} %>
-  <%= @current_user.name %>
-  <%= @current_user.email %>
-  <img src=<%= @current_user.image %>>
-<% else %>
+<% if !@current_user %>
   <%= link_to "ログインする", "/signin" %>
 <% end %>
-
-<% @rooms.each do |room| %>
-  <%= room.name %>
-  <br>
-  <%= safe_join(room.describe.split("\n"),tag(:br)) %>
-<% end %> 
-
-<%= link_to "ルーム一覧", "/room" %>

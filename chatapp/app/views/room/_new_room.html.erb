@@ -17,6 +17,8 @@
                     <div class="category-count">(<%= category[1] %>)</div>
                 <% end %>
                 </div>
+                <%= f.label "メンバーを制限する" %>
+                <%= f.check_box :private, checked: false %>
                 <%= f.label :name %>
                 <%= f.text_field :name %>
                 <%= f.label :image %><br>
@@ -28,6 +30,7 @@
             </div>
         </div>
     </div>
+  <div class="background-shadow" id="js-black-sh2"></div>
 </div>
 
 <script type="text/javascript">

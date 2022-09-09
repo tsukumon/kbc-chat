@@ -10,35 +10,39 @@
 </div>
 <div class="rooms">
   <% @room.each do |room| %>
-    <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) #not joined rooms %>
-        <div class="room"> 
+        <div class="room">
+            <div class="room-bg-image">
+                <% if room.image.length > 0 || room.image != nil %>
+                  <img src = "<%= room.image %>">
+                <% else %>
+                  <img src = "/room_image/default.png">
+                <% end %>
+            </div>
             <div class="room-image">
-              <% if room.image.length > 0 %>
+              <% if room.image.length > 0 || room.image != nil %>
                 <img src = "<%= room.image %>" class="room-image">
               <% else %>
                 <img src = "/room_image/default.png" class="room-image">
               <% end %>
             </div>
-            <%= room.name %>
-            <%= date_format(room.created_at)%>
-            <%= link_to "参加", room_join_path(room.id) %>
-        </div>
-
-    <% else #joined rooms %>
-        <%= link_to room_page_path(room.id) do %>
-          <div class="room"> 
-              <div class="room-image">
-                <% if room.image.length > 0 %>
-                  <img src = "<%= room.image %>" class="room-image">
-                <% else %>
-                  <img src = "/room_image/default.png" class="room-image">
-                <% end %>
+            <div class="room-titles">
+              <div class="room-category-time">
+                <div class="room-category">
+                  <%= link_to "##{room.category}", category_path(CGI.escape(room.category)) %>
+                </div>
+                <div class="room-create-time"><%= date_format(room.created_at)%></div>
               </div>
-              <%= room.name %>
-              <%= date_format(room.created_at)%>
-          </div>
-        <% end %>
-    <% end %>
+                <div class="title"><%= room.name %></div>
+            </div>
+            <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
+              <div class="join-btn-area">
+                <%= link_to "参加する", room_join_path(room.id), "data-turbo": false, class: "join-btn" %>
+              </div>
+            <% else %>
+              <%= link_to room_page_path(room.id), class: "spread-link" do %><% end %>
+            <br>
+            <% end %>
+        </div>
   <% end %>
 </div>
 

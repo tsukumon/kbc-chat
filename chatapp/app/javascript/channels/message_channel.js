@@ -36,8 +36,9 @@ document.addEventListener("turbo:load", () => {
           );
           const mostBottom = allHeight - window.innerHeight;
           const scrollTop = window.pageYOffset + 0.5;
-    
+          
         if (data.mode == "create") {
+          
           const html = `
                       <div id="message-${data.content.id}" class="message-one">
                         <div class="message-left"><img src="${data.user.image}"></div>
@@ -79,11 +80,13 @@ document.addEventListener("turbo:load", () => {
           }else{
             messages.insertAdjacentHTML('beforeend', html2);
           }
-          console.log("scrolltop" + scrollTop);
-          console.log("most" + mostBottom);
-          console.log("scroll" + document.body.scrollHeight);
-          //if (scrollTop >= mostBottom && data.content.user_id == user_id) {
+          //位置判定
+          //console.log(getMessageChild());
+          let flag = getMessageChild();
+          
           if (data.content.user_id == user_id) {
+            window.scroll(0, document.body.scrollHeight);
+          }else if(flag) {
             window.scroll(0, document.body.scrollHeight);
           }else{
             document.getElementById('message-notice').textContent = "未読のメッセージがあります";
