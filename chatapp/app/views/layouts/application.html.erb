@@ -26,7 +26,7 @@
           <% begin %>
             <% Net::HTTP.new(url.host).get({"User-Agent": agent}) %>
           <% rescue %>
-            <img class="user-icon" src="/test_icon.png"<%= @current_user.image %>>
+            <img class="user-icon" src="/background.png">
           <% else %>
             <img class="user-icon" src=<%= @current_user.image %>>
           <% end %>
