@@ -2,10 +2,13 @@
 <div>
     ユーザー情報
     <div>
+        <img class="index-image" alt="index-icon" src=<%= @current_user.image %> />
+        <p class="index-text"><%= @current_user.name %><br>
+        <%= @current_user.email %></p>
+    </div>
+
+    <div>
         <% if @current_user %>
-        <%= @current_user.name %>
-        <%= @current_user.email %>
-        <img src=<%= @current_user.image %>><br>
         <%= link_to "ログアウト", destroy_session_path, data: {turbo_method: :post} %>
         <% end %>
     </div>
