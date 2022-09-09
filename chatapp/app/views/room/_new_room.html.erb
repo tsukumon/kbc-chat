@@ -1,35 +1,46 @@
 <div id="demo-modal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class='close'><i class="fa-solid fa-circle-xmark"></i></span>
-            <h2>新規作成</h2>
-        </div>
-        <div class="modal-body">
-            <div class="create-from">
-            <%= form_with url: create_room_path, model: @new_room, data: { turbo_frame: "_top" } do |f| %>
-                <div id="errors-create-room"></div>
-                <%= f.label :category %>
-                <%= f.text_field :category %>
-                人気カテゴリー  
-                <div class="category">
-                <% @categories.each_with_index do |category, i| %>
-                    <div id="category-name-<%= i %>"><%= category[0] %></div>
-                    <div class="category-count">(<%= category[1] %>)</div>
-                <% end %>
-                </div>
-                <%= f.label "メンバーを制限する" %>
-                <%= f.check_box :private, checked: false %>
-                <%= f.label :name %>
-                <%= f.text_field :name %>
-                <%= f.label :image %><br>
-                <%= f.file_field :image %><br>
-                <%= f.label :describe %>
-                <%= f.text_area :describe %>
-                <%= f.submit "登録する" %>
-            <% end %>
-            </div>
-        </div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class='close'><i class="fas fa-times"></i></span>
+      <h2>新規作成</h2>
     </div>
+    <div class="modal-body">
+      <div class="create-from">
+        <%= form_with url: create_room_path, 
+                      model: @new_room, data: { turbo_frame: "_top" } do |f| %>
+          <div id="errors-create-room"></div>
+          <div class="create-category-name">
+            <%= f.label :category %>
+            <%= f.text_field :category %>
+          </div>
+          人気カテゴリー
+          <div class="category">
+            <% @categories.each_with_index do |category, i| %>
+              <div id="category-name-<%= i %>"><%= category[0] %></div>
+              <div class="category-count">(<%= category[1] %>)</div>
+            <% end %>
+          </div>
+          <div class="create-room-limit">
+            <%= f.label "メンバーを制限する" %>
+            <%= f.check_box :private, checked: false %>
+          </div>
+          <div class="create-room-name">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          </div>
+          <div class="create-room-image">
+            <%= f.label :image %><br>
+            <%= f.file_field :image %><br>
+          </div>
+          <div class="create-room-info">
+            <%= f.label :describe %>
+            <%= f.text_area :describe %>
+          </div>
+          <%= f.submit "登録する" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <div class="background-shadow" id="js-black-sh2"></div>
 </div>
 
