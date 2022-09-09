@@ -59,7 +59,7 @@
             <label class="acd-label" for="acd-check1">編集</label>
             <div class="acd-content">
               <div class="edit_room_function">
-                <% if @room.admin == @current_user.id %>
+                <% if @room_data.admin == @current_user.id %>
                   <%= form_with url: update_room_path, model: @room, data: { turbo_frame: "_top" }  do |f| %>
                     <div id="errors-update-room"></div>
                     <%= f.label :category %>
