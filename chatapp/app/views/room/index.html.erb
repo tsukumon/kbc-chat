@@ -41,7 +41,7 @@
 
 
 <div class="content-column">
-  <div class="title">活発なルーム</div>
+  <div class="title">現在アクティブなルーム</div>
 </div>
 <div class="rooms">
   <% @room_update.each do |room| %>
@@ -84,7 +84,7 @@
 <div class="content-column">
   <div class="title">ルーム一覧</div>
 </div>
-<div class="rooms">
+<div class="rooms" id="rooms-inf">
   <% @room_all.each do |room| %>
         <div class="room"> 
             <div class="room-bg-image">
@@ -121,6 +121,17 @@
         </div>
   <% end %>
 </div>
+<div class="rooms-bottom"></div>
+<div class="rooms_view">
+  <%= paginate @room_all, param_name: "room_page" %>
+</div>
+<div class="infinite-scroll">
+  <div class="cv-spinner hide">
+    <span class="spinner"></span>
+  </div>
+</div>
+
+
 <script type="text/javascript">
 document.addEventListener("turbo:load", () => {
   $(function() {
@@ -143,4 +154,50 @@ document.addEventListener("turbo:load", () => {
       });
   });
 });
+</script>
+<script>
+  let p = 2;
+  document.addEventListener("turbo:load", () => {
+    Turbo.clearCache();
+    p = 2;
+    getRoomsChild();
+    window.addEventListener("scroll", roomScroll);
+  });
+    
+  function getRoomsChild(){
+    const pare_room = document.getElementById("rooms-inf");
+    const last_room = pare_room.lastElementChild;
+    const rect = last_room.getBoundingClientRect();
+    const isInView = window.innerHeight;
+    return isInView;
+  }
+
+  function roomScroll() {
+    //変数定義
+    let rooms = document.getElementById("rooms-inf");
+    let prev = rooms.scrollHeight
+    let height;
+    let jqxhr;
+    let flag = getRoomsChild();
+    let scrollHeight = $(document).height();
+    let scrollPosition = $(window).height() + $(window).scrollTop();
+    
+    if (((scrollHeight - scrollPosition) / scrollHeight <= 0.05) && (flag) && (p <= parseInt($(".rooms_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))) {
+      jqxhr = $.ajax({
+        url: $(".rooms_view").find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, p),
+        beforeSend: function(){
+          $(".cv-spinner").removeClass("hide");
+        },
+        success: function(data){
+          setTimeout(function(){
+            $("#rooms-inf").append($(data).find("#rooms-inf").html());
+            height = rooms.scrollHeight - prev;
+            $(window).scrollTop(height);
+            $(".cv-spinner").addClass("hide");
+          }, 850)
+        }
+      })
+      p++;
+    }
+  }
 </script>
