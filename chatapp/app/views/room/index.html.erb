@@ -165,7 +165,7 @@ document.addEventListener("turbo:load", () => {
   function getRoomsChild(){
     const bottom_room = document.getElementById("roombottom") //roomsの一番下の空div
     const rect = bottom_room.getBoundingClientRect();
-    const isInView = 0 < rect.bottom && parseInt(rect.bottom) == window.innerHeight;
+    const isInView = 0 < rect.bottom && parseInt(rect.bottom) < window.innerHeight;
     return isInView;
   }
 
