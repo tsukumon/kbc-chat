@@ -159,7 +159,6 @@ document.addEventListener("turbo:load", () => {
   document.addEventListener("turbo:load", () => {
     Turbo.clearCache();
     p = 2;
-    getRoomsChild();
     window.addEventListener("scroll", roomScroll);
   });
     
@@ -180,7 +179,8 @@ document.addEventListener("turbo:load", () => {
   function roomScroll() {
     //変数定義
     let rooms = document.getElementById("rooms-inf");
-    let prev = rooms.scrollHeight
+    let last_room = rooms.lastElementChild;
+    let last_room_h = last_room.getBoundingClientRect();
     let height;
     let jqxhr;
     let flag = getRoomsChild();
@@ -192,22 +192,15 @@ document.addEventListener("turbo:load", () => {
         },
         success: function(data){
           setTimeout(function(){
-          console.log("ifカウント"+ p)
             $("#rooms-inf").append($(data).find("#rooms-inf").html());
             flag = getRoomsChild();
-            height = rooms.scrollHeight - prev;
-            // $(window).scrollTop(height);
+            height = rooms.scrollHeight - last_room_h.bottom
             window.scroll(0, height);
-            // window.scroll(0, document.body.scrollHeight);
-            console.log(height)
-            // flag = getRoomsChild();
-            console.log("success"+ flag)
             $(".cv-spinner").addClass("hide");
           }, 850)
         }
       })
       p++;
-      console.log("doneカウント"+ p)
     }
   }
 </script>
