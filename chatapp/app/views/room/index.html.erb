@@ -163,16 +163,9 @@ document.addEventListener("turbo:load", () => {
   });
     
   function getRoomsChild(){
-    // const pare_room = document.getElementById("rooms-inf");
     const bottom_room = document.getElementById("roombottom")
-    // const last_room = pare_room.lastElementChild;
-    // const last_room = bottom_room.lastElementChild;
-    // console.log(last_room)
     const rect = bottom_room.getBoundingClientRect();
     const isInView = 0 < rect.bottom && parseInt(rect.bottom) == window.innerHeight;
-    console.log(parseInt(rect.bottom))
-    console.log(window.innerHeight)
-    // console.log(isInView)
     return isInView;
   }
 
