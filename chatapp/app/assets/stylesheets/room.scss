@@ -112,6 +112,7 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        margin-bottom: 5px;
       }
       
       .room-category {
@@ -148,7 +149,7 @@
     .join-btn-area {
       z-index: 3;
       text-align: right;
-      margin: auto 5px 10px 10px;
+      margin: auto 8px 20px 10px;
     }
     .join-btn {
       width: 30%;
