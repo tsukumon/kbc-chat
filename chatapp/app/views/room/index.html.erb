@@ -84,7 +84,7 @@
 <div class="content-column">
   <div class="title">ルーム一覧</div>
 </div>
-<div class="rooms">
+<div class="rooms" id="rooms-inf">
   <% @room_all.each do |room| %>
         <div class="room"> 
             <div class="room-bg-image">
@@ -121,6 +121,17 @@
         </div>
   <% end %>
 </div>
+<div class="rooms_view">
+  <%= paginate @room_all, param_name: "room_page" %>
+</div>
+<div class="infinite-scroll">
+  <div class="cv-spinner" id="spinner">
+    <span class="spinner"></span>
+  </div>
+</div>
+<div class="rooms-bottom" id="room-bottom"></div>
+
+
 <script type="text/javascript">
 document.addEventListener("turbo:load", () => {
   $(function() {
@@ -143,4 +154,43 @@ document.addEventListener("turbo:load", () => {
       });
   });
 });
+</script>
+<script>
+  let p = 2;
+  document.addEventListener("turbo:load", () => {
+    Turbo.clearCache();
+    const spinner = document.getElementById("spinner")
+    spinner.style.opacity = "0"; //spinnerを消す
+    p = 2;
+    window.addEventListener("scroll", roomScroll);
+  });
+    
+  function getRoomsChild(){
+    const bottom_room = document.getElementById("room-bottom") //roomsの一番下の空div
+    const rect = bottom_room.getBoundingClientRect();
+    const isInView = 0 < rect.bottom && parseInt(rect.bottom) <= window.innerHeight;
+    return isInView;
+  }
+
+  function roomScroll() {
+    //変数定義
+    let jqxhr;
+    let flag = getRoomsChild();
+    if ((flag) && (p <= parseInt($(".rooms_view").find("nav.pagination span.last a").prop("search").match(/[0-9]/), 10))) {
+      jqxhr = $.ajax({
+        url: $(".rooms_view").find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, p),
+        beforeSend: function(){
+          spinner.style.opacity = "1"; //spinnerをつける
+        },
+        success: function(data){
+          setTimeout(function(){
+            $("#rooms-inf").append($(data).find("#rooms-inf").html());
+            flag = getRoomsChild();
+            spinner.style.opacity = "0"; //spinnerを消す
+          }, 850)
+        }
+      })
+      p++;
+    }
+  }
 </script>
