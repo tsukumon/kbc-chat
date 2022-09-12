@@ -16,7 +16,7 @@ document.addEventListener("turbo:load", () => {
   var popup = document.getElementById('js-modal-detail');
   var blackBg = document.getElementById('js-black-sh');
   var blackBg2 = document.getElementById('js-black-sh2');
-
+  
   // When the user clicks the button, open the modal.
   btn.onclick = function() {
     modal.classList.add('is-show');
@@ -31,6 +31,7 @@ document.addEventListener("turbo:load", () => {
   window.onclick = function(event) {
     if (event.target == blackBg || event.target == blackBg2) {
       modal.classList.remove('is-show');
+      $('body').css('overflow-y','auto'); 
       popup.classList.remove('is-show');
       $('body').css('overflow-y','auto'); 
     }

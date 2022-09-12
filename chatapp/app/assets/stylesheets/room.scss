@@ -837,6 +837,10 @@
 .acd-check{
   display: none;
 }
+.acd-check2{
+  display: none;
+}
+
 .acd-label{
   background: rgb(255, 255, 255);
   display: block;
@@ -847,6 +851,22 @@
   cursor: pointer;
   cursor: hand;
   color: #515151;
+  &:hover{
+    color: #10bc8a;
+    transition: 0.3s;
+  }
+}
+.acd-label2{
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  display: block;
+  margin-bottom: 1px;
+  padding: 10px;
+  position: relative;
+  border-bottom:2px solid #333;
+  cursor: pointer;
+  cursor: hand;
+  color: #000000;
   &:hover{
     color: #10bc8a;
     transition: 0.3s;
@@ -864,7 +884,26 @@
   right: 0;
   top: 0px;
 }
+.acd-label2:after{
+  background: #ffffff;
+  box-sizing: border-box;
+  content: '\f619';
+  display: block;
+  font: var(--fa-font-solid);
+  height: 44px;
+  padding: 15px 20px;
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
 .acd-content{
+  height: 0;
+  opacity: 0;
+  padding: 0 10px;
+  transition: .3s;
+  visibility: hidden;
+}
+.acd-content2{
   height: 0;
   opacity: 0;
   padding: 0 10px;
@@ -874,7 +913,16 @@
 .acd-check:checked + .acd-label:after{
   content: '\f2fe';
 }
+.acd-check2:checked + .acd-label2:after{
+  content: '\f2fe';
+}
 .acd-check:checked + .acd-label + .acd-content{
+  height: auto;
+  opacity: 1;
+  padding: 10px;
+  visibility: visible;
+}
+.acd-check2:checked + .acd-label2 + .acd-content2{
   height: auto;
   opacity: 1;
   padding: 10px;
