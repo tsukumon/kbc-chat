@@ -190,8 +190,6 @@ document.addEventListener("turbo:load", () => {
           setTimeout(function(){
             $("#rooms-inf").append($(data).find("#rooms-inf").html());
             flag = getRoomsChild();
-            height = rooms.scrollHeight - last_room_h.bottom
-            window.scroll(0, height);
             spinner.style.opacity = "0"; //spinnerを消す
           }, 850)
         }
