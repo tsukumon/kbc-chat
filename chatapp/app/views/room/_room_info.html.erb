@@ -56,7 +56,7 @@
         <div class="tab_content" id="tab3_content">
           <div class="tab_content_description">
             <input id="acd-check1" class="acd-check" type="checkbox">
-            <label class="acd-label" for="acd-check1">編集</label>
+            <label class="acd-label" for="acd-check1">ルーム情報設定</label>
             <div class="acd-content">
               <div class="edit_room_function">
                 <% if room.admin == @current_user.id %>
@@ -70,7 +70,9 @@
                     <%= f.file_field :image %><br>
                     <%= f.label :describe %>
                     <%= f.text_area:describe %>
-                    <%= f.submit "変更する" %>
+                    <div class="submit-area">
+                      <%= f.submit "変更する" %>
+                    </div>
                   <% end %>
                   <div class="modal-room-back">
                     <div class="box">

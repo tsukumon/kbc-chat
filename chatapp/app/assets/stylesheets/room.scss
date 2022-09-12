@@ -650,6 +650,7 @@
             background-color:#F4F4F4;
             border: none;
             border-radius: 3px;
+            padding: 2px 5px;
           }
           textarea{
             padding: 2px 2px 2px 2px;
@@ -674,6 +675,23 @@
           }
           .category {
             display: flex;
+          }
+          .submit-area {
+            text-align: center;
+            margin-top: 30px;
+            input[type="submit"] {
+              background-color: #2dbb8c;
+              border: none;
+              color: #fff;
+              text-align: center;
+              padding: 10px 20%;
+              cursor: pointer;
+              cursor: hand;
+              &:hover {
+                opacity: 0.7;
+                transition: 0.4s;
+              }
+            }
           }
         }
       }
@@ -821,15 +839,14 @@
 }
 .acd-label{
   background: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
   display: block;
   margin-bottom: 1px;
-  padding: 10px;
+  padding: 10px 0px 10px 5px;
   position: relative;
-  border-bottom:2px solid #333;
+  border-bottom: 2px solid rgb(228, 228, 228);
   cursor: pointer;
   cursor: hand;
-  color: #000000;
+  color: #515151;
   &:hover{
     color: #10bc8a;
     transition: 0.3s;
@@ -842,7 +859,7 @@
   display: block;
   font: var(--fa-font-solid);
   height: 44px;
-  padding: 15px 20px;
+  padding: 15px 10px 0px 10px;
   position: absolute;
   right: 0;
   top: 0px;
