@@ -697,6 +697,7 @@
 }
 
 .modal-inner-content{
+  word-wrap: break-word;
   padding: 10px 5px;
   .title{
     font-size: 17px;
@@ -799,6 +800,11 @@
 
 }
 
+.ui-autocomplete,
+.ui-menu {
+  z-index: 9999;
+}
+
 .acd-check{
   display: none;
 }
@@ -812,9 +818,10 @@
   border-bottom:2px solid #333;
   cursor: pointer;
   cursor: hand;
+  color: #000000;
   &:hover{
     color: #10bc8a;
-    transition: 0.6s;
+    transition: 0.3s;
   }
 }
 .acd-label:after{
@@ -824,17 +831,16 @@
   display: block;
   font: var(--fa-font-solid);
   height: 44px;
-  padding: 10px 20px;
+  padding: 15px 20px;
   position: absolute;
   right: 0;
   top: 0px;
-  border-radius: 3px;
 }
 .acd-content{
   height: 0;
   opacity: 0;
   padding: 0 10px;
-  transition: .5s;
+  transition: .3s;
   visibility: hidden;
 }
 .acd-check:checked + .acd-label:after{
