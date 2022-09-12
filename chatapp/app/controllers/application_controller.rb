@@ -43,11 +43,15 @@ class ApplicationController < ActionController::Base
       )
     end
   end
-
+  
   private
-
+  
   def room_params
     params.require(:room).permit(:name, :describe, :image, :category)
+  end
+  
+  def autocomplete_params
+    params.permit(:category)
   end
 
 end
