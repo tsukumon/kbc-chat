@@ -121,15 +121,16 @@
         </div>
   <% end %>
 </div>
-<div class="rooms-bottom" id="roombottom"></div>
 <div class="rooms_view">
   <%= paginate @room_all, param_name: "room_page" %>
 </div>
 <div class="infinite-scroll">
-  <div class="cv-spinner hide">
+  <div class="cv-spinner" id="spinner">
     <span class="spinner"></span>
   </div>
 </div>
+<div class="rooms-bottom" id="room-bottom"></div>
+
 
 <script type="text/javascript">
 document.addEventListener("turbo:load", () => {
@@ -158,12 +159,14 @@ document.addEventListener("turbo:load", () => {
   let p = 2;
   document.addEventListener("turbo:load", () => {
     Turbo.clearCache();
+    const spinner = document.getElementById("spinner")
+    spinner.style.opacity = "0"; //spinnerを消す
     p = 2;
     window.addEventListener("scroll", roomScroll);
   });
     
   function getRoomsChild(){
-    const bottom_room = document.getElementById("roombottom") //roomsの一番下の空div
+    const bottom_room = document.getElementById("room-bottom") //roomsの一番下の空div
     const rect = bottom_room.getBoundingClientRect();
     const isInView = 0 < rect.bottom && parseInt(rect.bottom) <= window.innerHeight;
     return isInView;
@@ -172,7 +175,8 @@ document.addEventListener("turbo:load", () => {
   function roomScroll() {
     //変数定義
     let rooms = document.getElementById("rooms-inf"); //page.htmlを参考にしたもの
-    let prev = rooms.scrollHeight;
+    let last_room = rooms.lastElementChild;
+    let last_room_h = last_room.getBoundingClientRect(); //一番下のルームの座標
     let height;
     let jqxhr;
     let flag = getRoomsChild();
@@ -180,15 +184,15 @@ document.addEventListener("turbo:load", () => {
       jqxhr = $.ajax({
         url: $(".rooms_view").find("nav.pagination a[rel=next]").prop("search").replace(/[0-9]/, p),
         beforeSend: function(){
-          $(".cv-spinner").removeClass("hide");
+          spinner.style.opacity = "1"; //spinnerをつける
         },
         success: function(data){
           setTimeout(function(){
             $("#rooms-inf").append($(data).find("#rooms-inf").html());
             flag = getRoomsChild();
-            height = rooms.scrollHeight - prev
+            height = rooms.scrollHeight - last_room_h.bottom
             window.scroll(0, height);
-            $(".cv-spinner").addClass("hide");
+            spinner.style.opacity = "0"; //spinnerを消す
           }, 850)
         }
       })
