@@ -21,7 +21,15 @@
     <div class="container">
       <div class="sub-container">
         <div class="user-info">
-          <img class="user-icon" src=<%= @current_user.image %>>
+          <% agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36" %>
+          <% url = URI.parse(@current_user.image) %>
+          <% begin %>
+            <% Net::HTTP.new(url.host).get({"User-Agent": agent}) %>
+          <% rescue %>
+            <img class="user-icon" src="/default<%=rand(1..4)%>.png">
+          <% else %>
+            <img class="user-icon" src=<%= @current_user.image %>>
+          <% end %>
           <div class="user-info-right">
             <div class="user-name"><%= @current_user.name %></div>
             <div id="user-data" user-data-id="<%= @current_user.id %>"></div>

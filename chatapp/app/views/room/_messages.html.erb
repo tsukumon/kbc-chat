@@ -10,7 +10,13 @@
       <div id="message-<%= message.id%>" class="message-one">
         <% user = @members_hash[message.user_id] %>
         <% if user == @info_members_hash[message.user_id]%>
-          <div class="message-left"><img src=<%= user["image"] %>></div>
+          <div class="message-left">
+          <% if user["image"] %>
+          <img src=<%= user["image"] %>>
+          <% else %>
+          <img src="/default<%=rand(1..4)%>.png">
+          <% end %>
+          </div>
           <div class="message-right">
             <div class="message-user-info">
               <div class="message-username"><%= user["name"] %></div>
