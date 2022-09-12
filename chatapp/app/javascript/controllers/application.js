@@ -16,7 +16,7 @@ document.addEventListener("turbo:load", () => {
   var popup = document.getElementById('js-modal-detail');
   var blackBg = document.getElementById('js-black-sh');
   var blackBg2 = document.getElementById('js-black-sh2');
-
+  
   // When the user clicks the button, open the modal.
   btn.onclick = function() {
     modal.classList.add('is-show');
