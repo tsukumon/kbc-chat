@@ -1,17 +1,16 @@
 <div class="content-column">
   <div class="title">設定</div>
 </div>
-<div>
-    ユーザー情報
-    <div>
-        <img class="index-image" alt="index-icon" src=<%= @current_user.image %> />
-        <p class="index-text"><%= @current_user.name %><br>
-        <%= @current_user.email %></p>
-    </div>
 
-    <div>
-        <% if @current_user %>
-        <%= link_to "ログアウト", destroy_session_path, data: {turbo_method: :post} %>
-        <% end %>
-    </div>
+<div>
+  <img class="index-image" alt="index-icon" src=<%= @current_user.image %> />
+  <p class="index-text"><%= @current_user.name %><br>
+  <%= @current_user.email %></p>
+</div>
+
+
+<div class="logout-form">
+  <% if @current_user %>
+   <%= link_to "ログアウトする", destroy_session_path, data: { turbo_method: :post } %>
+  <% end %>
 </div>
