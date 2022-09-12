@@ -59,13 +59,13 @@
             <label class="acd-label" for="acd-check1">編集</label>
             <div class="acd-content">
               <div class="edit_room_function">
-                <% if @room_data.admin == @current_user.id %>
-                  <%= form_with url: update_room_path, model: @room, data: { turbo_frame: "_top" }  do |f| %>
+                <% if room.admin == @current_user.id %>
+                  <%= form_with url: update_room_path, model: room, data: { turbo_frame: "_top" }  do |f| %>
                     <div id="errors-update-room"></div>
                     <%= f.label :category %>
                     <%= f.text_field :category %>
                     <%= f.label :name %>
-                    <%= f.text_field :name %>
+                    <%= f.text_field :name, autocomplete: "off" %>
                     <%= f.label :image %><br>
                     <%= f.file_field :image %><br>
                     <%= f.label :describe %>
@@ -73,9 +73,11 @@
                     <%= f.submit "変更する" %>
                   <% end %>
                   <div class="modal-room-back">
+                    <div class="box">
                     <div class="room-back-contents"> 
                       <%= link_to "ルームを削除する", destroy_room_path(room.id), 
                         data: {turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
+                    </div>
                     </div>
                   </div>
                 <% end %>
@@ -83,14 +85,16 @@
             </div>
             
             <div class="modal-room-back">
+              <div class="box"> 
               <div class="room-back-contents"> 
                 <%= link_to "ルームから退室する", room_leave_path(room.id), 
-                    data: {turbo_method: :delete} %>
+                    data: {turbo_method: :delete, turbo_confirm: "退室しますか？"} %>
+              </div>
               </div>
             </div>
           </div>
         </div>
-      </div><!-- tab container end -->
+      </div>
     </div>
   </div>
   <div class="background-shadow" id="js-black-sh"></div>

@@ -9,11 +9,11 @@ class Room < ApplicationRecord
   validates :describe, {length: {maximum: 400}}
   validates :category, {presence: true, length: {maximum: 15}}
   validates :admin, {presence: true}
-
+  
   scope :by_category_like, lambda { |category|
-  where('category LIKE :value', { value: "#{sanitize_sql_like(category)}%"}).distinct
+  where('category LIKE :value', { value: "%#{sanitize_sql_like(category)}%"}).distinct.limit(5)
   }
-
+  
   scope :by_name_like, lambda { |name|
   where('name LIKE :value', { value: "%#{sanitize_sql_like(name)}%"}).limit(5)
   }
