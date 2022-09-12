@@ -73,9 +73,11 @@
                     <%= f.submit "変更する" %>
                   <% end %>
                   <div class="modal-room-back">
+                    <div class="box">
                     <div class="room-back-contents"> 
                       <%= link_to "ルームを削除する", destroy_room_path(room.id), 
                         data: {turbo_method: :delete, turbo_confirm: "削除しますか？"} %>
+                    </div>
                     </div>
                   </div>
                 <% end %>
@@ -83,9 +85,11 @@
             </div>
             
             <div class="modal-room-back">
+              <div class="box"> 
               <div class="room-back-contents"> 
                 <%= link_to "ルームから退室する", room_leave_path(room.id), 
                     data: {turbo_method: :delete, turbo_confirm: "退室しますか？"} %>
+              </div>
               </div>
             </div>
           </div>
