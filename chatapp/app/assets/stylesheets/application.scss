@@ -112,6 +112,24 @@ body{
   } 
 }
 
+.login-form {
+  
+  button {
+    background-color: #ffffff;
+    border: 1px solid #5ac29c;
+    padding: 2px 8px;
+    font-size: 15px;
+    color: #5ac29c;
+    margin-right: 10px;
+    cursor: pointer;
+    cursor: hand;
+    &:hover {
+      transition: 0.4s;
+      opacity: 0.6;
+    }
+  }
+}
+
 .modal {
   visibility: hidden;
   position: fixed;

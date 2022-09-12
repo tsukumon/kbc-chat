@@ -31,6 +31,7 @@ document.addEventListener("turbo:load", () => {
   window.onclick = function(event) {
     if (event.target == blackBg || event.target == blackBg2) {
       modal.classList.remove('is-show');
+      $('body').css('overflow-y','auto'); 
       popup.classList.remove('is-show');
       $('body').css('overflow-y','auto'); 
     }
