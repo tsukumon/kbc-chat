@@ -34,7 +34,7 @@
   <div class="message-form">
     <div class="message-textarea">
       <div id="dummy-textarea" class="dummy-textarea" aria-hidden="true"></div>
-      <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する", onkeydown: "messageFunc()" %>
+        <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する", onkeydown: "messageFunc()" %>
     </div>
     <%= f.submit "", id: "message-submit", class: "message-submit" %>
     <p id="helper-text" style="color: red;"></p>
@@ -122,7 +122,9 @@
   
   <script>
     function messageFunc() {
-      if (!event.shiftKey && event.key == "Enter"){
+      let text = $("#message-sentence").val();
+      let value_flag = text.replace(/\s/g, "").length;
+      if (value_flag > 0 && !event.shiftKey && event.key == "Enter"){
         if (event.key === "Enter" && !event.isComposing) {
           document.getElementById('message-form').submit();
         }

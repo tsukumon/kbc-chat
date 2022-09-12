@@ -46,9 +46,11 @@ document.addEventListener("turbo:load", () => {
   // When the user clicks the button, open the modal.
   showBtn.onclick = function() {
     popup.classList.add('is-show');
+    $('body').css('overflow-y', 'hidden'); 
   };
   // When the user clicks on 'X', close the modal
   closeBtn.onclick = function() {
     popup.classList.remove('is-show');
+    $('body').css('overflow-y','auto'); 
   };
 });

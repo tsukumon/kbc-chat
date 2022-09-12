@@ -65,7 +65,7 @@
                     <%= f.label :category %>
                     <%= f.text_field :category %>
                     <%= f.label :name %>
-                    <%= f.text_field :name %>
+                    <%= f.text_field :name, autocomplete: "off" %>
                     <%= f.label :image %><br>
                     <%= f.file_field :image %><br>
                     <%= f.label :describe %>
@@ -85,12 +85,12 @@
             <div class="modal-room-back">
               <div class="room-back-contents"> 
                 <%= link_to "ルームから退室する", room_leave_path(room.id), 
-                    data: {turbo_method: :delete} %>
+                    data: {turbo_method: :delete, turbo_confirm: "退室しますか？"} %>
               </div>
             </div>
           </div>
         </div>
-      </div><!-- tab container end -->
+      </div>
     </div>
   </div>
   <div class="background-shadow" id="js-black-sh"></div>

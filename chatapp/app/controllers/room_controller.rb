@@ -103,12 +103,6 @@ class RoomController < ApplicationController
     end
   end
 
-
-  def autocomplete_category
-    categories = Room.by_category_like(autocomplete_params[:category]).pluck(:category).reject(&:blank?)
-    render json: categories
-  end
-
   def autocomplete_name
     names = Room.by_name_like(autocomplete_params[:name]).pluck(:name).reject(&:blank?)
     render json: names
@@ -124,9 +118,15 @@ class RoomController < ApplicationController
     @search = Room.ransack(params[:q])
     @results = @search.result
   end
+
+  def autocomplete_category
+    categories = Room.by_category_like(autocomplete_params[:category]).pluck(:category).reject(&:blank?)
+    #categories = Room.by_name_like(autocomplete_params[:category]).pluck(:name).reject(&:blank?)
+    render json: categories
+  end
   
   private
-
+  
   def autocomplete_params
     if params[:category]
       params.permit(:category)
