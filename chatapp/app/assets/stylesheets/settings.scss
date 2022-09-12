@@ -1,10 +1,37 @@
-.index-image {
-  vertical-align: middle; 
-
-  width: 50px;
-  height: 50px;
+.setting-area {
+  margin: 10px;
 }
-.index-text {
-  display: inline-block; 
-  vertical-align: middle; 
+
+.setting-user {
+  display: flex;
+  .setting-user-right {
+    margin-left: 20px;
+    font-size: 18px;
+    color: #343434;
+  }
+  i {
+    color: #676767;
+  }
+  .index-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+}
+
+.logout-area {
+  margin-top: 10px;
+    a {
+      border: 1px solid #e06666;
+      padding: 3px 8px;
+      font-size: 17px;
+      color: #e06666;
+      margin-right: 10px;
+    }
+    a:hover {
+      border: 1px solid #e06666;
+      color: #fff;
+      background-color: #e06666;
+      transition: 0.5s;
+    }
 }

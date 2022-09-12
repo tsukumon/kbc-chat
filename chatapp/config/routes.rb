@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "home#index"
 
-  get "/room" => "room#index"
+  get "/room" => "room#index", as: :room
   get "/room/joined" => "room#joined", as: :joined_room
   get "/search" => "room#search_result", as: :room_search
   get "/search/rooms" => "room#search_form"
