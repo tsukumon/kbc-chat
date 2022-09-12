@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user.save
       session[:user_id] = user.id
       cookies.encrypted[:user_id] = user.id
-      redirect_to root_path
+      redirect_to room_path
     else
       redirect_to new_session_path
     end
