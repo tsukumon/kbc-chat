@@ -113,19 +113,21 @@ body{
 }
 
 .login-form {
-  
+  margin: 10px 0px 0px 20px;
   button {
     background-color: #ffffff;
-    border: 1px solid #5ac29c;
+    border: 1px solid #49c296;
     padding: 2px 8px;
-    font-size: 15px;
-    color: #5ac29c;
+    font-size: 20px;
+    color: #49c296;
     margin-right: 10px;
     cursor: pointer;
     cursor: hand;
     &:hover {
-      transition: 0.4s;
-      opacity: 0.6;
+      border: 1px solid #49c296;
+      color: #fff;
+      background-color: #49c296;
+      transition: 0.5s;
     }
   }
 }
