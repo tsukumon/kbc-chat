@@ -84,12 +84,16 @@
               </div>
             </div>
             
-            <div class="modal-room-back">
-              <div class="box"> 
-              <div class="room-back-contents"> 
-                <%= link_to "ルームから退室する", room_leave_path(room.id), 
+            <input id="acd-check2" class="acd-check2" type="checkbox">
+            <label class="acd-label2" for="acd-check2">退室</label>
+            <div class="acd-content2">
+              <div class="modal-room-back">
+                <div class="box"> 
+                <div class="room-back-contents"> 
+                  <%= link_to "ルームから退室する", room_leave_path(room.id), 
                     data: {turbo_method: :delete, turbo_confirm: "退室しますか？"} %>
-              </div>
+                </div>
+                </div>
               </div>
             </div>
           </div>
