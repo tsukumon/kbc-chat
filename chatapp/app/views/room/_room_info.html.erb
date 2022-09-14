@@ -46,6 +46,7 @@
                     </div>
                   </div>
                 <% @info_members.each do |member| %>
+                  <% unless member.id == @admin.id%>
                     <div id="user-data" user-data-id="<%= member.id %>"></div>
                     <div class="room-user-list">
                       <img src="<%= member.image %>" class="icon">
@@ -61,6 +62,7 @@
                         </div>
                       </div>
                     </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>
