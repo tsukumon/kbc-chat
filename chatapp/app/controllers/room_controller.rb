@@ -45,7 +45,8 @@ class RoomController < ApplicationController
     
     #modal room member list
     info_members_id = UserRoom.where(room_id: params[:id]).pluck(:user_id)
-    @info_members = User.where(id: info_members_id)
+    @admin = User.find_by(id: @room_data.admin)
+    @info_members = User.where(id: info_members_id).where.not(id: @admin.id)
     @info_members_hash = @info_members.map{ |user| [user.id, user.attributes]}.to_h
 
     #messages
