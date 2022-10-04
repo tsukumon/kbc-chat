@@ -905,7 +905,7 @@
 .acd-label:after{
   background: #ffffff;
   box-sizing: border-box;
-  content: '\f0d8';
+  content: '\f0d7';
   display: block;
   font: var(--fa-font-solid);
   height: 44px;
@@ -917,7 +917,7 @@
 .acd-label2:after{
   background: #ffffff;
   box-sizing: border-box;
-  content: '\f0d8';
+  content: '\f0d7';
   display: block;
   font: var(--fa-font-solid);
   height: 44px;
@@ -941,10 +941,10 @@
   visibility: hidden;
 }
 .acd-check:checked + .acd-label:after{
-  content: '\f0d7';
+  content: '\f0d8';
 }
 .acd-check2:checked + .acd-label2:after{
-  content: '\f0d7';
+  content: '\f0d8';
 }
 .acd-check:checked + .acd-label + .acd-content{
   height: auto;
