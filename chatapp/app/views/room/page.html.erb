@@ -126,7 +126,7 @@
       let value_flag = text.replace(/\s/g, "").length;
       if (value_flag > 0 && !event.shiftKey && event.key == "Enter"){
         if (event.key === "Enter" && !event.isComposing) {
-          document.getElementById('message-form').submit();
+          document.getElementById("message-submit").click();
         }
         event.preventDefault();
       }
@@ -165,6 +165,29 @@
         })
         i++;
       }
+    }
+  </script>
+
+  <script>
+    document.addEventListener("turbo:submit-start", () => {
+      console.log("サブミットスタート")
+      enableSubmit();
+
+    })
+
+    function enableSubmit(){
+      $("#message-submit").disable = false;
+    }
+  </script>
+
+  <script>
+    document.addEventListener("turbo:submit-end", () => {
+      disableSubmit();
+    })
+
+    function disableSubmit(){
+      $("#message-submit").disabled = true;
+      $('.message-submit').css('opacity', '0.2');
     }
   </script>
 <% end %>
