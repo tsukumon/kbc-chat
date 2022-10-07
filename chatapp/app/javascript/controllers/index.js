@@ -12,7 +12,10 @@ function flexTextarea(el) {
     //window.scrollTo(0, document.body.scrollHeight);
   })
 }
-document.querySelectorAll('.room-content').forEach(flexTextarea)
+
+document.addEventListener("turbo:load", () => {
+  document.querySelectorAll('.room-content').forEach(flexTextarea)
+})
 
 /*
 document.addEventListener("turbo:load", () => {
