@@ -170,17 +170,6 @@
   </script>
 
   <script>
-    document.addEventListener("turbo:submit-start", () => {
-      duringSubmit();
-    })
-
-    function duringSubmit(){
-      document.querySelector("#message-submit").disabled = true;
-      $('.message-submit').css('opacity', '0.2');
-    }
-  </script>
-
-  <script>
     document.addEventListener("turbo:submit-end", () => {
       disableSubmit();
     })
