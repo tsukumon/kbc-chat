@@ -171,24 +171,22 @@
 
   <script>
     document.addEventListener("turbo:submit-start", () => {
-      console.log("submit-start")
-      enableSubmit();
+      duringSubmit();
     })
 
-    function enableSubmit(){
-      $("#message-submit").disable = false;
+    function duringSubmit(){
+      document.querySelector("#message-submit").disabled = true;
+      $('.message-submit').css('opacity', '0.2');
     }
   </script>
 
   <script>
     document.addEventListener("turbo:submit-end", () => {
-      console.log("submit-end")
       disableSubmit();
     })
 
     function disableSubmit(){
-      document.getElementById('message-form').reset();
-      $("#message-submit").disabled = true;
+      document.querySelector("#message-submit").disabled = true;
       $('.message-submit').css('opacity', '0.2');
     }
   </script>
