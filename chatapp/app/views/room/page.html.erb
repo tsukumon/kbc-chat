@@ -21,12 +21,13 @@
 </div>
 
 
-<p id="notice"><%= notice %></p>
 
 <div class="room-content">
 <div id="data" data-room-id="<%= @room_data.id %>" data-user-id="<%= @current_user.id %>"></div>
 
 <%= render "messages", messages: @messages %>
+
+<div id="join-notice" class="join-notice"></div>
 
 <div id="dummy-margin" class="dummy-margin"></div>
 

@@ -98,6 +98,18 @@ document.addEventListener("turbo:load", () => {
           const message = document.getElementById("message-" + data.content.id);
           message.remove();
         }
+        else if(data.mode == "join" && data.user.id != user_id){
+          document.getElementById('join-notice').textContent = `${data.user.name}が参加しました`;
+          $("#join-notice").fadeIn();
+          
+          setTimeout(function(){
+            $("#join-notice").fadeOut(function(){
+              $("#join-notice").remove();
+            })
+            //$("#join-notice").fadeOut().empty();
+            //document.getElementById('join-notice').remove();
+          },1500)
+        }
       }
     });
   };
