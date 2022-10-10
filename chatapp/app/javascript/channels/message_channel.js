@@ -106,8 +106,6 @@ document.addEventListener("turbo:load", () => {
             $("#join-notice").fadeOut(function(){
               $("#join-notice").remove();
             })
-            //$("#join-notice").fadeOut().empty();
-            //document.getElementById('join-notice').remove();
           },1500)
         }
       }
