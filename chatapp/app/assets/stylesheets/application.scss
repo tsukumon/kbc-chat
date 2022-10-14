@@ -157,26 +157,26 @@ body{
   width: 39%;
   height: 80%;
   margin: auto 10px;
-  .modal-header {
-    padding: 10px 10px 5px 10px;
-    background-color: #fff;
-    border-bottom: solid 2px #e6e6e6;
-    color: white;
-    .title {
-      font-size: 20px;
-      color: #2dbb8c;
-      font-weight: bold;
-    }
-    .close {
-      float: right;
-    }
-  }
   .modal-body {
     background-color: #ffffff;
     border-radius:0px 0px 10px 10px;
-    padding: 0px 0px 12px 0px;
+    padding: 12px 0px 12px 0px;
     overflow-y: scroll;
-    height: 450px;
+    height: 700px;
+    .modal-header {
+      padding: 10px 10px 5px 10px;
+      background-color: #fff;
+      border-bottom: solid 2px #e6e6e6;
+      color: white;
+      .title {
+        font-size: 20px;
+        color: #2dbb8c;
+        font-weight: bold;
+      }
+      .close {
+        float: right;
+      }
+    }  
     .create-from{
       padding: 12px;
       flex-flow: column;

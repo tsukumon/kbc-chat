@@ -1,10 +1,10 @@
 <div id="demo-modal" class="modal">
   <div class="modal-content">
-    <div class="modal-header">
-      <span class='close'><i class="fas fa-times"></i></span>
-      <div class="title">新規作成</div>
-    </div>
     <div class="modal-body">
+      <div class="modal-header">
+        <span class='close'><i class="fas fa-times"></i></span>
+        <div class="title">新規作成</div>
+      </div>
       <div class="create-from">
         <%= form_with url: create_room_path, 
                       model: @new_room, data: { turbo_frame: "_top" } do |f| %>
