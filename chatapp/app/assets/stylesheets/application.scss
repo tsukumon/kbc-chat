@@ -154,29 +154,31 @@ body{
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
-  width: 39%;
-  height: 80%;
+  width: 600px;
+  height: 536px;
   margin: auto 10px;
+  .modal-header {
+    display: flex;
+    padding: 10px 10px 5px 10px;
+    background-color: #fff;
+    border-bottom: solid 2px #e6e6e6;
+    color: white;
+    justify-content: space-between;
+    .title {
+      font-size: 20px;
+      color: #2dbb8c;
+      font-weight: bold;
+    }
+    .close {
+      float: right;
+    }
+  }
   .modal-body {
     background-color: #ffffff;
     border-radius:0px 0px 10px 10px;
     padding: 12px 0px 12px 0px;
     overflow-y: scroll;
-    height: 700px;
-    .modal-header {
-      padding: 10px 10px 5px 10px;
-      background-color: #fff;
-      border-bottom: solid 2px #e6e6e6;
-      color: white;
-      .title {
-        font-size: 20px;
-        color: #2dbb8c;
-        font-weight: bold;
-      }
-      .close {
-        float: right;
-      }
-    }  
+    height: 473px;
     .create-from{
       padding: 12px;
       flex-flow: column;
