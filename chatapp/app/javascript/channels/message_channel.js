@@ -91,8 +91,8 @@ document.addEventListener("turbo:load", () => {
           }else{
             document.getElementById('message-notice').textContent = "未読のメッセージがあります";
           }
-          $("#message-submit").disabled = true;
-          $('.message-submit').css('opacity', '0.2');
+          // $("#message-submit").disabled = true;
+          // $('.message-submit').css('opacity', '0.2');
         }
         else if (data.mode == "delete") {
           const message = document.getElementById("message-" + data.content.id);
