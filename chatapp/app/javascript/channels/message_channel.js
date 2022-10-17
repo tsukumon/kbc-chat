@@ -99,14 +99,11 @@ document.addEventListener("turbo:load", () => {
           message.remove();
         }
         else if(data.mode == "join" && data.user.id != user_id){
-          document.getElementById('join-notice').textContent = `${data.user.name}が参加しました`;
-          $("#join-notice").fadeIn();
-          
-          setTimeout(function(){
-            $("#join-notice").fadeOut(function(){
-              $("#join-notice").remove();
-            })
-          },1500)
+          const messages = document.getElementById('messages');
+          const notice = document.createElement('div');
+          notice.classList.add("join-notice");
+          notice.textContent = `${data.user.name}が参加しました`;
+          messages.appendChild(notice);
         }
       }
     });

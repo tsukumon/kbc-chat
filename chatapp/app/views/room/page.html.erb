@@ -27,8 +27,6 @@
 
 <%= render "messages", messages: @messages %>
 
-<div id="join-notice" class="join-notice"></div>
-
 <div id="dummy-margin" class="dummy-margin"></div>
 
 <%= form_with id: "message-form", url: create_message_path(params[:id]), model: @message, local: true do |f| %>
