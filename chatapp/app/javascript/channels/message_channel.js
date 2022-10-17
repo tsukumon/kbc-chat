@@ -2,6 +2,7 @@ import consumer from "channels/consumer"
 
 document.addEventListener("turbo:load", () => {
   const data = document.getElementById("data")
+  let ct = 0;
   
   if(data == null){
     return
@@ -100,10 +101,23 @@ document.addEventListener("turbo:load", () => {
         }
         else if(data.mode == "join" && data.user.id != user_id){
           const messages = document.getElementById('messages');
+          const last_child = messages.lastElementChild;
           const notice = document.createElement('div');
-          notice.classList.add("join-notice");
-          notice.textContent = `${data.user.name}が参加しました`;
-          messages.appendChild(notice);
+
+          if(last_child.className == "join-notice"){
+            ct++;
+          }else{
+            notice.classList.add("join-notice");
+            // notice.textContent = `${data.user.name}が参加しました`;
+            if(ct > 2){
+              notice.textContent = `${data.user.name} と 複数メンバー が参加しました`;
+              ct = 0;
+            }else{
+              notice.textContent = `${data.user.name}が参加しました`
+            }
+            messages.appendChild(notice);  
+          }
+          
         }
       }
     });
