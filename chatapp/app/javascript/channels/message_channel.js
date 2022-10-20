@@ -109,8 +109,8 @@ document.addEventListener("turbo:load", () => {
           const messages = document.getElementById('messages');
           const last_child = messages.lastElementChild;
           const notice = document.createElement('div');
-          let msg = `${data.user.name} が参加しました`
-          let msg_split = msg.split(" ");
+          let msg = `${data.user.name}+が参加しました`
+          let msg_split = msg.split("+");
           const text = msg_split[1];
 
           if(last_child.className == "join-notice"){
@@ -119,11 +119,12 @@ document.addEventListener("turbo:load", () => {
           }else{
             notice.classList.add("join-notice");
 
-            if(ct > 1){
+            if(ct >= 1){
               notice.textContent = `${name}${data.user.name}${text}`;
               ct = 0;
+              name = "";
             }else{
-              notice.textContent = msg
+              notice.textContent = msg_split[0] + text;
             }
 
             messages.appendChild(notice);  
