@@ -127,7 +127,7 @@ document.addEventListener("turbo:load", () => {
               notice.textContent = msg_split[0] + text;
             }
 
-            messages.appendChild(notice);  
+            messages.appendChild(notice);
           }
           
         }
