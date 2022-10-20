@@ -114,7 +114,7 @@ document.addEventListener("turbo:load", () => {
           const text = msg_split[1];
 
           if(last_child.className == "join-notice"){
-            name += msg_split[0] + ",";
+            name += msg_split[0] + ", ";
             ct++;
           }else{
             notice.classList.add("join-notice");
