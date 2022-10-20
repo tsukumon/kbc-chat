@@ -50,7 +50,10 @@ document.addEventListener("turbo:load", () => {
                                 <a data-turbo-method="delete" href="/message/${data.content.id}">削除</a>
                               </div>
                             </div>
-                          <p>${data.content.sentence}</p>
+                            <div class="text-messages">
+                              ${data.content.sentence}
+                            </div>
+                          </div>
                         </div>
                       </div>
                       `;
@@ -63,7 +66,10 @@ document.addEventListener("turbo:load", () => {
                               <div class="message-username">${data.user.name}</div>
                               <div id="message-time">${data.time}</div>
                             </div>
-                          <p>${data.content.sentence}</p>
+                            <div class="text-messages">
+                              ${data.content.sentence}
+                            </div>
+                          </div>
                         </div>
                       </div>
                       `;
