@@ -36,7 +36,7 @@
       <div id="dummy-textarea" class="dummy-textarea" aria-hidden="true"></div>
         <%= f.text_area :sentence, id: "message-sentence", class: "message-sentense-class", :placeholder => "メッセージを送信する", onkeydown: "messageFunc()" %>
     </div>
-    <%= f.submit "", id: "message-submit", class: "message-submit" %>
+    <%= f.submit "", id: "message-submit", class: "message-submit", data: { disable_with: "" } %>
     <p id="helper-text" style="color: red;"></p>
   </div>
 <% end %>
@@ -126,7 +126,8 @@
       let value_flag = text.replace(/\s/g, "").length;
       if (value_flag > 0 && !event.shiftKey && event.key == "Enter"){
         if (event.key === "Enter" && !event.isComposing) {
-          document.getElementById('message-form').submit();
+          //document.getElementById('message-form').submit();
+          document.getElementById("message-submit").click();
         }
         event.preventDefault();
       }
@@ -165,6 +166,17 @@
         })
         i++;
       }
+    }
+  </script>
+
+  <script>
+    document.addEventListener("turbo:submit-end", () => {
+      disableSubmit();
+    })
+
+    function disableSubmit(){
+      document.querySelector("#message-submit").disabled = true;
+      $('.message-submit').css('opacity', '0.2');
     }
   </script>
 <% end %>
