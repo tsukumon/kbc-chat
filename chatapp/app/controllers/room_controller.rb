@@ -14,9 +14,10 @@ class RoomController < ApplicationController
   end
 
   def join
-    @room = Room.find_by(id: params[:id])
+    @room = Room.preload(:user)
+    @target_room = @room.find_by(id: params[:id])
     user = User.find_by(id: @current_user.id)
-    @room.user << user
+    @target_room.user << user
     ActionCable.server.broadcast "message_#{params[:id]}_channel",{ mode: "join", current_user: @current_user.id, user: user }
     redirect_to room_page_path(id: params[:id])
   end
