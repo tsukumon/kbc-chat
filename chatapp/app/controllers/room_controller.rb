@@ -7,10 +7,14 @@ class RoomController < ApplicationController
   before_action :authenticate_room, only: [:page, :create_message]
   
   def index
-    #@rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
     @room_all = Room.all.page(params[:room_page]).per(8)
     @room_latest = Room.order(created_at: :DESC).limit(4)
     @room_update = Room.order(updated_at: :DESC).limit(4)
+
+    #参加しているルームの情報
+    joined_rooms_id = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
+    @joined_rooms = Room.where(id: joined_rooms_id)
+    @joined_rooms_hash = @joined_rooms.map{ |room| [room.id, room.attributes]}.to_h
   end
 
   def join
