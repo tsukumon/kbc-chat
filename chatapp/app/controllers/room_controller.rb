@@ -17,6 +17,7 @@ class RoomController < ApplicationController
     @room = Room.find_by(id: params[:id])
     user = User.find_by(id: @current_user.id)
     @room.user << user
+    ActionCable.server.broadcast "message_#{params[:id]}_channel",{ mode: "join", current_user: @current_user.id, user: user }
     redirect_to room_page_path(id: params[:id])
   end
 
