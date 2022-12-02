@@ -7,7 +7,7 @@
 </div>
 <div class="joined-rooms">
   <% @room_info.each do |room| %>
-    <%= link_to room_page_path(room.id) do %>
+    <%= link_to room_page_path(room.id), "data-turbo": false do %>
       <div class="joined-room">
         <div class="room-image">
           <% if room.image.length > 0 || room.image != nil %>

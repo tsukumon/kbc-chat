@@ -112,6 +112,7 @@
       let msg = document.getElementById("messages");
       setTimeout(function(){
         window.scroll(0, msg.scrollHeight);
+        console.log("メッセージを最下にスクロールしたよ");
       }, 1)
       $("#messages").fadeIn();
     });
@@ -131,7 +132,7 @@
     }
   </script>
   
-  <script>
+  <script data-turbo-cache="false">
     let i = 2;
     document.addEventListener("turbo:load", () => {
       Turbo.clearCache();
@@ -155,8 +156,12 @@
           success: function(data){
             setTimeout(function(){
               $("#messages").prepend($(data).find("#messages").html());
-              height = messages.scrollHeight - prev;
-              $(window).scrollTop(height);
+                height = messages.scrollHeight - prev;
+                scrollTo(0, height);
+                //document.getElementById("messages").scrollTop = height;
+                //window.scroll(0, height);
+                //$(window).scrollTop(height);
+              console.log("メッセージ無限スクロールしたよ");
               $(".cv-spinner").addClass("hide");
             }, 850)
           }

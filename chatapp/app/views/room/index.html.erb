@@ -32,7 +32,7 @@
                 <%= link_to "参加する", room_join_path(room.id), "data-turbo": false, class: "join-btn" %>
               </div>
             <% else %>
-              <%= link_to room_page_path(room.id), class: "spread-link" do %><% end %>
+              <%= link_to room_page_path(room.id), class: "spread-link", "data-turbo": false do %><% end %>
             <br>
             <% end %>
         </div>
@@ -74,7 +74,7 @@
                 <%= link_to "参加する", room_join_path(room.id), "data-turbo": false, class: "join-btn" %>
               </div>
             <% else %>
-              <%= link_to room_page_path(room.id), class: "spread-link" do %><% end %>
+              <%= link_to room_page_path(room.id), class: "spread-link", "data-turbo": false do %><% end %>
             <br>
             <% end %>
         </div>
@@ -115,7 +115,7 @@
                 <%= link_to "参加する", room_join_path(room.id), "data-turbo": false, class: "join-btn" %>
               </div>
             <% else %>
-              <%= link_to room_page_path(room.id), class: "spread-link" do %><% end %>
+              <%= link_to room_page_path(room.id), class: "spread-link", "data-turbo": false  do %><% end %>
             <br>
             <% end %>
         </div>
@@ -129,7 +129,7 @@
     <span class="spinner"></span>
   </div>
 </div>
-<div class="rooms-bottom" id="room-bottom"></div>
+<div class="rooms-bottom" id="room-bottom" data-turbo-cache="false"></div>
 
 
 <script type="text/javascript">
@@ -167,9 +167,11 @@ document.addEventListener("turbo:load", () => {
     
   function getRoomsChild(){
     const bottom_room = document.getElementById("room-bottom") //roomsの一番下の空div
-    const rect = bottom_room.getBoundingClientRect();
-    const isInView = 0 < rect.bottom && parseInt(rect.bottom) <= window.innerHeight;
-    return isInView;
+    if(bottom_room){
+      const rect = bottom_room.getBoundingClientRect();
+      const isInView = 0 < rect.bottom && parseInt(rect.bottom) <= window.innerHeight;
+      return isInView;
+    }
   }
 
   function roomScroll() {
