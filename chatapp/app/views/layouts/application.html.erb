@@ -39,16 +39,31 @@
           </div>
         </div>
         <div class="menu">
-          <%= link_to "/", class: "menu-one" do %><i class="fa-solid fa-house"></i> トップ<% end %>
-          <%= link_to "/room", class: "menu-one" do %><i class="fa-solid fa-comment"></i> ルーム一覧<% end %>
-          <%= link_to "/room/joined", class: "menu-one" do %><i class="fa-solid fa-comment"></i> 参加中のルーム<% end %>
-          <%= link_to "/search/rooms", class: "menu-one" do %><i class="fa-solid fa-magnifying-glass"></i> ルームを探す<% end %>
+          <%= link_to "/", class: "menu-one", data: { turbo: false } do %>
+            <i class="fa-solid fa-house"></i> トップ
+          <% end %>
 
-          <div class="menu-one" id="open-modal" name="open-modal-btn"><i class="fa-solid fa-plus"></i> ルームを作成</div>
+          <%= link_to "/room", class: "menu-one", data: { turbo: false } do %>
+            <i class="fa-solid fa-comment"></i> ルーム一覧
+          <% end %>
+
+          <%= link_to "/room/joined", class: "menu-one", data: { turbo: false } do %>
+            <i class="fa-solid fa-comment"></i> 参加中のルーム
+          <% end %>
+          
+          <%= link_to "/search/rooms", class: "menu-one", data: { turbo: false } do %>
+            <i class="fa-solid fa-magnifying-glass"></i> ルームを探す
+          <% end %>
+
+          <div class="menu-one" id="open-modal" name="open-modal-btn">
+            <i class="fa-solid fa-plus"></i> ルームを作成
+          </div>
 
           <%= render "room/new_room" %>
 
-          <%= link_to setting_path, class: "menu-one" do %><i class="fa-solid fa-gear"></i> 設定<% end %>
+          <%= link_to setting_path, class: "menu-one" do %>
+            <i class="fa-solid fa-gear"></i> 設定
+          <% end %>
         </div>
       </div>
       <div class="main-container">
