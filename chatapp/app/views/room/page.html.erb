@@ -3,18 +3,10 @@
 <div class="room-header-list">
   <div class="room-header">
     <div class="room_header_left">
-      <% if request.referer == request.url %>
-        <%= link_to joined_room_path do %>
-          <div class="room_back"><i class="fa-solid fa-angle-left"></i></div>
-        <% end %>
-      <% else %>
-        <%= link_to request.referer do %>
-          <div class="room_back"><i class="fa-solid fa-angle-left"></i></div>
-        <% end %>
-      <% end %>
-        <div class="room_title" id="js-show-modal-detail"><%= @room_data.name %>
-          <div class="room_datail_button"><i  class="fa-solid fa-caret-down"></i></div>
-        </div>
+      <div class="room_back" onclick="pageBack()"><i class="fa-solid fa-angle-left"></i></div>
+      <div class="room_title" id="js-show-modal-detail"><%= @room_data.name %>
+        <div class="room_datail_button"><i  class="fa-solid fa-caret-down"></i></div>
+      </div>
     </div>
   </div>
 <div id="message-notice" onclick="noticeScroll()"></div>
@@ -42,6 +34,12 @@
 </div>
 
 <% if controller.controller_name == "room" && controller.action_name ==  "page" %>
+  <script>
+    function pageBack(){
+      history.back();
+    }
+  </script>
+
   <script>
     document.addEventListener("turbo:load", () => {
       getMessageChild();
