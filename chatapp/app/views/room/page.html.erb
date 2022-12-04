@@ -136,7 +136,9 @@
     document.addEventListener("turbo:load", () => {
       Turbo.clearCache();
       i = 2;
-      window.addEventListener("scroll", msgScroll);
+      setTimeout(() => {
+        window.addEventListener("scroll", msgScroll);
+      }, 1000);
     });
     
     function msgScroll() {
