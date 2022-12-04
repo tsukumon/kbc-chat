@@ -3,7 +3,7 @@ import consumer from "channels/consumer"
 document.addEventListener("turbo:load", () => {
   const data = document.getElementById("data")
   let ct = 0;
-  
+  let name = "";
   if(data == null){
     return
   }
@@ -109,19 +109,25 @@ document.addEventListener("turbo:load", () => {
           const messages = document.getElementById('messages');
           const last_child = messages.lastElementChild;
           const notice = document.createElement('div');
+          let msg = `${data.user.name}+が参加しました`
+          let msg_split = msg.split("+");
+          const text = msg_split[1];
 
           if(last_child.className == "join-notice"){
+            name += msg_split[0] + ", ";
             ct++;
           }else{
             notice.classList.add("join-notice");
-            // notice.textContent = `${data.user.name}が参加しました`;
-            if(ct > 2){
-              notice.textContent = `${data.user.name} と 複数メンバー が参加しました`;
+
+            if(ct >= 1){
+              notice.textContent = `${name}${data.user.name}${text}`;
               ct = 0;
+              name = "";
             }else{
-              notice.textContent = `${data.user.name}が参加しました`
+              notice.textContent = msg_split[0] + text;
             }
-            messages.appendChild(notice);  
+
+            messages.appendChild(notice);
           }
           
         }
