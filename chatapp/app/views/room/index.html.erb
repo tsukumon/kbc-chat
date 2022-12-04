@@ -158,11 +158,11 @@ document.addEventListener("turbo:load", () => {
 <script>
   let p = 2;
   document.addEventListener("turbo:load", () => {
-    //const spinner = document.getElementById("spinner");
+    const spinner = document.getElementById("spinner");
     Turbo.clearCache();
-    //spinner.style.opacity = "0"; //spinnerを消す
+    spinner.style.opacity = "0"; //spinnerを消す
     getRoomsChild();
-    p = 2;
+    //p = 2;
     window.addEventListener("scroll", roomScroll);
   });
     
