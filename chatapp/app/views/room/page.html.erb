@@ -111,9 +111,9 @@
     document.addEventListener("turbo:load", () => {
       let msg = document.getElementById("messages");
       setTimeout(function(){
+        $("#messages").fadeIn();
         window.scroll(0, msg.scrollHeight);
       }, 1)
-      $("#messages").fadeIn();
     });
   </script>
   
