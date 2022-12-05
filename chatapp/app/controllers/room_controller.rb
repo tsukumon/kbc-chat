@@ -10,7 +10,10 @@ class RoomController < ApplicationController
     #@rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
     @room_all = Room.all.page(params[:room_page]).per(8)
     @room_latest = Room.order(created_at: :DESC).limit(4)
-    @room_update = Room.order(updated_at: :DESC).limit(4)
+    @room_update = Room.where("created_at < updated_at").order(updated_at: :DESC).limit(4)
+
+    #joined rooms
+    #@joined = @room_all.user
   end
 
   def join
@@ -29,7 +32,7 @@ class RoomController < ApplicationController
   end
 
   def authenticate_room
-    unless UserRoom.find_by(user_id: @current_user.id, room_id: params[:id])
+    unless RoomsUser.find_by(user_id: @current_user.id, room_id: params[:id])
       redirect_to room_path
     end
   end
@@ -45,9 +48,11 @@ class RoomController < ApplicationController
     @message = Message.new
     
     #modal room member list
-    info_members_id = UserRoom.where(room_id: params[:id]).pluck(:user_id)
+    @info_members_id = RoomsUser.where(room_id:params[:id]).pluck(:user_id)
+    # info_members_id = UserRoom.where(room_id: params[:id]).pluck(:user_id)
+    #@admin = RoomsUser.where(admin: true).pluck(:user_id)
     @admin = User.find_by(id: @room_data.admin)
-    @info_members = User.where(id: info_members_id).order(id: :ASC)
+    @info_members = User.where(id: @info_members_id).order(id: :ASC)
     @info_members_hash = @info_members.map{ |user| [user.id, user.attributes]}.to_h
 
     #messages
