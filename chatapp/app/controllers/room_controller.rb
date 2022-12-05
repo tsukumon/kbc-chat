@@ -10,7 +10,7 @@ class RoomController < ApplicationController
     #@rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
     @room_all = Room.all.page(params[:room_page]).per(8)
     @room_latest = Room.order(created_at: :DESC).limit(4)
-    @room_update = Room.order(updated_at: :DESC).limit(4)
+    @room_update = Room.where("created_at < updated_at").order(updated_at: :DESC).limit(4)
   end
 
   def join
