@@ -59,7 +59,7 @@
             <i class="fa-solid fa-plus"></i> ルームを作成
           </div>
 
-          <%= render "room/new_room" %>
+          <%= render "room/new_room", users: @users %>
 
           <%= link_to setting_path, class: "menu-one" do %>
             <i class="fa-solid fa-gear"></i> 設定

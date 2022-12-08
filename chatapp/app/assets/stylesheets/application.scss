@@ -182,6 +182,12 @@ body{
     .create-from{
       padding: 12px;
       flex-flow: column;
+      .room-type-cb input:checked + .invite-members{
+        display: flex;
+      }
+      .invite-members{
+        display: none;
+      }
       input[type="text"]{
         background-color: #F4F4F4;
         border: none;
@@ -225,6 +231,7 @@ body{
           display: flex;
       }
       .form-label {
+        user-select: none;
         font-size: 16px;
         color: #393939;
       }
