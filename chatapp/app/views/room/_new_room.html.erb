@@ -15,7 +15,6 @@
           </div>
           <div class="room-type">
             <%= f.label :private, class: "form-label" %>
-            <%# <label class="form-label">プライベート</label> %>
           </div>
           <div class="room-type-cb" onclick="toggle()">
             <%= f.check_box(:private, { checked: false }, 
@@ -23,8 +22,11 @@
           </div>
           <div class="invite-members">
             <%= collection_check_boxes(:room, :user_ids, users, :id, :name) do |cb| %>
-              <%= cb.label { cb.text } %>
-              <%= cb.check_box %>
+              <div class="select-members">
+                <%= cb.label(class: "cb-dummy-lb") {cb.text} %>
+                <%= cb.check_box class:"invite-cb" %>
+                <span class="cb-dummy"></span>
+              </div>
             <% end %>
           </div>
 
