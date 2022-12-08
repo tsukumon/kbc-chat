@@ -14,7 +14,8 @@
             <%= f.text_field :category, id: "room_category" %>
           </div>
           <div class="room-type">
-            <p class="form-label">プライベート</p>
+            <%= f.label :private, class: "form-label" %>
+            <%# <label class="form-label">プライベート</label> %>
           </div>
           <div class="room-type-cb" onclick="toggle()">
             <%= f.check_box(:private, { checked: false }, 
