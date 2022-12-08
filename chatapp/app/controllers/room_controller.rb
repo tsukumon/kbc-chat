@@ -12,8 +12,8 @@ class RoomController < ApplicationController
     @room_all = Room.all.page(params[:room_page]).per(8)
     @room_latest = Room.order(created_at: :DESC).limit(4)
     @room_update = Room.order(updated_at: :DESC).limit(4)
-    
-    #joinedrooms
+
+    #joined rooms
     @joined_rooms = @user_data.room
   end
 
@@ -48,7 +48,7 @@ class RoomController < ApplicationController
     @user_data = User.all
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
-    
+
     #modal room member list
     @admin = User.find_by(id: @room_data.admin)
     @info_members = @room_data.user
