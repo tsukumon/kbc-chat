@@ -75,12 +75,14 @@
             <label class="acd-label" for="acd-check1">ルーム情報設定</label>
             <div class="acd-content">
               <div class="edit_room_function">
-                  <%= form_with url: update_room_path, model: room, data: { turbo_frame: "_top" }  do |f| %>
+                  <%= form_with url: update_room_path, model: room, 
+                    data: { turbo_frame: "_top" }  do |f| %>
                     <div id="errors-update-room"></div>
                     <%= f.label :category %>
                     <%= f.text_field :category %>
                     <%= f.label "メンバー" %>
-                    <%= collection_check_boxes(:room, :user_ids, @user_data, :id, :name, checked: room.user_ids) do |cb| %>
+                    <%= collection_check_boxes(:room, :user_ids, @user_data, :id, :name,
+                      checked: room.user_ids) do |cb| %>
                       <%= cb.label { cb.check_box + cb.text } %>
                     <% end %><br>
                     <%= f.label :name %>
