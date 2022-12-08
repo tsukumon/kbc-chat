@@ -34,15 +34,6 @@ ActiveRecord::Schema.define(version: 2022_09_02_022701) do
     t.boolean "private", default: false, null: false
   end
 
-  # create_table "user_rooms", force: :cascade do |t|
-  #   t.bigint "user_id", null: false
-  #   t.bigint "room_id", null: false
-  #   t.datetime "created_at", precision: 6, null: false
-  #   t.datetime "updated_at", precision: 6, null: false
-  #   t.index ["room_id"], name: "index_user_rooms_on_room_id"
-  #   t.index ["user_id"], name: "index_user_rooms_on_user_id"
-  # end
-
   create_table "users", force: :cascade do |t|
     t.text "name"
     t.text "email"
