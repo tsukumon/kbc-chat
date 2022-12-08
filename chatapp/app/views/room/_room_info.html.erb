@@ -79,6 +79,10 @@
                     <div id="errors-update-room"></div>
                     <%= f.label :category %>
                     <%= f.text_field :category %>
+                    <%= f.label "メンバー" %>
+                    <%= collection_check_boxes(:room, :user_ids, @user_data, :id, :name, checked: room.user_ids) do |cb| %>
+                      <%= cb.label { cb.check_box + cb.text } %>
+                    <% end %><br>
                     <%= f.label :name %>
                     <%= f.text_field :name, autocomplete: "off" %>
                     <%= f.label :image %><br>

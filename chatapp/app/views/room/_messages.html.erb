@@ -9,7 +9,7 @@
     <% messages.reverse_each do |message| %>
       <div id="message-<%= message.id%>" class="message-one">
         <% user = @members_hash[message.user_id] %>
-        <% if user == @info_members_hash[message.user_id]%>
+        <% if @info_members.ids.include?(message.user_id) %>
           <div class="message-left">
           <% if user["image"] %>
           <img src=<%= user["image"] %>>
