@@ -184,7 +184,7 @@ body{
       flex-flow: column;
       .room-type{
         display: inline-block;
-        width: 94px;
+        width: 96px;
         margin: 2px;
         position: relative;
         overflow: hidden;
@@ -230,7 +230,7 @@ body{
       }
       .room-type-cb.checked {
         &:before {
-          background: #35c759;
+          background: #2dbb8c;
         }
         &:after {
           left: 27px;
@@ -244,6 +244,7 @@ body{
           display: block;
           position: relative;
           padding-left: 30px;
+          margin-right: 20px;
           margin-bottom: 12px;
           cursor: pointer;
           font-size: 14px;
@@ -254,8 +255,8 @@ body{
           .invite-cb{
             display: none;
             &:checked + .cb-dummy{
-                background-color: #0070bd;
-                border: 2px solid #0070bd;
+                background-color: #ffff;
+                border: 2px solid #2dbb8c;
               &:after{
                 display: block;
               }
@@ -278,7 +279,7 @@ body{
               top: 0px;
               width: 5px;
               height: 10px;
-              border: 2px solid #FFF;
+              border: 2px solid #2dbb8c;
               border-width: 0 2px 2px 0;
               transform: rotate(45deg);
             }
