@@ -13,16 +13,20 @@
             <%= f.label :category, class: "form-label" %>
             <%= f.text_field :category, id: "room_category" %>
           </div>
-          <label class="room-type-cb">
-            <%= f.label :private, class: "form-label" %>
+          <div class="room-type">
+            <p class="form-label">プライベート</p>
+          </div>
+          <div class="room-type-cb" onclick="toggle()">
             <%= f.check_box(:private, { checked: false }, 
                             checked_value=true, unchecked_value=false) %>
-            <span class="invite-members">
-              <%= collection_check_boxes(:room, :user_ids, users, :id, :name) do |cb| %>
-                <%= cb.label { cb.check_box + cb.text } %>
-              <% end %>
-            </span>
-          </label>
+          </div>
+          <div class="invite-members">
+            <%= collection_check_boxes(:room, :user_ids, users, :id, :name) do |cb| %>
+              <%= cb.label { cb.text } %>
+              <%= cb.check_box %>
+            <% end %>
+          </div>
+
           <div class="create-room-name">
             <%= f.label :name, class: "form-label" %>
             <%= f.text_field :name, autocomplete: "off" %>
@@ -69,4 +73,15 @@ document.addEventListener("turbo:load", () => {
       });
   });
 });
+</script>
+
+<script>
+  function toggle(){
+    $(".room-type-cb").toggleClass("checked");
+    if(!$('input[name="room[private]"]').prop("checked")) {
+      $(".room-type-cb input").prop("checked", true);
+    } else {
+      $(".room-type-cb input").prop("checked", false);
+    }
+  }
 </script>

@@ -182,7 +182,63 @@ body{
     .create-from{
       padding: 12px;
       flex-flow: column;
-      .room-type-cb input:checked + .invite-members{
+      .room-type{
+        display: inline-block;
+        width: 94px;
+        height: 28px;
+        margin: 2px;
+        position: relative;
+        overflow: hidden;
+      }
+      .room-type-cb{
+        display: inline-block;
+        position: relative;
+        width: 48px;
+        height: 28px;
+        margin: 2px;
+        border-radius: 50px;
+        overflow: hidden;
+        cursor: pointer;
+        input[type="checkbox"] {
+          display: none;
+        }
+        &:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: block;
+          background: #e9e9eb;
+          -webkit-transition: 0.2s ease-out;
+          transition: 0.2s ease-out;
+        }
+        &:after {
+          content: "";
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          width: 22px;
+          height: 22px;
+          display: block;
+          border-radius: 50px;
+          background: #fff;
+          box-shadow: 0 9px 28px -6px rgba(0, 0, 0, 0.3);
+          -webkit-transition: 0.2s ease-out;
+          transition: 0.2s ease-out;
+        }
+      }
+      .room-type-cb.checked {
+        &:before {
+          background: #35c759;
+        }
+        &:after {
+          left: 23px;
+          box-shadow: 0 9px 28px -6px rgba(0, 0, 0, 0.5);
+        }
+      }
+      .room-type-cb.checked + .invite-members{
         display: flex;
       }
       .invite-members{
