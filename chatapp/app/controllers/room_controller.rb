@@ -33,7 +33,8 @@ class RoomController < ApplicationController
   end
 
   def authenticate_room
-    unless RoomsUser.find_by(user_id: @current_user.id, room_id: params[:id])
+    room = Room.find(params[:id])
+    unless room.user.find_by(id: @current_user.id)
       redirect_to room_path
     end
   end
