@@ -90,7 +90,8 @@ class RoomController < ApplicationController
 
   def destroy_room
     @room = Room.find_by(id: params[:id])
-    if @room.destroy
+    user = @room.user
+    if @room.user.destroy(user) && @room.destroy
       redirect_to room_path, status: :see_other
     end
   end
