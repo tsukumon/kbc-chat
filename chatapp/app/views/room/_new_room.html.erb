@@ -14,7 +14,7 @@
             <%= f.text_field :category, id: "room_category" %>
           </div>
           <div class="room-type">
-            <%= f.label :private, class: "form-label" %>
+            <label class="form-label">プライベート</label>
           </div>
           <div class="room-type-cb" onclick="toggle()">
             <%= f.check_box(:private, { checked: false }, 
@@ -23,9 +23,9 @@
           <div class="invite-members">
             <%= collection_check_boxes(:room, :user_ids, users, :id, :name) do |cb| %>
               <div class="select-members">
-                <%= cb.label(class: "cb-dummy-lb") {cb.text} %>
                 <%= cb.check_box class:"invite-cb" %>
                 <span class="cb-dummy"></span>
+                <%= cb.label(class: "cb-dummy-lb") {cb.text} %>
               </div>
             <% end %>
           </div>
