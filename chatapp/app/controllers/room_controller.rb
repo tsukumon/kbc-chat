@@ -16,6 +16,7 @@ class RoomController < ApplicationController
 
     #joined rooms
     @joined_rooms = @user_data.room
+    @joined_rooms_hash = @joined_rooms.map{ |room| [room.id, room.attributes]}.to_h
   end
 
   def join
@@ -45,6 +46,7 @@ class RoomController < ApplicationController
     @room_info = @user_data.room.order(updated_at: :DESC)
     @invited_rooms = Room.where(id: @room_info.ids, private: true)
                     .where.not(admin: @current_user.id)
+    @invited_rooms_hash = @invited_rooms.map{ |room| [room.id, room.attributes]}.to_h
   end
 
   def page

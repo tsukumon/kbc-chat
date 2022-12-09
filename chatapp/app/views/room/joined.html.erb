@@ -17,7 +17,7 @@
           <% end %>
         </div>
         <div class="room-titles">
-          <% unless @invited_rooms.ids.include?(room.id) %>
+          <% unless @invited_rooms_hash[room.id] %>
             <div class="title"><%= room.name %></div>
           <% else %>
             <div class="title"><%= room.name %> <i class="fa-solid fa-lock"></i></div>
