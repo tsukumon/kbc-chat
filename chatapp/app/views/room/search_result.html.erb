@@ -10,6 +10,7 @@
 
 <div class="rooms">
   <% @results.each do |room| %>
+    <% if @public_rooms.ids.include?(room.id) || @invited_rooms.ids.include?(room.id) %>
         <div class="room">
             <div class="room-bg-image">
                 <% if room.image.length > 0 || room.image != nil %>
@@ -32,7 +33,11 @@
                 </div>
                 <div class="room-create-time"><%= date_format(room.created_at)%></div>
               </div>
+              <% unless @invited_rooms.ids.include?(room.id) %>
                 <div class="title"><%= room.name %></div>
+              <% else %>
+                <div class="title"><%= room.name %> <i class="fa-solid fa-lock"></i></div>
+              <% end %>
             </div>
             <% unless @joined_rooms.ids.include?(room.id) %>
               <div class="join-btn-area">
@@ -43,5 +48,6 @@
             <br>
             <% end %>
         </div>
+    <% end %>
   <% end %>
 </div>

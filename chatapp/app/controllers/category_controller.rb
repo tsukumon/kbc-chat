@@ -3,7 +3,7 @@ class CategoryController < ApplicationController
     @user_data = User.find_by(id: @current_user.id)
     @category = CGI.unescape(params[:category])
 
-    @rooms = Room.where(category: @category)
+    @rooms = Room.where(category: @category, private: false)
     @joined_rooms = @user_data.room
   end
 end

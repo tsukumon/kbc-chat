@@ -9,9 +9,10 @@ class RoomController < ApplicationController
   def index
     #@rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
     @user_data = User.find_by(id: @current_user.id)
-    @room_all = Room.all.page(params[:room_page]).per(8)
-    @room_latest = Room.order(created_at: :DESC).limit(4)
-    @room_update = Room.order(updated_at: :DESC).limit(4)
+    @room_all = Room.where(private: false).page(params[:room_page]).per(8)
+    @room_latest = Room.where(private: false).order(created_at: :DESC).limit(4)
+    @room_update = Room.where("created_at < updated_at", private: false)
+                  .order(updated_at: :DESC).limit(4)
 
     #joined rooms
     @joined_rooms = @user_data.room
@@ -42,6 +43,8 @@ class RoomController < ApplicationController
   def joined
     @user_data = User.find_by(id: @current_user.id)
     @room_info = @user_data.room.order(updated_at: :DESC)
+    @invited_rooms = Room.where(id: @room_info.ids, private: true)
+                    .where.not(admin: @current_user.id)
   end
 
   def page
@@ -115,15 +118,17 @@ class RoomController < ApplicationController
   end
   
   def search_result
-    @user_data = User.find_by(id: @current_user.id)
-    @joined_rooms = @user_data.room
     @search = Room.ransack(params[:q])
     @results = @search.result
+    @user_data = User.find_by(id: @current_user.id)
+    @joined_rooms = @user_data.room
+    @public_rooms = Room.where(private: false)
+    @invited_rooms = @joined_rooms.where(private: true)
   end
 
   def search_form
     @user_data = User.find_by(id: @current_user.id)
-    @room = Room.all.order(created_at: :DESC).limit(12)
+    @rooms = Room.where(private: false).order(created_at: :DESC).limit(12)
     @joined_rooms = @user_data.room
     @search = Room.ransack(params[:q])
     @results = @search.result
