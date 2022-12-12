@@ -22,18 +22,25 @@ class ApplicationController < ActionController::Base
     if @current_user
       @users = User.where.not(id: @current_user.id)
     end
-    @categories = Room.group(:category).select("category, count(category) as category_count").order("category_count desc").limit(5).map { |m| [m.category, m.category_count] }.to_h
+    @categories = Room.group(:category).select("category, count(category) as category_count")
+                  .order("category_count desc").limit(5)
+                  .map { |m| [m.category, m.category_count] }.to_h
   end
 
   def create_room
     @users = User.where.not(id: @current_user.id)
     @new_room = Room.new(room_params)
     @new_room.admin = @current_user.id
-    @categories = Room.group(:category).select("category, count(category) as category_count").order("category_count desc").limit(10).map { |m| [m.category, m.category_count] }.to_h
+    @categories = Room.group(:category).select("category, count(category) as category_count")
+                  .order("category_count desc").limit(10)
+                  .map { |m| [m.category, m.category_count] }.to_h
     now_user = User.find_by(id: @current_user.id)
     @init_admin = @new_room.rooms_user
 
-    if @new_room.save && @init_admin.create(room_id: @new_room.id, user_id: now_user.id, admin: true)
+    if @new_room.save && @init_admin.create(room_id: @new_room.id, 
+                                            user_id: now_user.id, 
+                                            admin: true)
+
       redirect_to "/room/#{@new_room.id}"
     else
       render(
