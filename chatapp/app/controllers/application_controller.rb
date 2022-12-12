@@ -31,9 +31,9 @@ class ApplicationController < ActionController::Base
     @new_room.admin = @current_user.id
     @categories = Room.group(:category).select("category, count(category) as category_count").order("category_count desc").limit(10).map { |m| [m.category, m.category_count] }.to_h
     now_user = User.find_by(id: @current_user.id)
-    @new_room.user << now_user
+    @init_admin = @new_room.rooms_user
 
-    if @new_room.save
+    if @new_room.save && @init_admin.create(room_id: @new_room.id, user_id: now_user.id, admin: true)
       redirect_to "/room/#{@new_room.id}"
     else
       render(
