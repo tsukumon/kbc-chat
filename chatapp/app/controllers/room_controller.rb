@@ -45,13 +45,12 @@ class RoomController < ApplicationController
     @user_data = User.find_by(id: @current_user.id)
     @room_info = @user_data.room.order(updated_at: :DESC)
     @invited_rooms = Room.where(id: @room_info.ids, private: true)
-                    .where.not(admin: @current_user.id)
     @invited_rooms_hash = @invited_rooms.map{ |room| [room.id, room.attributes]}.to_h
   end
 
   def page
     @room_data = Room.find_by(id: params[:id])
-    @user_data = User.all
+    @user_data = @room_data.user
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
 
