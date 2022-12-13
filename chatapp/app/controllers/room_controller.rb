@@ -50,7 +50,8 @@ class RoomController < ApplicationController
 
   def page
     @room_data = Room.find_by(id: params[:id])
-    @user_data = @room_data.user
+    @joined_user = @room_data.user
+    @all_user = User.all
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
 
