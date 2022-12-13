@@ -122,11 +122,10 @@ class RoomController < ApplicationController
   
   def search_result
     @search = Room.ransack(params[:q])
-    @results = @search.result
+    @results = @search.result.where.not(private: true)
     @user_data = User.find_by(id: @current_user.id)
     @joined_rooms = @user_data.room
-    @public_rooms = Room.where(private: false)
-    @invited_rooms = @joined_rooms.where(private: true)
+    @joined_rooms_hash = @joined_rooms.map{ |room| [room.id, room.attributes]}.to_h
   end
 
   def search_form

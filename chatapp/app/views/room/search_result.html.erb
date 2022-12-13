@@ -10,44 +10,38 @@
 
 <div class="rooms">
   <% @results.each do |room| %>
-    <% if @public_rooms.ids.include?(room.id) || @invited_rooms.ids.include?(room.id) %>
-        <div class="room">
-            <div class="room-bg-image">
-                <% if room.image.length > 0 || room.image != nil %>
-                  <img src = "<%= room.image %>">
-                <% else %>
-                  <img src = "/room_image/default.png">
-                <% end %>
-            </div>
-            <div class="room-image">
-              <% if room.image.length > 0 || room.image != nil %>
-                <img src = "<%= room.image %>" class="room-image">
-              <% else %>
-                <img src = "/room_image/default.png" class="room-image">
-              <% end %>
-            </div>
-            <div class="room-titles">
-              <div class="room-category-time">
-                <div class="room-category">
-                  <%= link_to "##{room.category}", category_path(CGI.escape(room.category)) %>
-                </div>
-                <div class="room-create-time"><%= date_format(room.created_at)%></div>
-              </div>
-              <% unless @invited_rooms.ids.include?(room.id) %>
-                <div class="title"><%= room.name %></div>
-              <% else %>
-                <div class="title"><%= room.name %> <i class="fa-solid fa-lock"></i></div>
-              <% end %>
-            </div>
-            <% unless @joined_rooms.ids.include?(room.id) %>
-              <div class="join-btn-area">
-                <%= link_to "参加する", room_join_path(room.id), "data-turbo": false, class: "join-btn" %>
-              </div>
-            <% else %>
-              <%= link_to room_page_path(room.id), class: "spread-link" do %><% end %>
-            <br>
-            <% end %>
+    <div class="room">
+      <div class="room-bg-image">
+        <% if room.image.length > 0 || room.image != nil %>
+          <img src = "<%= room.image %>">
+        <% else %>
+          <img src = "/room_image/default.png">
+        <% end %>
+      </div>
+      <div class="room-image">
+        <% if room.image.length > 0 || room.image != nil %>
+          <img src = "<%= room.image %>" class="room-image">
+        <% else %>
+          <img src = "/room_image/default.png" class="room-image">
+        <% end %>
+      </div>
+      <div class="room-titles">
+        <div class="room-category-time">
+          <div class="room-category">
+            <%= link_to "##{room.category}", category_path(CGI.escape(room.category)) %>
+          </div>
+          <div class="room-create-time"><%= date_format(room.created_at)%></div>
         </div>
-    <% end %>
+        <div class="title"><%= room.name %></div>
+      </div>
+      <% unless @joined_rooms_hash[room.id] %>
+        <div class="join-btn-area">
+          <%= link_to "参加する", room_join_path(room.id), "data-turbo": false, class: "join-btn" %>
+        </div>
+      <% else %>
+        <%= link_to room_page_path(room.id), class: "spread-link" do %><% end %>
+          <br>
+      <% end %>
+    </div>
   <% end %>
 </div>
