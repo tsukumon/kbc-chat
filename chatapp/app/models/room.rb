@@ -17,4 +17,9 @@ class Room < ApplicationRecord
   scope :by_name_like, lambda { |name|
   where('name LIKE :value', { value: "%#{sanitize_sql_like(name)}%"}).limit(5)
   }
+
+  def join_admin(user)
+    RoomsUser.create(room_id: self.id, user_id: user.id, admin: true)
+  end
+
 end
