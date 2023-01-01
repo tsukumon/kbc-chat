@@ -18,8 +18,11 @@ class Room < ApplicationRecord
   where('name LIKE :value', { value: "%#{sanitize_sql_like(name)}%"}).limit(5)
   }
 
-  def join_admin(user)
-    RoomsUser.create(room_id: self.id, user_id: user.id, admin: true)
+  def join_admin(user, flag)
+    if flag
+      RoomsUser.create(room_id: self.id, user_id: user.id, admin: true)
+    else
+    end
   end
 
 end

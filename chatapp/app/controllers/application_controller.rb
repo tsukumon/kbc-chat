@@ -37,7 +37,8 @@ class ApplicationController < ActionController::Base
     now_user = User.find_by(id: @current_user.id)
     #@init_admin = @new_room.rooms_user
     # @new_room.user << now_user
-    if @new_room.save && @new_room.join_admin(now_user)
+    flag = true
+    if @new_room.save && @new_room.join_admin(now_user, flag)
 
       redirect_to "/room/#{@new_room.id}"
     else

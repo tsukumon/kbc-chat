@@ -141,6 +141,15 @@ class RoomController < ApplicationController
     #categories = Room.by_name_like(autocomplete_params[:category]).pluck(:name).reject(&:blank?)
     render json: categories
   end
+
+  def update_member
+    p "うんこ"
+    p member_params
+    flag = false
+    @room_data = Room.find_by(id: params[:id])
+    @members = @room_data.user
+    @joiner = @room_data.rooms_user
+  end
   
   private
   
@@ -160,5 +169,9 @@ class RoomController < ApplicationController
 
   def room_params
     params.require(:room).permit(:name, :describe, :image, :category, :private, { user_ids: [] })
+  end
+
+  def member_params
+    params.permit({ member_id: [] })
   end
 end
