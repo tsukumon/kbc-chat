@@ -103,8 +103,8 @@
                     </div>
                   <% end %>
                   
-                  <%= form_with url: update_member_path do |f| %>
-                    <%= f.collection_check_boxes(:member_id, @joined_user, :id, :name) do |cb| %>
+                  <%= form_with url: update_member_path, method: :patch, local: true  do |f| %>
+                    <%= f.collection_check_boxes(:user_id, @joined_user, :id, :name) do |cb| %>
                       <%= cb.label { cb.check_box + cb.text } %>
                     <% end %>
                     <%= f.submit %>

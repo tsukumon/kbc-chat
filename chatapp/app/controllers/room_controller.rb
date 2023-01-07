@@ -144,11 +144,14 @@ class RoomController < ApplicationController
 
   def update_member
     p "うんこ"
-    p member_params
-    flag = false
     @room_data = Room.find_by(id: params[:id])
-    @members = @room_data.user
-    @joiner = @room_data.rooms_user
+    RoomsUser.add_admin(params[:id], member_params[:user_id])
+    # @member_info = RoomsUser.where(room_id: params[:id], user_id: member_params[:user_id])
+    # p "うんこ"
+    # p @member_info
+    # @member_info.each do |m|
+    #   m.change_admin
+    # end
   end
   
   private
@@ -172,6 +175,6 @@ class RoomController < ApplicationController
   end
 
   def member_params
-    params.permit({ member_id: [] })
+    params.permit({ user_id: [] })
   end
 end

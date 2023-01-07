@@ -30,5 +30,5 @@ Rails.application.routes.draw do
 
   get "/setting" => "settings#index", as: :setting
 
-  patch "/room/member/update/:id" => "room#update_member", as: :update_member
+  patch "/member/update/:id" => "room#update_member", as: :update_member
 end

@@ -22,6 +22,7 @@ class Room < ApplicationRecord
     if flag
       RoomsUser.create(room_id: self.id, user_id: user.id, admin: true)
     else
+      RoomsUser.update(room_id: self.room_id, user_id: user.ids, admin:true)
     end
   end
 

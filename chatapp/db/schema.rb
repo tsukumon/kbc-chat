@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2022_09_02_022701) do
     t.boolean "status", default: false, null: false
   end
 
-  create_table "rooms_users", id: false, force: :cascade do |t|
+  create_table "rooms_users", force: :cascade do |t|
     t.references :room, null: false
     t.references :user, null: false
     t.boolean "admin", default: false, null: false
