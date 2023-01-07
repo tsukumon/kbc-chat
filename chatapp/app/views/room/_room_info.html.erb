@@ -30,24 +30,26 @@
         <div class="tab_content" id="tab2_content">
           <div class="tab_content_description">
               <div class="contents">
-                <div id="user-data" user-data-id="<%= @admin.id %>"></div>
-                <div class="room-user-list admin">
-                  <img src="<%= @admin.image %>" class="icon">
-                  <div class="info">
-                    <div class="info-top">
-                      <div class="name">
-                        <%= @admin.name %>
-                        <% status = @admin.status ? "online":nil %>
+                <% @admin.each do |admin| %>
+                  <div id="user-data" user-data-id="<%= admin.id %>"></div>
+                  <div class="room-user-list admin">
+                    <img src="<%= admin.image %>" class="icon">
+                    <div class="info">
+                      <div class="info-top">
+                        <div class="name">
+                          <%= admin.name %>
+                          <% status = admin.status ? "online":nil %>
+                        </div>
+                        <span class="user-status <%= status %> user-<%= admin.id %>-status">
+                          ●
+                        </span>
                       </div>
-                      <span class="user-status <%= status %> user-<%= @admin.id %>-status">
-                        ●
-                      </span>
+                      <div class="role">管理者</div>
                     </div>
-                    <div class="role">管理者</div>
                   </div>
-                </div>
+                <% end %>
                 <% @info_members.each do |member| %>
-                  <% unless member.id == @admin.id%>
+                  <% unless @admin_hash[member.id] %>
                     <div id="user-data" user-data-id="<%= member.id %>"></div>
                     <div class="room-user-list">
                       <img src="<%= member.image %>" class="icon">
@@ -70,7 +72,7 @@
         </div>
         <div class="tab_content" id="tab3_content">
           <div class="tab_content_description">
-            <% if room.admin == @current_user.id %>
+            <% if @admin_hash[@current_user.id] %>
             <input id="acd-check1" class="acd-check" type="checkbox">
             <label class="acd-label" for="acd-check1">ルーム情報設定</label>
             <div class="acd-content">
@@ -104,7 +106,8 @@
                   <% end %>
                   
                   <%= form_with url: update_member_path, method: :patch, local: true  do |f| %>
-                    <%= f.collection_check_boxes(:user_id, @joined_user, :id, :name) do |cb| %>
+                    <%= f.collection_check_boxes(:user_id, @joined_user, :id, :name, 
+                                                  checked: @room_admins) do |cb| %>
                       <%= cb.label { cb.check_box + cb.text } %>
                     <% end %>
                     <%= f.submit %>

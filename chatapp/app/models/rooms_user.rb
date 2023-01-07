@@ -9,7 +9,4 @@ class RoomsUser < ApplicationRecord
       room_user.update(admin: true)
     end
   end
-  # def change_admin
-  #   self.update(admin: true)
-  # end
 end

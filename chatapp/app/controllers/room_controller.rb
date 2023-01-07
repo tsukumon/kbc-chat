@@ -51,12 +51,24 @@ class RoomController < ApplicationController
   def page
     @room_data = Room.find_by(id: params[:id])
     @joined_user = @room_data.user
+    
+    #manage admin
+    room_admin = RoomsUser.where(room_id: params[:id], user_id: @joined_user.ids, admin: true)
+    @room_admins = []
+    room_admin.each do |a|
+      @room_admins.push a.user_id
+    end
+
+    #private room manage member
     @all_user = User.all
+
+    #submit message
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
 
     #modal room member list
-    @admin = User.find_by(id: @room_data.admin)
+    @admin = User.where(id: @room_admins)
+    @admin_hash = @admin.map{ |adm| [adm.id, adm.attributes]}.to_h
     @info_members = @room_data.user
 
     #messages
@@ -146,12 +158,6 @@ class RoomController < ApplicationController
     p "うんこ"
     @room_data = Room.find_by(id: params[:id])
     RoomsUser.add_admin(params[:id], member_params[:user_id])
-    # @member_info = RoomsUser.where(room_id: params[:id], user_id: member_params[:user_id])
-    # p "うんこ"
-    # p @member_info
-    # @member_info.each do |m|
-    #   m.change_admin
-    # end
   end
   
   private
