@@ -155,9 +155,9 @@ class RoomController < ApplicationController
   end
 
   def update_member
-    p "うんこ"
     @room_data = Room.find_by(id: params[:id])
     RoomsUser.add_admin(params[:id], member_params[:user_id])
+    redirect_to room_page_path(id: params[:id])
   end
   
   private
