@@ -35,10 +35,7 @@ class ApplicationController < ActionController::Base
                   .order("category_count desc").limit(10)
                   .map { |m| [m.category, m.category_count] }.to_h
     now_user = User.find_by(id: @current_user.id)
-    #@init_admin = @new_room.rooms_user
-    # @new_room.user << now_user
-    flag = true
-    if @new_room.save && @new_room.join_admin(now_user, flag)
+    if @new_room.save && @new_room.join_admin(now_user)
 
       redirect_to "/room/#{@new_room.id}"
     else
