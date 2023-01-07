@@ -127,7 +127,7 @@
                 </div>
                 </div>
               </div>
-              <% if room.admin == @current_user.id %>
+              <% if @admin_hash[@current_user.id] %>
                 <div class="modal-room-back">
                   <div class="box">
                     <div class="room-back-contents"> 

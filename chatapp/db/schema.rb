@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2022_09_02_022701) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "image"
     t.string "category", default: "未分類"
-    t.integer "admin"
     t.boolean "private", default: false, null: false
   end
 
