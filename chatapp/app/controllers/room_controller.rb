@@ -7,7 +7,6 @@ class RoomController < ApplicationController
   before_action :authenticate_room, only: [:page, :create_message]
   
   def index
-    #@rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
     @user_data = User.find_by(id: @current_user.id)
     @room_all = Room.where(private: false).page(params[:room_page]).per(8)
     @room_latest = Room.where(private: false).order(created_at: :DESC).limit(4)
