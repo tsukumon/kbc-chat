@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   get "category/:category" => "category#index", as: :category
 
   get "/setting" => "settings#index", as: :setting
+
+  patch "/member/update/:id" => "room#update_member", as: :update_member
 end

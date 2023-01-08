@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :user_room, dependent: :destroy
-  has_many :room, through: :user_room
+  has_many :rooms_user, dependent: :destroy
+  has_many :room, through: :rooms_user
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.name = auth.info.name

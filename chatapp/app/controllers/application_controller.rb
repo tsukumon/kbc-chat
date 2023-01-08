@@ -19,17 +19,23 @@ class ApplicationController < ActionController::Base
 
   def new_room
     @new_room = Room.new
-    @categories = Room.group(:category).select("category, count(category) as category_count").order("category_count desc").limit(5).map { |m| [m.category, m.category_count] }.to_h
+    if @current_user
+      @users = User.where.not(id: @current_user.id)
+    end
+    @categories = Room.group(:category).select("category, count(category) as category_count")
+                  .order("category_count desc").limit(5)
+                  .map { |m| [m.category, m.category_count] }.to_h
   end
 
   def create_room
+    @users = User.where.not(id: @current_user.id)
     @new_room = Room.new(room_params)
-    @new_room.admin = @current_user.id
-    @categories = Room.group(:category).select("category, count(category) as category_count").order("category_count desc").limit(10).map { |m| [m.category, m.category_count] }.to_h
+    @categories = Room.group(:category).select("category, count(category) as category_count")
+                  .order("category_count desc").limit(10)
+                  .map { |m| [m.category, m.category_count] }.to_h
     now_user = User.find_by(id: @current_user.id)
-    @new_room.user << now_user
+    if @new_room.save && @new_room.join_admin(now_user)
 
-    if @new_room.save
       redirect_to "/room/#{@new_room.id}"
     else
       render(
@@ -47,7 +53,7 @@ class ApplicationController < ActionController::Base
   private
   
   def room_params
-    params.require(:room).permit(:name, :describe, :image, :category)
+    params.require(:room).permit(:name, :describe, :image, :category, :private, { user_ids: [] })
   end
   
   def autocomplete_params

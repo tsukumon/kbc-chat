@@ -18,6 +18,7 @@ ja:
         describe: "ルーム詳細情報"
         image: "ルームアイコン"
         category: "カテゴリ"
+        private: "プライベート"
       message:
         id: "ID"
         sentence: "メッセージ"

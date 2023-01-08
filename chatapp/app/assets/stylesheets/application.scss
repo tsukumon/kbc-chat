@@ -182,6 +182,115 @@ body{
     .create-from{
       padding: 12px;
       flex-flow: column;
+      .room-type{
+        display: inline-block;
+        width: 96px;
+        margin: 2px;
+        position: relative;
+        overflow: hidden;
+      }
+      .room-type-cb{
+        display: inline-block;
+        position: relative;
+        width: 48px;
+        height: 24px;
+        margin: 2px;
+        border-radius: 50px;
+        overflow: hidden;
+        cursor: pointer;
+        input[type="checkbox"] {
+          display: none;
+        }
+        &:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: block;
+          background: #e9e9eb;
+          -webkit-transition: 0.2s ease-out;
+          transition: 0.2s ease-out;
+        }
+        &:after {
+          content: "";
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          width: 18px;
+          height: 18px;
+          display: block;
+          border-radius: 50px;
+          background: #fff;
+          box-shadow: 0 9px 28px -6px rgba(0, 0, 0, 0.3);
+          -webkit-transition: 0.2s ease-out;
+          transition: 0.2s ease-out;
+        }
+      }
+      .room-type-cb.checked {
+        &:before {
+          background: #2dbb8c;
+        }
+        &:after {
+          left: 27px;
+          box-shadow: 0 9px 28px -6px rgba(0, 0, 0, 0.5);
+        }
+      }
+      .room-type-cb.checked + .invite-members{
+        display: flex;
+        cursor: pointer;
+        .select-members{
+          display: block;
+          position: relative;
+          padding-left: 30px;
+          margin-right: 20px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 14px;
+          user-select: none;
+          &:hover{
+            background: rgba(0,0,0,.05) !important;
+          }
+          .invite-cb{
+            display: none;
+            &:checked + .cb-dummy{
+                background-color: #ffff;
+                border: 2px solid #2dbb8c;
+              &:after{
+                display: block;
+              }
+            }
+          }
+          .cb-dummy{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            border: 2px solid #999999;
+            box-sizing: border-box;
+            border-radius: 4px;
+            &:after{
+              content: "";
+              position: absolute;
+              display: none;
+              left: 4px;
+              top: 0px;
+              width: 5px;
+              height: 10px;
+              border: 2px solid #2dbb8c;
+              border-width: 0 2px 2px 0;
+              transform: rotate(45deg);
+            }
+          }
+          .cb-dummy-lb{
+          }
+        }
+      }
+      .invite-members{
+        display: none;
+      }
       input[type="text"]{
         background-color: #F4F4F4;
         border: none;

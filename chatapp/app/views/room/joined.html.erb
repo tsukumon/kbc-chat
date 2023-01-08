@@ -17,12 +17,16 @@
           <% end %>
         </div>
         <div class="room-titles">
-          <div class="title"><%= room.name %></div>
-          <div class="room-category-time">
-            <div class="room-create-time">最終更新 <%= date_format(room.updated_at)%></div>
+          <% unless @invited_rooms_hash[room.id] %>
+            <div class="title"><%= room.name %></div>
+          <% else %>
+            <div class="title"><%= room.name %> <i class="fa-solid fa-lock"></i></div>
+          <% end %>
+            <div class="room-category-time">
+              <div class="room-create-time">最終更新 <%= date_format(room.updated_at)%></div>
+            </div>
           </div>
         </div>
-      </div>
     <% end %>
   <% end %>
 </div>

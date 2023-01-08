@@ -7,10 +7,15 @@ class RoomController < ApplicationController
   before_action :authenticate_room, only: [:page, :create_message]
   
   def index
-    #@rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
-    @room_all = Room.all.page(params[:room_page]).per(8)
-    @room_latest = Room.order(created_at: :DESC).limit(4)
-    @room_update = Room.where("created_at < updated_at").order(updated_at: :DESC).limit(4)
+    @user_data = User.find_by(id: @current_user.id)
+    @room_all = Room.where(private: false).page(params[:room_page]).per(8)
+    @room_latest = Room.where(private: false).order(created_at: :DESC).limit(4)
+    @room_update = Room.where("created_at < updated_at", private: false)
+                  .order(updated_at: :DESC).limit(4)
+
+    #joined rooms
+    @joined_rooms = @user_data.room
+    @joined_rooms_hash = @joined_rooms.map{ |room| [room.id, room.attributes]}.to_h
   end
 
   def join
@@ -29,26 +34,41 @@ class RoomController < ApplicationController
   end
 
   def authenticate_room
-    unless UserRoom.find_by(user_id: @current_user.id, room_id: params[:id])
+    room = Room.find(params[:id])
+    unless room.user.find_by(id: @current_user.id)
       redirect_to room_path
     end
   end
 
   def joined
-    @rooms = UserRoom.where(user_id: @current_user.id).pluck(:room_id)
-    @room_info = Room.where(id: @rooms).order(updated_at: :DESC)
+    @user_data = User.find_by(id: @current_user.id)
+    @room_info = @user_data.room.order(updated_at: :DESC)
+    @invited_rooms = Room.where(id: @room_info.ids, private: true)
+    @invited_rooms_hash = @invited_rooms.map{ |room| [room.id, room.attributes]}.to_h
   end
 
   def page
     @room_data = Room.find_by(id: params[:id])
+    @joined_user = @room_data.user
+    
+    #manage admin
+    room_admin = RoomsUser.where(room_id: params[:id], user_id: @joined_user.ids, admin: true)
+    @room_admins = []
+    room_admin.each do |a|
+      @room_admins.push a.user_id
+    end
+
+    #private room manage member
+    @all_user = User.all
+
+    #submit message
     @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
-    
+
     #modal room member list
-    info_members_id = UserRoom.where(room_id: params[:id]).pluck(:user_id)
-    @admin = User.find_by(id: @room_data.admin)
-    @info_members = User.where(id: info_members_id).order(id: :ASC)
-    @info_members_hash = @info_members.map{ |user| [user.id, user.attributes]}.to_h
+    @admin = User.where(id: @room_admins)
+    @admin_hash = @admin.map{ |adm| [adm.id, adm.attributes]}.to_h
+    @info_members = @room_data.user
 
     #messages
     members_id = Message.where(room_id: params[:id]).pluck(:user_id)
@@ -81,7 +101,8 @@ class RoomController < ApplicationController
 
   def destroy_room
     @room = Room.find_by(id: params[:id])
-    if @room.destroy
+    user = @room.user
+    if @room.user.destroy(user) && @room.destroy
       redirect_to room_path, status: :see_other
     end
   end
@@ -112,11 +133,16 @@ class RoomController < ApplicationController
   
   def search_result
     @search = Room.ransack(params[:q])
-    @results = @search.result
+    @results = @search.result.where.not(private: true)
+    @user_data = User.find_by(id: @current_user.id)
+    @joined_rooms = @user_data.room
+    @joined_rooms_hash = @joined_rooms.map{ |room| [room.id, room.attributes]}.to_h
   end
 
   def search_form
-    @room = Room.all.order(created_at: :DESC).limit(12)
+    @user_data = User.find_by(id: @current_user.id)
+    @rooms = Room.where(private: false).order(created_at: :DESC).limit(12)
+    @joined_rooms = @user_data.room
     @search = Room.ransack(params[:q])
     @results = @search.result
   end
@@ -125,6 +151,12 @@ class RoomController < ApplicationController
     categories = Room.by_category_like(autocomplete_params[:category]).pluck(:category).reject(&:blank?)
     #categories = Room.by_name_like(autocomplete_params[:category]).pluck(:name).reject(&:blank?)
     render json: categories
+  end
+
+  def update_member
+    @room_data = Room.find_by(id: params[:id])
+    RoomsUser.add_admin(params[:id], member_params[:user_id])
+    redirect_to room_page_path(id: params[:id])
   end
   
   private
@@ -144,6 +176,10 @@ class RoomController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:name, :describe, :image, :category, :private)
+    params.require(:room).permit(:name, :describe, :image, :category, :private, { user_ids: [] })
+  end
+
+  def member_params
+    params.permit({ user_id: [] })
   end
 end

@@ -9,7 +9,7 @@
   <div class="title">最新ルーム</div>
 </div>
 <div class="rooms">
-  <% @room.each do |room| %>
+  <% @rooms.each do |room| %>
         <div class="room">
             <div class="room-bg-image">
                 <% if room.image.length > 0 || room.image != nil %>
@@ -34,7 +34,7 @@
               </div>
                 <div class="title"><%= room.name %></div>
             </div>
-            <% unless UserRoom.find_by(user_id: @current_user.id, room_id: room.id) %>
+            <% unless @joined_rooms.ids.include?(room.id) %>
               <div class="join-btn-area">
                 <%= link_to "参加する", room_join_path(room.id), "data-turbo": false, class: "join-btn" %>
               </div>

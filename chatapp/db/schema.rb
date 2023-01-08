@@ -30,17 +30,7 @@ ActiveRecord::Schema.define(version: 2022_09_02_022701) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "image"
     t.string "category", default: "未分類"
-    t.integer "admin"
     t.boolean "private", default: false, null: false
-  end
-
-  create_table "user_rooms", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "room_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_id"], name: "index_user_rooms_on_room_id"
-    t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,6 +46,10 @@ ActiveRecord::Schema.define(version: 2022_09_02_022701) do
     t.boolean "status", default: false, null: false
   end
 
-  add_foreign_key "user_rooms", "rooms"
-  add_foreign_key "user_rooms", "users"
+  create_table "rooms_users", force: :cascade do |t|
+    t.references :room, null: false
+    t.references :user, null: false
+    t.boolean "admin", default: false, null: false
+  end
+
 end
