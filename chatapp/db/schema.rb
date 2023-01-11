@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 2022_09_02_022701) do
 
   create_table "messages", force: :cascade do |t|
     t.text "sentence"
-    # t.references :room
     t.references :user
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

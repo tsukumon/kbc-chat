@@ -62,7 +62,6 @@ class RoomController < ApplicationController
     @all_user = User.all
 
     #submit message
-    # @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
     @messages = @room_data.message.order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
 
@@ -72,7 +71,6 @@ class RoomController < ApplicationController
     @info_members = @room_data.user
 
     #messages
-    # members_id = Message.where(room_id: params[:id]).pluck(:user_id)
     members = @room_data.user
     @members = User.where(id: members.ids)
     @members_hash = @members.map{ |member| [member.id, member.attributes]}.to_h  
@@ -176,9 +174,6 @@ class RoomController < ApplicationController
 
   def message_params
     params.require(:message).permit(:sentence).merge(user_id: @current_user.id)
-    # sentence = params.require(:message).permit(:sentence)
-    # ids = { "room_id" => params[:id], "user_id" => @current_user.id }
-    # return sentence.merge(ids)
   end
 
   def room_params
