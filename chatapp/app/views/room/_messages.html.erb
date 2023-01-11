@@ -9,7 +9,8 @@
     <% messages.reverse_each do |message| %>
       <div id="message-<%= message.id%>" class="message-one">
         <% user = @members_hash[message.user_id] %>
-        <% if @info_members.ids.include?(message.user_id) %>
+        <%# if @info_members.ids.include?(message.user_id) %>
+        <% if @members_hash[message.user_id] %>
           <div class="message-left">
           <% if user["image"] %>
           <img src=<%= user["image"] %>>
@@ -33,7 +34,7 @@
         </div>
         <% if @current_user.id == message.user_id %>
           <div id="message-delete">
-            <%= link_to "削除", destroy_message_path(message.id), data: {turbo_method: :delete} %>
+            <%= link_to "削除", destroy_message_path(id: message.id, room_id: @room_data.id), data: {turbo_method: :delete} %>
           </div>
         <% end %>
             </div>
