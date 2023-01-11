@@ -1,5 +1,6 @@
 class Room < ApplicationRecord
-  has_many :message, dependent: :destroy
+  has_and_belongs_to_many :message, dependent: :destroy
+  # has_many :message, dependent: :destroy
   has_many :rooms_user, dependent: :destroy
   has_many :user, through: :rooms_user
   mount_uploader :image, RoomUploader
