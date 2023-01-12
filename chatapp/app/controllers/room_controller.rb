@@ -71,8 +71,8 @@ class RoomController < ApplicationController
     @info_members = @room_data.user
 
     #messages
-    members = @room_data.user
-    @members = User.where(id: members.ids)
+    members_data = @room_data.user
+    @members = User.where(id: members_data.ids)
     @members_hash = @members.map{ |member| [member.id, member.attributes]}.to_h  
   end
 
