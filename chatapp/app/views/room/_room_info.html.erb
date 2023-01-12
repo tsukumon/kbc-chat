@@ -112,7 +112,8 @@
               <div class="edit_room_function">
                 <%= form_with url: update_member_path, method: :patch, local: true  do |f| %>
                   <%= f.collection_check_boxes(:user_id, @joined_user, :id, :name, 
-                                                checked: @room_admins) do |cb| %>
+                                                checked: @room_admins,
+                                                disabled: @current_user.id) do |cb| %>
                     <%= cb.label { cb.check_box + cb.text } %>
                   <% end %>
                   <div class="submit-area">
