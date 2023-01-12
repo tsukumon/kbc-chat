@@ -68,11 +68,9 @@ class RoomController < ApplicationController
     #modal room member list
     @admin = User.where(id: @room_admins)
     @admin_hash = @admin.map{ |adm| [adm.id, adm.attributes]}.to_h
-    @info_members = @room_data.user
 
     #messages
-    members_data = @room_data.user
-    @members = User.where(id: members_data.ids)
+    @members = User.where(id: @joined_user.ids)
     @members_hash = @members.map{ |member| [member.id, member.attributes]}.to_h  
   end
 
