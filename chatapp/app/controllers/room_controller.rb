@@ -28,8 +28,8 @@ class RoomController < ApplicationController
   end
   
   def check_double_join
-    @join_data = RoomsUser.find_by(room_id: params[:id], user_id: @current_user.id)
-    if @join_data
+    @room_data = Room.find_by(id: params[:id])
+    if @room_data.user.find_by(id: @current_user.id)
       redirect_to room_page_path(params[:id])
     end
   end
