@@ -33,7 +33,7 @@
         </div>
         <% if @current_user.id == message.user_id %>
           <div id="message-delete">
-            <%= link_to "削除", destroy_message_path(id: message.id, room_id: @room_data.id), data: {turbo_method: :delete} %>
+            <%= link_to "削除", destroy_message_path(message.id), data: {turbo_method: :delete} %>
           </div>
         <% end %>
             </div>
