@@ -48,7 +48,7 @@
                     </div>
                   </div>
                 <% end %>
-                <% @info_members.each do |member| %>
+                <% @joined_user.each do |member| %>
                   <% unless @admin_hash[member.id] %>
                     <div id="user-data" user-data-id="<%= member.id %>"></div>
                     <div class="room-user-list">
@@ -82,7 +82,7 @@
                     <div id="errors-update-room"></div>
                     <%= f.label :category %>
                     <%= f.text_field :category %>
-                    <%= f.label "メンバー" %>
+                    <%= f.label "メンバー管理" %>
                     <% if room.private %>
                       <%= collection_check_boxes(:room, :user_ids, @all_user, :id, :name,
                         checked: room.user_ids) do |cb| %>
@@ -104,20 +104,27 @@
                       <%= f.submit "変更する" %>
                     </div>
                   <% end %>
-                  
-                  <%= form_with url: update_member_path, method: :patch, local: true  do |f| %>
-                    <%= f.collection_check_boxes(:user_id, @joined_user, :id, :name, 
-                                                  checked: @room_admins) do |cb| %>
-                      <%= cb.label { cb.check_box + cb.text } %>
-                    <% end %>
-                    <%= f.submit %>
+              </div>
+            </div>
+            <input id="acd-check2" class="acd-check" type="checkbox">
+            <label class="acd-label" for="acd-check2">ルーム管理者権限</label>
+            <div class="acd-content">
+              <div class="edit_room_function">
+                <%= form_with url: update_member_path, method: :patch, local: true, 
+                              data: { turbo_confirm: "管理者を変更します" }  do |f| %>
+                  <%= f.collection_check_boxes(:user_id, @joined_user, :id, :name, 
+                                                checked: @room_admins) do |cb| %>
+                    <%= cb.label { cb.check_box + cb.text } %>
                   <% end %>
-
+                  <div class="submit-area">
+                    <%= f.submit "変更する" %>
+                  </div>
+                <% end %>
               </div>
             </div>
             <% end %>
-            <input id="acd-check2" class="acd-check" type="checkbox">
-            <label class="acd-label" for="acd-check2">退室</label>
+            <input id="acd-check3" class="acd-check" type="checkbox">
+            <label class="acd-label" for="acd-check3">退室</label>
             <div class="acd-content">
               <div class="modal-room-back">
                 <div class="box"> 
@@ -138,6 +145,7 @@
                 </div>
               <% end %>
             </div>
+            <p><%= alert %></p>
           </div>
         </div>
       </div>

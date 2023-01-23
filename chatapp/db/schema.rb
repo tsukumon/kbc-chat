@@ -17,10 +17,9 @@ ActiveRecord::Schema.define(version: 2022_09_02_022701) do
 
   create_table "messages", force: :cascade do |t|
     t.text "sentence"
-    t.integer "room_id"
+    t.references :user
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -50,6 +49,13 @@ ActiveRecord::Schema.define(version: 2022_09_02_022701) do
     t.references :room, null: false
     t.references :user, null: false
     t.boolean "admin", default: false, null: false
+  end
+
+  create_table "messages_rooms", id: false, force: :cascade do |t|
+    t.references :message, null: false
+    t.references :room, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
