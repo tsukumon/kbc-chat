@@ -70,17 +70,15 @@ class RoomController < ApplicationController
     @all_user = User.all
 
     #submit message
-    @messages = Message.where(room_id: params[:id]).order(created_at: :DESC).page(params[:page]).per(30)
+    @messages = @room_data.message.order(created_at: :DESC).page(params[:page]).per(30)
     @message = Message.new
 
     #modal room member list
     @admin = User.where(id: @room_admins)
     @admin_hash = @admin.map{ |adm| [adm.id, adm.attributes]}.to_h
-    @info_members = @room_data.user
 
     #messages
-    members_id = Message.where(room_id: params[:id]).pluck(:user_id)
-    @members = User.where(id: members_id)
+    @members = User.where(id: @joined_user.ids)
     @members_hash = @members.map{ |member| [member.id, member.attributes]}.to_h  
   end
 
@@ -116,9 +114,10 @@ class RoomController < ApplicationController
   end
 
   def create_message
+    @room_data = Room.find_by(id: params[:id])
     @message = Message.new(message_params)
+    @message.room << @room_data
     if @message.save
-      @room_data = Room.find_by(id: params[:id])
       @room_data.update(updated_at: Time.now)
       @time = date_format(@message.created_at)
       @message.sentence = markdown(@message.sentence)
@@ -129,8 +128,10 @@ class RoomController < ApplicationController
 
   def destroy_message
     @message = Message.find_by(id: params[:id])
-    if @message.destroy
-      ActionCable.server.broadcast "message_#{@message.room_id}_channel",{ content: @message, mode: "delete" }
+    message_data = MessagesRoom.find_by(message_id: @message.id)
+    room_data = @message.room
+    if @message.room.destroy(room_data) && @message.destroy
+      ActionCable.server.broadcast "message_#{message_data.room_id}_channel",{ content: @message, mode: "delete" }
     end
   end
 
@@ -178,9 +179,7 @@ class RoomController < ApplicationController
   end
 
   def message_params
-    sentence = params.require(:message).permit(:sentence)
-    ids = { "room_id" => params[:id], "user_id" => @current_user.id }
-    return sentence.merge(ids)
+    params.require(:message).permit(:sentence).merge(user_id: @current_user.id)
   end
 
   def room_params
