@@ -5,12 +5,13 @@ class RoomController < ApplicationController
   protect_from_forgery :except => [:create_message]
   before_action :authenticate_user
   before_action :authenticate_room, only: [:page, :create_message]
+  before_action :authenticate_admin, only: [:leave]
   
   def index
     @user_data = User.find_by(id: @current_user.id)
     @room_all = Room.where(private: false).page(params[:room_page]).per(8)
     @room_latest = Room.where(private: false).order(created_at: :DESC).limit(4)
-    @room_update = Room.where("created_at < updated_at", private: false)
+    @room_update = Room.where("created_at < updated_at").where(private: false)
                   .order(updated_at: :DESC).limit(4)
 
     #joined rooms
@@ -37,6 +38,13 @@ class RoomController < ApplicationController
     room = Room.find(params[:id])
     unless room.user.find_by(id: @current_user.id)
       redirect_to room_path
+    end
+  end
+
+  def authenticate_admin
+    user_data = RoomsUser.find_by(room_id: params[:id], user_id: @current_user.id)
+    if user_data.admin
+      redirect_to room_page_path(id: params[:id]), alert: "ルーム管理者のため退室できません"
     end
   end
 
