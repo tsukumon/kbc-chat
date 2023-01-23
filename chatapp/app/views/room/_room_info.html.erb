@@ -48,7 +48,7 @@
                     </div>
                   </div>
                 <% end %>
-                <% @info_members.each do |member| %>
+                <% @joined_user.each do |member| %>
                   <% unless @admin_hash[member.id] %>
                     <div id="user-data" user-data-id="<%= member.id %>"></div>
                     <div class="room-user-list">
@@ -138,6 +138,7 @@
                 </div>
               <% end %>
             </div>
+            <p><%= alert %></p>
           </div>
         </div>
       </div>
