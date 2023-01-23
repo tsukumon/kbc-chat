@@ -11,7 +11,7 @@ class RoomController < ApplicationController
     @user_data = User.find_by(id: @current_user.id)
     @room_all = Room.where(private: false).page(params[:room_page]).per(8)
     @room_latest = Room.where(private: false).order(created_at: :DESC).limit(4)
-    @room_update = Room.where("created_at < updated_at", private: false)
+    @room_update = Room.where("created_at < updated_at").where(private: false)
                   .order(updated_at: :DESC).limit(4)
 
     #joined rooms
