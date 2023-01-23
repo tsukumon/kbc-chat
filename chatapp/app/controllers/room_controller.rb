@@ -5,6 +5,7 @@ class RoomController < ApplicationController
   protect_from_forgery :except => [:create_message]
   before_action :authenticate_user
   before_action :authenticate_room, only: [:page, :create_message]
+  before_action :check_double_join, only: [:join]
   before_action :authenticate_admin, only: [:leave]
   
   def index
@@ -25,6 +26,13 @@ class RoomController < ApplicationController
     @room.user << user
     ActionCable.server.broadcast "message_#{params[:id]}_channel",{ mode: "join", current_user: @current_user.id, user: user }
     redirect_to room_page_path(id: params[:id])
+  end
+  
+  def check_double_join
+    @room_data = Room.find_by(id: params[:id])
+    if @room_data.user.find_by(id: @current_user.id)
+      redirect_to room_page_path(params[:id])
+    end
   end
 
   def leave
