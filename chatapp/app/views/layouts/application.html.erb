@@ -10,6 +10,7 @@
     <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= action_cable_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <% self_css_path = "/assets/"+controller.controller_path  %>
